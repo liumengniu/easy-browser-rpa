@@ -1,0 +1,55 @@
+#electron-builder配置文件
+
+# 不继承其他任何配置（不配置打包会报错）
+extends: null
+# 构建配置
+appId: com.electron.basic.client
+productName: electron基础模板
+directories:
+  buildResources: static
+  # 指定构建输出目录
+  output: release
+
+asar: true
+
+# Windows 特定配置
+win:
+  icon: "static/icons/favicon.ico"
+  target:
+    - "nsis"
+    - "zip"
+  requestedExecutionLevel: "requireAdministrator"
+
+# Linux 特定配置
+linux:
+  icon: "static/icons/256x256.png"
+  target: AppImage
+  category: Electron Basic Program
+
+# 包含文件
+files:
+  - "build/**/*"
+  - "src/main/main.js"
+  - "src/main/preload.js"
+
+# 额外的资源目录
+extraResources:
+  - "extraResources/**"
+
+# NSIS 安装程序配置（仅适用于 Windows）
+nsis:
+  include: "scripts/installer.nsi"
+  oneClick: false
+  perMachine: true
+  menuCategory: false
+  allowElevation: true
+  allowToChangeInstallationDirectory: true
+  createDesktopShortcut: true
+  installerIcon: "static/icons/favicon.ico"
+  uninstallerIcon: "static/icons/favicon.ico"
+  installerHeaderIcon: "static/icons/favicon.ico"
+
+# 自动更新配置
+publish:
+  provider: generic
+  url: "https://www.xxx.cn/client"
