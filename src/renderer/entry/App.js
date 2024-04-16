@@ -9,7 +9,8 @@ import {
 	TabletFilled,
 } from '@ant-design/icons';
 import { useState } from 'react';
-
+import { CheckCard } from '@ant-design/pro-components';
+import _ from "lodash"
 
 const defaultProps = {
 	route: {
@@ -192,7 +193,32 @@ function App() {
 			    />
 		    )}
 	    >
-		    <PageContainer content="欢迎使用">Hello World</PageContainer>
+		    <PageContainer content="欢迎使用">
+			    <CheckCard.Group
+				    onChange={(value) => {
+					    console.log('value', value);
+				    }}
+				    defaultValue="A"
+			    >
+				    {
+					    _.map(new Array(30), (item, idx) => {
+						    return <CheckCard
+							    key={idx}
+							    avatar="https://gw.alipayobjects.com/zos/bmw-prod/f601048d-61c2-44d0-bf57-ca1afe7fd92e.svg"
+							    title="示例一"
+							    description="选择一个由流程编排提供的典型用户案例，可以从中学习到流程编排很多设计理念。"
+							    onChange={(checked) => {
+								    console.log('checked', checked);
+							    }}
+							    defaultChecked
+							    onClick={() => {
+								    console.log('clicked');
+							    }}
+						    />
+					    })
+				    }
+			    </CheckCard.Group>
+		    </PageContainer>
 	    </ProLayout>
     </div>
   );
