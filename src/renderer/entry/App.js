@@ -2,12 +2,17 @@ import './App.less';
 import {useEffect} from "react";
 
 function App() {
-  useEffect(()=>{
-  }, [])
+	useEffect(() => {
+		let webIns = document.getElementById('webview');
+		webIns.addEventListener('dom-ready', () => {
+			webIns.openDevTools();
+			// webIns.executeJavaScript(webviewScripts.getScript(_.toNumber(data?.systemId), data?.account, data?.password));
+		});
+	}, [])
   
   return (
     <div className="App">
-      <webview id="webview" src={"https://ant-design.antgroup.com/components/overview-cn/"} />
+      <webview id="webview" src={"https://www.xiaohongshu.com/explore"} />
     </div>
   );
 }
