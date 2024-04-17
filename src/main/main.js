@@ -38,7 +38,7 @@ const createWindow = () => {
 	Menu.setApplicationMenu(null);
 	mainWindow = new BrowserWindow({
 		transparent: true,
-		useContentSize: true,
+		// useContentSize: true,
 		// frame: false,
 		icon: process.platform === "linux" ? path.join(__dirname, "../../", "./static/icons/256x256.png") : path.join(__dirname, "../../", `./static/icons/favicon.ico`),
 		webPreferences: {
