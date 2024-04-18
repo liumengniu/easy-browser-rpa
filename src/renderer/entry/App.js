@@ -52,27 +52,36 @@ function App() {
 			webIns.openDevTools();
 			// webIns.executeJavaScript(webviewScripts.getScript(_.toNumber(data?.systemId), data?.account, data?.password));\
 			webIns.executeJavaScript(`
-				setTimeout(()=>{
+
 					var doc = document;
 					var exploreFeeds = doc.getElementById("exploreFeeds")
 					var sections = doc.getElementsByClassName("note-item");
-					console.log(sections, "sections=========")
 					for (var i=0;i<sections.length;i++){
-						const section = sections[i];
+						var section = sections[i];
+						// console.log(section, '===========section===========', sections)
 						var footer = section.querySelector(".footer");
 						var title = footer.querySelector(".title");
 						var titleSpan = footer.querySelector("span");
 						// 1、获取小红书标题
-						const textContent = titleSpan?.textContent;
+						var textContent = titleSpan?.textContent;
 						// 2、获取每个帖子图片、帖子地址、帖子详情
 						var aElement = section.querySelector("a.mask");
 						var aImg = aElement.querySelector("img");
 						var imgSrc = aImg.src;      //帖子图片
 						var aHref = aElement.href;  //帖子详情
 						var styleObj = aElement.style;
-						console.log(aElement, '9999', aHref, '555', styleObj, '000', imgSrc)
+						// console.log(aElement, '9999', aHref, '555', styleObj, '000', imgSrc)
+						// 3、前往详情页
+						(function (index, aElement) {
+							console.log(aElement, '--------------------------------------------------')
+					    setTimeout(function () {
+						    aElement.click();
+						    var closeCircleDom = document.querySelector("div.note-detail-mask");
+								closeCircleDom?.click()
+					    }, index*1000);
+					  })(i, aElement);
 					}
-				}, 10000)
+		
 			`)
 		});
 	}, [])
