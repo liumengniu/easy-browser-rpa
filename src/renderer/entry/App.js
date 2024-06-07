@@ -76,8 +76,8 @@ function App() {
 							console.log(aElement, '--------------------------------------------------')
 					    setTimeout(function () {
 						    aElement.click();
-						    var closeCircleDom = document.querySelector("div.note-detail-mask");
-								closeCircleDom?.click()
+						    // var closeCircleDom = document.querySelector("div.note-detail-mask");
+								// closeCircleDom?.click()
 					    }, index*1000);
 					  })(i, aElement);
 					}
@@ -95,7 +95,7 @@ function App() {
 			allowRunningInsecureContent="yes"
 			disablewebsecurity="yes"
 			webpreferences="contextIsolation=no"
-			src={"https://www.xiaohongshu.com/explore"}/>
+			src={"https://www.zhipin.com/"}/>
 	)
 }
 

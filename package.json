@@ -1,7 +1,7 @@
 {
   "name": "crawler-client",
   "version": "1.0.0",
-  "author": "Kevin <15111205994@163.com>",
+  "author": "Kevin",
   "private": true,
   "main": "./src/main/main.js",
   "homepage": ".",
