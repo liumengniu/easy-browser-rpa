@@ -57,9 +57,23 @@ contextBridge.exposeInMainWorld('electronAPI', {
 	/**
 	 * ====================================== 渲染进程 -> 主进程(双向)  =======================================
 	 */
+	/**
+	 * 获取版本
+	 * @returns {Promise<any>}
+	 */
 	getVersion: () => ipcRenderer.invoke('getVersion'),
 	/**
-	 * ====================================== 主进程 -> 渲染进程  =======================================
+	 * 获取preload.js相对路径
+	 * @returns {Promise<any>}
+	 */
+	getPathFn: fileName => ipcRenderer.invoke('getPathFn', fileName),
+	/**
+	 * 保存至磁盘
+	 * @returns {Promise<any>}
+	 */
+	saveDisk: params => ipcRenderer.invoke('saveDisk', params),
+	/**
+	 * ====================================== 主进程 -> 渲染进程（单向）  =======================================
 	 */
 	downloadProgress: (callback) => ipcRenderer.on('downloadProgress', callback),
 	isUpdateNow: (callback) => ipcRenderer.on('isUpdateNow', callback),

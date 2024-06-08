@@ -31,7 +31,7 @@ let mainWindow;
  */
 const createWindow = () => {
 	/**
-	 * 设置自定义菜单栏
+	 * 1、设置自定义菜单栏
 	 * @type {Electron.Menu}
 	 */
 	const mainMenu = Menu.buildFromTemplate(Menus);
@@ -117,7 +117,7 @@ if (!goTheLock) {
  */
 
 /**
- * 路由切换
+ * 2、路由切换
  */
 function changeWidth(mainWindow) {
 	if (!mainWindow.isFullScreen()) {
@@ -127,7 +127,7 @@ function changeWidth(mainWindow) {
 }
 
 /**
- * 接收路由切换的通讯
+ * 3、接收路由切换的通讯
  */
 ipcMain.on("currentRouter", (event, arg) => {
 	// 动态调整宽度
@@ -144,13 +144,13 @@ ipcMain.on("currentRouter", (event, arg) => {
 });
 
 /**
- * 最小化
+ * 4、最小化
  */
 ipcMain.on("window-min", (event, arg) => {
 	mainWindow.minimize();
 });
 /**
- * 最大化
+ *  5、最大化
  */
 ipcMain.on("window-max", (event, arg) => {
 	if (mainWindow.isMaximized()) {
@@ -160,7 +160,7 @@ ipcMain.on("window-max", (event, arg) => {
 	}
 });
 /**
- * 关闭
+ *  6、关闭
  */
 ipcMain.on("window-close", (event, arg) => {
 	mainWindow.close();
@@ -168,7 +168,7 @@ ipcMain.on("window-close", (event, arg) => {
 });
 
 /**
- * webview
+ *  7、webview
  */
 ipcMain.on("init-browser-view", (event, arg) => {
 	const { screen } = require("electron");
@@ -181,21 +181,21 @@ ipcMain.on("init-browser-view", (event, arg) => {
 });
 
 /**
- * 在用户的默认浏览器中打开 URL
+ *  8、在用户的默认浏览器中打开 URL
  */
 ipcMain.on("openExternal", (event, arg) => {
 	shell.openExternal(arg);
 });
 
 /**
- * 打开浏览器
+ *  9、打开浏览器
  */
 function openBrowser(url) {
 	shell.openExternal(url);
 }
 
 /**
- * 执行cmd脚本
+ *  10、执行cmd脚本
  */
 ipcMain.on("shellCmd", (event, arg) => {
 	let cmdStr = "";
@@ -224,26 +224,51 @@ ipcMain.on("shellCmd", (event, arg) => {
 	}
 });
 /**
- * 拖拽窗体顶部
+ *  11、拖拽窗体顶部
  */
 ipcMain.on("moveApplication", (event, pos) => {
 	mainWindow && mainWindow.setPosition(pos.posX, pos.posY);
 });
 /**
- * 窗体重新加载 url
+ *  12、窗体重新加载 url
  */
 ipcMain.on("reload", (event, pos) => {
 	mainWindow && mainWindow.reload();
 });
 
 /**
- * 获取版本号（package.json）
+ *  13、获取版本号（package.json）
  * @returns {string}
  */
 function getVersion() {
 	return app.getVersion();
 }
 ipcMain.handle("getVersion", getVersion);
+
+
+/**
+ * 14、保存至磁盘
+ */
+function saveDisk(event, arg){
+	console.log("================saveDisk====================", event, arg)
+	const isExist = fs.existsSync('D://小红书.txt');
+	if(isExist) {
+		fs.appendFileSync('D://小红书.txt',JSON.stringify(arg) + '\n')
+	} else {
+		fs.writeFileSync('D://小红书.txt', JSON.stringify(arg) + '\n')
+	}
+}
+ipcMain.handle("saveDisk", saveDisk);
+
+/**
+ * 15、获取 preload.js 相对路径
+ */
+ipcMain.handle("getPathFn", (event, arg) =>{
+	console.log(event,'999999999999999999',arg)
+	let _path = mode === "dev" ? path.resolve(app.getAppPath(), `src/main/${arg}`) : path.resolve(process.resourcesPath, `src/main/${arg}`);
+	console.log(event,'999999999999999999',`file://${_path.replace(/\\/g, '/')}`)
+	return `file://${_path.replace(/\\/g, '/')}`;
+})
 
 /**
  *=========================================================================

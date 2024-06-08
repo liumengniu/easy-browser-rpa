@@ -48,6 +48,13 @@
     "build:dir": "electron-builder --dir",
     "postinstall": "electron-builder install-app-deps"
   },
+  "build": {
+    "extraResources": [
+      "./extraResources/**",
+      "./src/main/preload.js",
+      "./src/main/preload2.js"
+    ]
+  },
   "eslintConfig": {
     "extends": [
       "react-app",
