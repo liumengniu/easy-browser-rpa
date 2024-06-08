@@ -48,6 +48,7 @@
 | 4、抖音脚本            | pending    | 暂无 |
 | 5、换一套好看的UI       | pending    | 暂无 |
 | 6、做成可视化的数据采集   | pending    | 暂无 |
+| 7、通过脚本绕过验证码等反制手段   | pending    | 暂无 |
 
 ## 🌟 Star History
 
