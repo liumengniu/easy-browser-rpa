@@ -2,6 +2,9 @@
 
 [//]: # (https://github.com/ikatyang/emoji-cheat-sheet 表情仓库)
 
+
+> !!!!模拟人工操作不同于其他采集方式，风险极低 
+
 ## 🎞️ 项目原理
 
 > 通过electron内嵌chroium浏览器绕过跨域限制，可以注入JS脚本 \
@@ -48,8 +51,7 @@
 | 4、抖音脚本            | pending    | 暂无 |
 | 5、换一套好看的UI       | pending    | 暂无 |
 | 6、做成可视化的数据采集   | pending    | 暂无 |
-| 7、通过脚本绕过验证码等反制手段   | pending    | 暂无 |
-| 8、账号一键登录   | pending    | 暂无 |
+| 7、账号一键登录   | pending    | 暂无 |
 
 ## 🌟 Star History
 
