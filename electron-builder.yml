@@ -4,7 +4,7 @@
 extends: null
 # 构建配置
 appId: com.electron.basic.client
-productName: electron基础模板
+productName: 自媒体数据获取
 directories:
   buildResources: static
   # 指定构建输出目录
@@ -31,10 +31,12 @@ files:
   - "build/**/*"
   - "src/main/main.js"
   - "src/main/preload.js"
+  - "src/main/preload2.js"
 
 # 额外的资源目录
 extraResources:
   - "extraResources/**"
+  - "src/main/preload2.js"
 
 # NSIS 安装程序配置（仅适用于 Windows）
 nsis:

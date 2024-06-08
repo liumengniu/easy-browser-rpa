@@ -16,7 +16,7 @@
     "antd": "^5.16.2",
     "craco-less": "^3.0.1",
     "electron": "^30.0.0",
-    "electron-builder": "^24.13.3",
+    "electron-builder": "^22.14.13",
     "electron-log": "^5.1.2",
     "electron-updater": "^6.1.8",
     "lodash": "^4.17.21",
