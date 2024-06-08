@@ -13,6 +13,7 @@
 ## 🎨 运行指南
 
 > 项目运行需要node环境 ，推荐node14+，作者使用的是node 18.20.2
+> electron依赖比较大，需要科学上网工具或者配置镜像源
 
 > 1. 安装依赖
 
@@ -49,7 +50,7 @@
 
 <br>
 
-[![Star History Chart](https://api.star-history.com/svg?repos=liumengniu/audio-editor&type=Timeline)](https://star-history.com/#liumengniu/audio-editor&Timeline)
+[![Star History Chart](https://api.star-history.com/svg?repos=liumengniu/crawler-client&type=Timeline)](https://star-history.com/#liumengniu/crawler-client&Timeline)
 
 
 
