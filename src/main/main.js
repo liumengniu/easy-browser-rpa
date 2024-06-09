@@ -37,7 +37,7 @@ const createWindow = () => {
 	const mainMenu = Menu.buildFromTemplate(Menus);
 	Menu.setApplicationMenu(null);
 	mainWindow = new BrowserWindow({
-		transparent: true,
+		// transparent: true,
 		// useContentSize: true,
 		// frame: false,
 		icon: process.platform === "linux" ? path.join(__dirname, "../../", "./static/icons/256x256.png") : path.join(__dirname, "../../", `./static/icons/favicon.ico`),
@@ -71,7 +71,7 @@ const createWindow = () => {
 	
 	// 开发/测试环境，打开开发者工具
 	if (mode === "dev" || mode === "test") {
-		// mainWindow.webContents.openDevTools();
+		mainWindow.webContents.openDevTools();
 	}
 };
 
@@ -264,9 +264,9 @@ ipcMain.handle("saveDisk", saveDisk);
  * 15、获取 preload.js 相对路径
  */
 ipcMain.handle("getPathFn", (event, arg) =>{
-	console.log(event,'999999999999999999',arg)
+	// console.log(event,'999999999999999999',arg)
 	let _path = mode === "dev" ? path.resolve(app.getAppPath(), `src/main/${arg}`) : path.resolve(process.resourcesPath, `src/main/${arg}`);
-	console.log(event,'999999999999999999',`file://${_path.replace(/\\/g, '/')}`)
+	// console.log(event,'999999999999999999',`file://${_path.replace(/\\/g, '/')}`)
 	return `file://${_path.replace(/\\/g, '/')}`;
 })
 
