@@ -71,7 +71,7 @@ const createWindow = () => {
 	
 	// 开发/测试环境，打开开发者工具
 	if (mode === "dev" || mode === "test") {
-		mainWindow.webContents.openDevTools();
+		// mainWindow.webContents.openDevTools();
 	}
 };
 

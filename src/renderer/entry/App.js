@@ -4,12 +4,16 @@ import {
 	createBrowserRouter,
 	RouterProvider,
 } from "react-router-dom";
-import WebPage from "@/renderer/pages/WebPage";
+import Xiaohongshu from "@/renderer/pages/Xiaohongshu";
+import BossZhiPin from "@/renderer/pages/BossZhiPin";
+import DouYin from "@/renderer/pages/DouYin";
 
 
 const router = createBrowserRouter([
 	{path: "/", element: <HomePage/>,},
-	{path: "xiaohongshu", element: <WebPage/>,},
+	{path: "xiaohongshu", element: <Xiaohongshu/>,},
+	{path: "boss", element: <BossZhiPin/>,},
+	{path: "douyin", element: <DouYin/>,},
 ]);
 
 

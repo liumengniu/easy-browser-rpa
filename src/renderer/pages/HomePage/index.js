@@ -5,13 +5,19 @@
 
 import {PageContainer, CheckCard} from "@ant-design/pro-components";
 import mockData from "@/renderer/mock";
-import { useNavigate } from "react-router-dom"
+import {useNavigate} from "react-router-dom"
 import _ from "lodash"
 
 function HomePage() {
 	const navigate = useNavigate();
-	const navToDetail = () => {
-		navigate("xiaohongshu")
+	const navToDetail = item => {
+		if (item?.title === "小红书") {
+			navigate("xiaohongshu", {state: {src: item?.url}})
+		} else if (item?.title === "BOSS直聘") {
+			navigate("boss", {state: {src: item?.url}})
+		} else if(item?.title === "抖音"){
+			navigate("douyin", {state: {src: item?.url}})
+		}
 	}
 	
 	return (
