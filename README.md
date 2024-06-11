@@ -17,6 +17,8 @@
 > ![image](screenshot/douyin.png)
 > 工具app截图：
 > ![image](screenshot/app.png)
+> 客户端渲染本地采集数据：
+> ![image](screenshot/data.png)
 
 ## 🎨 运行指南
 

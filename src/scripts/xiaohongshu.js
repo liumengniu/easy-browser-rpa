@@ -21,7 +21,6 @@ function getScreenList() {
 		var sections = doc.getElementsByClassName("note-item");
 		for (var i=0;i<sections.length;i++){
 			var section = sections[i];
-			// console.log(section, '===========section===========', sections)
 			var footer = section.querySelector(".footer");
 			var title = footer.querySelector(".title");
 			var titleSpan = footer.querySelector("span");
@@ -33,7 +32,6 @@ function getScreenList() {
 			var imgSrc = aImg.src;      //帖子图片
 			var aHref = aElement.href;  //帖子详情
 			var styleObj = aElement.style;
-			console.log(aElement, '9999', aHref, '555', styleObj, '000', imgSrc, window, window.mainProcess)
 			var note = { title: textContent, imgSrc, aHref, kindType: '小红书' };
 			window.mainProcess?.saveDisk(note);
 			// 3、前往详情页

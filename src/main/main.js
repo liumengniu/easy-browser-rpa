@@ -83,7 +83,7 @@ const createWindow = () => {
 	
 	// 开发/测试环境，打开开发者工具
 	if (mode === "dev" || mode === "test") {
-		// mainWindow.webContents.openDevTools();
+		mainWindow.webContents.openDevTools();
 	}
 	/**
 	 * 初始化默认配置
@@ -276,13 +276,13 @@ ipcMain.handle("getVersion", getVersion);
 function saveDisk(event, arg){
 	const setting = menuUtils.readSetting();
 	const savePath = setting?.savePath;
-	let diskPath = path.normalize(`${savePath}${arg?.kindType}.txt`)
-	const isExist = fs.existsSync(diskPath);
+	let filePath = path.normalize(`${savePath}${arg?.kindType}.txt`)
+	const isExist = fs.existsSync(filePath);
 	delete arg.kindType;
 	if(isExist) {
-		fs.appendFileSync(diskPath,JSON.stringify(arg) + '\n')
+		fs.appendFileSync(filePath,JSON.stringify(arg) + '\n')
 	} else {
-		fs.writeFileSync(diskPath, JSON.stringify(arg) + '\n')
+		fs.writeFileSync(filePath, JSON.stringify(arg) + '\n')
 	}
 }
 ipcMain.handle("saveDisk", saveDisk);
@@ -293,6 +293,17 @@ ipcMain.handle("saveDisk", saveDisk);
 ipcMain.handle("getPathFn", (event, arg) =>{
 	let _path = mode === "dev" ? path.resolve(app.getAppPath(), `src/main/${arg}`) : path.resolve(process.resourcesPath, `src/main/${arg}`);
 	return `file://${_path.replace(/\\/g, '/')}`;
+})
+
+/**
+ * 16、获取采集的数据（保存在本地）
+ */
+ipcMain.handle("getCollectionData", (event, arg) =>{
+	const setting = menuUtils.readSetting();
+	const savePath = setting?.savePath;
+	const filePath = path.normalize(`${savePath}${arg?.kindType}.txt`)
+	const data = fs.readFileSync(filePath, {encoding: "utf-8"});
+	return data || [];
 })
 
 /**

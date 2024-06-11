@@ -7,6 +7,7 @@ import {
 import Xiaohongshu from "@/renderer/pages/Xiaohongshu";
 import BossZhiPin from "@/renderer/pages/BossZhiPin";
 import DouYin from "@/renderer/pages/DouYin";
+import Result from "@/renderer/pages/Result";
 
 
 const router = createBrowserRouter([
@@ -14,6 +15,7 @@ const router = createBrowserRouter([
 	{path: "xiaohongshu", element: <Xiaohongshu/>,},
 	{path: "boss", element: <BossZhiPin/>,},
 	{path: "douyin", element: <DouYin/>,},
+	{path: "result", element: <Result/>,},
 ]);
 
 

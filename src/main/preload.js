@@ -7,7 +7,7 @@ const { contextBridge, ipcRenderer } = require('electron')
 
 contextBridge.exposeInMainWorld('electronAPI', {
 	/**
-	 * ====================================  渲染进程 -> 主进程（单向）  =======================================
+	 * ====================================  1、渲染进程 -> 主进程（单向）  =======================================
 	 */
 	/**
 	 * 设置当前路由
@@ -55,7 +55,7 @@ contextBridge.exposeInMainWorld('electronAPI', {
 	 */
 	reload: () => ipcRenderer.send('reload'),
 	/**
-	 * ====================================== 渲染进程 -> 主进程(双向)  =======================================
+	 * ====================================== 2、渲染进程 -> 主进程(双向)  =======================================
 	 */
 	/**
 	 * 获取版本
@@ -73,7 +73,13 @@ contextBridge.exposeInMainWorld('electronAPI', {
 	 */
 	saveDisk: params => ipcRenderer.invoke('saveDisk', params),
 	/**
-	 * ====================================== 主进程 -> 渲染进程（单向）  =======================================
+	 * 获取采集的数据（保存在本地磁盘）
+	 * @param params
+	 * @returns {Promise<any>}
+	 */
+	getCollectionData: params => ipcRenderer.invoke('getCollectionData', params),
+	/**
+	 * ====================================== 3、主进程 -> 渲染进程（单向）  =======================================
 	 */
 	downloadProgress: (callback) => ipcRenderer.on('downloadProgress', callback),
 	isUpdateNow: (callback) => ipcRenderer.on('isUpdateNow', callback),
