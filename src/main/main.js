@@ -63,9 +63,6 @@ const createWindow = () => {
 	} else if (mode === "test") {
 		mainWindow.loadFile(path.join(__dirname, "../../", "./build/index.html"));
 	} else {
-		// mainWindow.loadURL(
-		//   `https://www.cjkwb.cn?${new Date().getTime()}` //正式环境
-		// );
 		mainWindow.loadFile(path.join(__dirname, "../../", "./build/index.html")); // 测试环境
 	}
 	

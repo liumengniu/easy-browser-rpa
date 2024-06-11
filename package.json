@@ -1,5 +1,6 @@
 {
   "name": "crawler-client",
+	"productName": "自媒体数据采集",
   "version": "1.0.0",
   "author": "Kevin",
   "private": true,
@@ -49,6 +50,9 @@
     "postinstall": "electron-builder install-app-deps"
   },
   "build": {
+	  "extends": null,
+	  "productName": "自媒体数据采集",
+	  "appId": "com.electron.basic.client",
     "extraResources": [
       "./extraResources/**",
       "./src/main/preload.js",
