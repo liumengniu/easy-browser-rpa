@@ -15,6 +15,8 @@
 > ![image](screenshot/xiaohongshu.png)
 > 以下是采集的抖音的视频数据，未经任何修改：
 > ![image](screenshot/douyin.png)
+> 以下是采集的BOSS直聘的视频数据，未经任何修改：
+> ![image](screenshot/BOSS直聘.png)
 > 工具app截图：
 > ![image](screenshot/app.png)
 > 客户端渲染本地采集数据：
