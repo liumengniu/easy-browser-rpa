@@ -55,7 +55,7 @@ const createWindow = () => {
 		mainWindow.show(); // 初始化后再显示
 	});
 	
-	mainWindow.maximize();
+	// mainWindow.maximize();
 	
 	// 加载 index.html
 	if (mode === "dev") {
