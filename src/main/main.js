@@ -3,7 +3,6 @@
  * @author Kevin
  * @Date: 2024-4-16
  */
-
 const {app, BrowserWindow, BrowserView, Menu, ipcMain, shell, dialog} = require("electron");
 const path = require("path");
 const cmd = require("node-cmd");
@@ -11,9 +10,25 @@ const mode = process.argv[2];
 const { autoUpdater } = require("electron-updater");
 const log = require("electron-log");
 const fs = require("fs");
+const menuUtils = require('./menuUtils')
 log.transports.file.level = "debug";
 
-const Menus = [];
+const Menus = [
+	{
+		label: '设置',
+		submenu: [
+			{label: '修改采集文件保存地址', click: menuUtils.changeSavePath},
+		]
+	},
+	{
+		label: '帮助',
+		submenu: [
+			{label: '检查更新', click: ()=>{}},
+			{label: '黑暗模式', click: ()=>{}},
+			{label: '说明', click: ()=>{}}
+		]
+	},
+];
 let mainWindow;
 
 /**
@@ -35,7 +50,7 @@ const createWindow = () => {
 	 * @type {Electron.Menu}
 	 */
 	const mainMenu = Menu.buildFromTemplate(Menus);
-	Menu.setApplicationMenu(null);
+	Menu.setApplicationMenu(mainMenu);
 	mainWindow = new BrowserWindow({
 		// transparent: true,
 		// useContentSize: true,
@@ -70,6 +85,10 @@ const createWindow = () => {
 	if (mode === "dev" || mode === "test") {
 		// mainWindow.webContents.openDevTools();
 	}
+	/**
+	 * 初始化默认配置
+	 */
+	menuUtils.initSetting()
 };
 
 /**
@@ -78,6 +97,11 @@ const createWindow = () => {
  *=                          2.主进程的回调                                 =
  *=                                                                       =
  *=========================================================================
+ */
+
+/**
+ * 单例窗体
+ * @type {boolean}
  */
 const goTheLock = app.requestSingleInstanceLock();
 if (!goTheLock) {
@@ -99,6 +123,9 @@ if (!goTheLock) {
 	});
 	app.on("window-all-closed", () => {
 		if (process.platform !== "darwin") app.quit();
+	});
+	app.on('before-quit', () => {
+	
 	});
 	app.on("quit", () => {
 		if (process.platform !== "darwin") app.quit();
@@ -247,8 +274,9 @@ ipcMain.handle("getVersion", getVersion);
  * 14、保存至磁盘
  */
 function saveDisk(event, arg){
-	console.log("================saveDisk====================", event, arg)
-	let diskPath = `D://${arg?.kindType}.txt`
+	const setting = menuUtils.readSetting();
+	const savePath = setting?.savePath;
+	let diskPath = path.normalize(`${savePath}${arg?.kindType}.txt`)
 	const isExist = fs.existsSync(diskPath);
 	delete arg.kindType;
 	if(isExist) {
