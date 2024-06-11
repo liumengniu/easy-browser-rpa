@@ -41,9 +41,8 @@ const createWindow = () => {
 		{
 			label: '帮助',
 			submenu: [
-				{label: '检查更新', click: ()=>{}},
 				{label: '黑暗模式', click: () =>menuUtils.changeColorMode(mainWindow)},
-				{label: '说明', click: ()=>{}},
+				{label: '说明', click: menuUtils.showAppDescription},
 				{
 					label: '重启软件', click: () => {
 						app.relaunch();

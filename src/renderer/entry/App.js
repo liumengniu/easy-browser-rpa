@@ -32,13 +32,15 @@ function App() {
 	}, [])
 	
 	return (
-		<ConfigProvider
-			theme={{
-				algorithm: mode === "light" ? theme.defaultAlgorithm : theme.darkAlgorithm,
-			}}
-		>
-			<RouterProvider router={router}/>
-		</ConfigProvider>
+		<div className={`App ${mode}`}>
+			<ConfigProvider
+				theme={{
+					algorithm: mode === "light" ? theme.defaultAlgorithm : theme.darkAlgorithm,
+				}}
+			>
+				<RouterProvider router={router}/>
+			</ConfigProvider>
+		</div>
 	)
 }
 

@@ -90,7 +90,7 @@ const menuUtils = {
 	 * 程序的描述说明
 	 */
 	showAppDescription: function () {
-	
+		dialog.showMessageBox(null, {message: '本软件是一款桌面应用，通过内嵌web网页，模拟用户操作来采集自媒体平台数据'})
 	}
 }
 module.exports = menuUtils
