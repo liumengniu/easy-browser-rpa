@@ -39,14 +39,14 @@ function BossZhiPin() {
 	 * @returns {Promise<void>}
 	 */
 	const getPathFn = async () => {
-		let fileAbPath = await window?.electronAPI?.getPathFn("preload3.js")
+		let fileAbPath = await window?.electronAPI?.getPathFn("preload2.js")
 		setPath(fileAbPath)
 	}
 	
 	return (
 		<>
 			{
-				path !== null && <webview
+				path && <webview
 					id="webview2"
 					className="webview"
 					nodeintegration="yes"
@@ -55,7 +55,7 @@ function BossZhiPin() {
 					allowRunningInsecureContent="yes"
 					disablewebsecurity="yes"
 					webpreferences="contextIsolation=no"
-					src={"https://www.zhipin.com/"}
+					src={location?.state?.src}
 					preload={path}
 				/>
 			}

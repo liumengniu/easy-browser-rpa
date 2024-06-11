@@ -15,30 +15,32 @@ function getJobs() {
 		var searchInput = document.querySelector(".ipt-search");
 		if (searchInput) searchInput.value = "JAVA开发";
 		var btnSearch = document.querySelector(".btn-search");
-		console.log(btnSearch, '-------------------')
-		if(btnSearch === null){
-			(function() {
-				return "Hello, world!";
-			})();
-		}
 		if(btnSearch) btnSearch.click()
 		// 每隔2秒滚动一次
-		// const interval = setInterval(()=>{
-		// 	var doc = document;
-		// 	var jobListBox = doc.querySelector(".job-list-box")
-		// 	var sections = doc.getElementsByClassName("job-card-wrapper");
-		// 	for (var i=0;i<sections.length;i++){
-		// 		var section = sections[i];
-		// 		// console.log(section, '===========section===========', sections)
-		// 		var jobName = section.querySelector(".job-name");
-		// 		var jobArea = section.querySelector(".job-area");
-		// 		var salary = section.querySelector(".salary");
-		// 		var tagList = section.querySelector(".tag-list");
-		// 		console.log(tagList.childNodes, '-----------------------------')
-		// 		var jobItem = { jobName, jobArea, salary, tags: tagList.childNodes };
-		// 		window.mainProcess?.saveDisk(jobItem);
-		// 	}
-		// }, 2000)
+		const interval = setInterval(()=>{
+			var optionsPages = document.querySelector(".options-pages")
+			const lastChild = optionsPages.lastElementChild;
+			lastChild?.click();
+			var doc = document;
+			var jobListBox = doc.querySelector(".job-list-box")
+			var sections = doc.getElementsByClassName("job-card-wrapper");
+			for (var i=0;i<sections.length;i++){
+				var section = sections[i];
+				// console.log(section, '===========section===========', sections)
+				var jobName = section.querySelector(".job-name");
+				var jobArea = section.querySelector(".job-area");
+				var salary = section.querySelector(".salary");
+				var tagList = section.querySelector(".tag-list");
+				var jobItem = {
+					jobName: jobName.textContent,
+					jobArea: jobArea.textContent,
+					salary: salary.textContent,
+					kindType: 'BOSS直聘',
+				};
+				console.log(jobItem, '==============================')
+				window.mainProcess?.saveDisk(jobItem);
+			}
+		}, 2000)
 	}
 }
 

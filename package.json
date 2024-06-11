@@ -57,8 +57,7 @@
     "extraResources": [
       "./extraResources/**",
       "./src/main/preload.js",
-      "./src/main/preload2.js",
-      "./src/main/preload3.js"
+      "./src/main/preload2.js"
     ]
   },
   "eslintConfig": {

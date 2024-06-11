@@ -293,6 +293,7 @@ function saveDisk(event, arg){
 	const savePath = setting?.savePath;
 	let filePath = path.normalize(`${savePath}${arg?.kindType}.txt`)
 	const isExist = fs.existsSync(filePath);
+	console.log(filePath, '===========filePath===========', isExist)
 	delete arg.kindType;
 	if(isExist) {
 		fs.appendFileSync(filePath,JSON.stringify(arg) + '\n')
