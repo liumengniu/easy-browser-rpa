@@ -11,6 +11,7 @@ import Result from "@/renderer/pages/Result";
 import {ConfigProvider, theme} from "antd";
 import {useEffect, useState} from "react";
 import ZhiHu from "@/renderer/pages/ZhiHu";
+import Bilibili from "@/renderer/pages/Bilibili";
 
 
 const router = createBrowserRouter([
@@ -19,6 +20,7 @@ const router = createBrowserRouter([
 	{path: "boss", element: <BossZhiPin/>,},
 	{path: "douyin", element: <DouYin/>,},
 	{path: "zhihu", element: <ZhiHu/>,},
+	{path: "bilibili", element: <Bilibili/>,},
 	{path: "result", element: <Result/>,},
 ]);
 

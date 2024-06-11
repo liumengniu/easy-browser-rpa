@@ -22,6 +22,8 @@ function HomePage() {
 			navigate("douyin", {state: {src: item?.url}})
 		} else if (item?.title === "知乎") {
 			navigate("zhihu", {state: {src: item?.url}})
+		} else if (item?.title === "b站") {
+			navigate("bilibili", {state: {src: item?.url}})
 		}
 	}
 	
