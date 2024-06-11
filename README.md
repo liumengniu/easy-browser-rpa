@@ -37,8 +37,8 @@
 > 3. 编译项目
 
 ```bash
-   npm run build  或
-   npm run build: linux
+   npm run build:web 
+   npm run build 
 ```
 
 ## 💡 正在开发中的内容

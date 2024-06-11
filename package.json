@@ -52,7 +52,7 @@
   "build": {
 	  "extends": null,
 	  "productName": "自媒体数据采集",
-	  "appId": "com.electron.basic.client",
+	  "appId": "com.electron.crawler.client",
     "extraResources": [
       "./extraResources/**",
       "./src/main/preload.js",

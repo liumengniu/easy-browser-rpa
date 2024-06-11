@@ -38,7 +38,6 @@ function HomePage() {
 							onChange={(checked) => {
 								console.log('checked', checked);
 							}}
-							defaultChecked
 							onClick={() => navToDetail(item)}
 						/>
 					})

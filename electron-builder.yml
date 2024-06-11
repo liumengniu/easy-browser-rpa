@@ -36,6 +36,7 @@ files:
 # 额外的资源目录
 extraResources:
   - "extraResources/**"
+  - "src/main/preload.js
   - "src/main/preload2.js"
 
 # NSIS 安装程序配置（仅适用于 Windows）
