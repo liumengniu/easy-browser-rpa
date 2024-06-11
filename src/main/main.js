@@ -248,11 +248,13 @@ ipcMain.handle("getVersion", getVersion);
  */
 function saveDisk(event, arg){
 	console.log("================saveDisk====================", event, arg)
-	const isExist = fs.existsSync('D://小红书.txt');
+	let diskPath = `D://${arg?.kindType}.txt`
+	const isExist = fs.existsSync(diskPath);
+	delete arg.kindType;
 	if(isExist) {
-		fs.appendFileSync('D://小红书.txt',JSON.stringify(arg) + '\n')
+		fs.appendFileSync(diskPath,JSON.stringify(arg) + '\n')
 	} else {
-		fs.writeFileSync('D://小红书.txt', JSON.stringify(arg) + '\n')
+		fs.writeFileSync(diskPath, JSON.stringify(arg) + '\n')
 	}
 }
 ipcMain.handle("saveDisk", saveDisk);
@@ -261,9 +263,7 @@ ipcMain.handle("saveDisk", saveDisk);
  * 15、获取 preload.js 相对路径
  */
 ipcMain.handle("getPathFn", (event, arg) =>{
-	// console.log(event,'999999999999999999',arg)
 	let _path = mode === "dev" ? path.resolve(app.getAppPath(), `src/main/${arg}`) : path.resolve(process.resourcesPath, `src/main/${arg}`);
-	// console.log(event,'999999999999999999',`file://${_path.replace(/\\/g, '/')}`)
 	return `file://${_path.replace(/\\/g, '/')}`;
 })
 
@@ -288,7 +288,7 @@ let message = {
 
 autoUpdater.setFeedURL({
 	provider: "generic",
-	url: "https://www.cjkwb.cn/map/client",
+	url: "https://xxx/client",
 });
 
 autoUpdater.on("error", function (error) {

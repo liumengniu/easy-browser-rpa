@@ -30,7 +30,7 @@ function getScreenList() {
 				var videoBgImgSrc = videoBgImg?.src
 				var author = section.querySelector(".u6iv2BZe")?.textContent;
 				var title = section.querySelector(".MR80_HYg")?.textContent;
-				var shortVideo = { videoUrl, videoBgImgSrc, author, title };
+				var shortVideo = { videoUrl, videoBgImgSrc, author, title, kindType: '抖音' };
 				window.mainProcess?.saveDisk(shortVideo);
 			}
 			
