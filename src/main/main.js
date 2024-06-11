@@ -13,22 +13,7 @@ const fs = require("fs");
 const menuUtils = require('./menuUtils')
 log.transports.file.level = "debug";
 
-const Menus = [
-	{
-		label: '设置',
-		submenu: [
-			{label: '修改采集文件保存地址', click: menuUtils.changeSavePath},
-		]
-	},
-	{
-		label: '帮助',
-		submenu: [
-			{label: '检查更新', click: ()=>{}},
-			{label: '黑暗模式', click: ()=>{}},
-			{label: '说明', click: ()=>{}}
-		]
-	},
-];
+
 let mainWindow;
 
 /**
@@ -45,8 +30,39 @@ let mainWindow;
  *=========================================================================
  */
 const createWindow = () => {
+	
+	const Menus = [
+		{
+			label: '设置',
+			submenu: [
+				{label: '修改采集文件保存地址', click: menuUtils.changeSavePath},
+			]
+		},
+		{
+			label: '帮助',
+			submenu: [
+				{label: '检查更新', click: ()=>{}},
+				{label: '黑暗模式', click: () =>menuUtils.changeColorMode(mainWindow)},
+				{label: '说明', click: ()=>{}},
+				{
+					label: '重启软件', click: () => {
+						app.relaunch();
+						if (process.platform !== "darwin") app.quit();
+						app.exit(0);
+					}
+				},
+				{
+					label: '退出', click: () => {
+						if (process.platform !== "darwin") app.quit();
+						app.exit(0);
+					}
+				}
+			]
+		},
+	];
+	
 	/**
-	 * 1、设置自定义菜单栏
+	 * 1、实例化桌面窗口
 	 * @type {Electron.Menu}
 	 */
 	const mainMenu = Menu.buildFromTemplate(Menus);

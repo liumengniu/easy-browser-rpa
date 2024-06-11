@@ -81,10 +81,22 @@ contextBridge.exposeInMainWorld('electronAPI', {
 	/**
 	 * ====================================== 3、主进程 -> 渲染进程（单向）  =======================================
 	 */
+	
+	/**
+	 * 软件更新相关回调
+	 * @param callback
+	 * @returns {Electron.IpcRenderer}
+	 */
 	downloadProgress: (callback) => ipcRenderer.on('downloadProgress', callback),
 	isUpdateNow: (callback) => ipcRenderer.on('isUpdateNow', callback),
 	confirmUpdate: (callback) => ipcRenderer.on('confirmUpdate', callback),
 	updateAvailable: (callback) => ipcRenderer.on('updateAvailable', callback),
 	updateNotAvailable: (callback) => ipcRenderer.on('updateNotAvailable', callback),
 	updateError: (callback) => ipcRenderer.on('updateError', callback),
+	/**
+	 * 切换黑夜模式
+	 * @param callback
+	 * @returns {Electron.IpcRenderer}
+	 */
+	changeColorMode:  (callback) => ipcRenderer.on('changeColorMode', callback),
 })

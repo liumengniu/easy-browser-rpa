@@ -4,7 +4,7 @@
  * @Date: 2024-6-11
  */
 
-const {app, dialog} = require("electron");
+const {app, dialog, nativeTheme} = require("electron");
 const fs = require("fs");
 const path = require("path")
 const ini = require('ini');
@@ -65,8 +65,14 @@ const menuUtils = {
 	/**
 	 * 切换黑暗/白天模式
 	 */
-	changeColorMode: function () {
-	
+	changeColorMode: function (mainWindow) {
+		if (nativeTheme.shouldUseDarkColors) {
+			nativeTheme.themeSource = 'light'
+			mainWindow.webContents.send("changeColorMode", 'light');
+		} else {
+			nativeTheme.themeSource = 'dark'
+			mainWindow.webContents.send("changeColorMode", 'dark');
+		}
 	},
 	/**
 	 * 重启程序
