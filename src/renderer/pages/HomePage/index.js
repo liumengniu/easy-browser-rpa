@@ -20,6 +20,8 @@ function HomePage() {
 			navigate("boss", {state: {src: item?.url}})
 		} else if (item?.title === "抖音") {
 			navigate("douyin", {state: {src: item?.url}})
+		} else if (item?.title === "知乎") {
+			navigate("zhihu", {state: {src: item?.url}})
 		}
 	}
 	

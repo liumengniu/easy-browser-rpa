@@ -10,6 +10,7 @@ import DouYin from "@/renderer/pages/DouYin";
 import Result from "@/renderer/pages/Result";
 import {ConfigProvider, theme} from "antd";
 import {useEffect, useState} from "react";
+import ZhiHu from "@/renderer/pages/ZhiHu";
 
 
 const router = createBrowserRouter([
@@ -17,6 +18,7 @@ const router = createBrowserRouter([
 	{path: "xiaohongshu", element: <Xiaohongshu/>,},
 	{path: "boss", element: <BossZhiPin/>,},
 	{path: "douyin", element: <DouYin/>,},
+	{path: "zhihu", element: <ZhiHu/>,},
 	{path: "result", element: <Result/>,},
 ]);
 
