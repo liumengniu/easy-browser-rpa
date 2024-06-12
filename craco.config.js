@@ -93,24 +93,19 @@ module.exports = {
 							name: "echarts",
 							priority: 90
 						},
-						zrender: {
-							test: /zrender/,
-							name: "zrender",
+						craco: {
+							test: /@craco/,
+							name: "@craco",
 							priority: 90
 						},
-						wangeditor: {
-							test: /@wangeditor/,
-							name: "@wangeditor",
+						antDesign: {
+							test: /@ant-design/,
+							name: "@ant-design",
 							priority: 90
 						},
 						lodash: {
 							test: /lodash/,
 							name: "lodash",
-							priority: 90
-						},
-						moment: {
-							test: /moment/,
-							name: "moment",
 							priority: 90
 						},
 						base: {
