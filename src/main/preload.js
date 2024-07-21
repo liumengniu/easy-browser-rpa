@@ -68,11 +68,6 @@ contextBridge.exposeInMainWorld('electronAPI', {
 	 */
 	getPathFn: fileName => ipcRenderer.invoke('getPathFn', fileName),
 	/**
-	 * 保存至磁盘
-	 * @returns {Promise<any>}
-	 */
-	saveDisk: params => ipcRenderer.invoke('saveDisk', params),
-	/**
 	 * 获取采集的数据（保存在本地磁盘）
 	 * @param params
 	 * @returns {Promise<any>}
