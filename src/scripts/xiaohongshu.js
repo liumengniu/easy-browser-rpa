@@ -9,7 +9,7 @@
  */
 function getScreenList() {
 	// 每隔2秒滚动一次
-	const interval = setInterval(()=>{
+	const interval = setInterval(() => {
 		const scrollOptions = {
 			top: document.body.scrollHeight,
 			left: 0,
@@ -19,7 +19,7 @@ function getScreenList() {
 		var doc = document;
 		var exploreFeeds = doc.getElementById("exploreFeeds")
 		var sections = doc.getElementsByClassName("note-item");
-		for (var i=0;i<sections.length;i++){
+		for (var i = 0; i < sections.length; i++) {
 			var section = sections[i];
 			var footer = section.querySelector(".footer");
 			var title = footer.querySelector(".title");
@@ -29,11 +29,12 @@ function getScreenList() {
 			// 2、获取每个帖子图片、帖子地址、帖子详情
 			var aElement = section.querySelector("a.mask");
 			var aImg = aElement.querySelector("img");
-			var imgSrc = aImg.src;      //帖子图片
-			var aHref = aElement.href;  //帖子详情
+			var img_src = aImg.src;      //帖子图片
+			var href = aElement.href;  //帖子详情
 			var styleObj = aElement.style;
-			var note = { title: textContent, imgSrc, aHref, kindType: '小红书' };
-			window.mainProcess?.saveDisk(note);
+			var note = {title: textContent, img_src, href, kindType: '小红书'};
+			// window.mainProcess?.saveDisk(note);
+			window?.mainProcess?.saveToDB(note);
 			// 3、前往详情页
 			// (function (index, aElement) {
 			// 	setTimeout(function () {

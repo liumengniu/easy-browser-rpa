@@ -32,8 +32,8 @@ function Result() {
 	const columns = [
 		{
 			title: '笔记封面',
-			dataIndex: 'imgSrc',
-			key: 'imgSrc',
+			dataIndex: 'img_src',
+			key: 'img_src',
 			ellipsis: true,
 			width: 100,
 			render: (text, record) => <Image width={50} height={50} src={text}/>
@@ -47,8 +47,8 @@ function Result() {
 		},
 		{
 			title: '笔记地址',
-			dataIndex: 'aHref',
-			key: 'aHref',
+			dataIndex: 'href',
+			key: 'href',
 			ellipsis: true,
 			render:  text=> <Tooltip placement="top" title={text}><span>{text}</span></Tooltip>
 		},

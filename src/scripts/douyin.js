@@ -25,13 +25,14 @@ function getScreenList() {
 			if(section.id !== 'hotItem'){
 				var video = section.querySelector(".waterfall-videoCardContainer");
 				console.log(video, '=========videovideovideo==========')
-				var videoUrl = video?.href;
+				var video_url = video?.href;
 				var videoBgImg = section.querySelector(".efV2zCXp");
-				var videoBgImgSrc = videoBgImg?.src
+				var video_bg_src = videoBgImg?.src
 				var author = section.querySelector(".u6iv2BZe")?.textContent;
 				var title = section.querySelector(".MR80_HYg")?.textContent;
-				var shortVideo = { videoUrl, videoBgImgSrc, author, title, kindType: '抖音' };
-				window.mainProcess?.saveDisk(shortVideo);
+				var shortVideo = { video_url, video_bg_src, author, title, kindType: '抖音' };
+				// window.mainProcess?.saveDisk(shortVideo);
+				window.mainProcess?.saveToDB(shortVideo);
 			}
 			
 		}

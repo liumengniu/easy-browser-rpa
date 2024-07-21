@@ -11,8 +11,22 @@
 const { contextBridge, ipcRenderer} = require("electron");
 
 contextBridge.exposeInMainWorld("mainProcess", {
+	/**
+	 * 存储到磁盘
+	 * @param params
+	 * @returns {Promise<any>}
+	 */
 	saveDisk: (params) => {
 		console.log("browserView传递给主进程通信事件", params)
 		return ipcRenderer.invoke("saveDisk", params)
+	},
+	/**
+	 * 存储到数据库
+	 * @param params
+	 * @returns {Promise<any>}
+	 */
+	saveToDB: (params) => {
+		console.log("browserView传递给主进程通信事件", params)
+		return ipcRenderer.invoke("saveToDB", params)
 	},
 })

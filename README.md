@@ -13,6 +13,7 @@
 > 通过JS逆向模拟用户操作的方式，获取数据的阻碍小。 \
 > 以下是采集的小红书的笔记数据，未经任何修改：
 > ![image](screenshot/xiaohongshu.png)
+> ![image](screenshot/小红书_sql.png)
 > 以下是采集的抖音的视频数据，未经任何修改：
 > ![image](screenshot/douyin.png)
 > 以下是采集的BOSS直聘的视频数据，未经任何修改：

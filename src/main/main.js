@@ -11,6 +11,8 @@ const { autoUpdater } = require("electron-updater");
 const log = require("electron-log");
 const fs = require("fs");
 const menuUtils = require('./menuUtils')
+const dbUtils = require('./dbUtils')
+const DBService = require("./services");
 log.transports.file.level = "debug";
 
 
@@ -104,6 +106,10 @@ const createWindow = () => {
 	 * 初始化默认配置
 	 */
 	menuUtils.initSetting()
+	/**
+	 * 初始化数据库表
+	 */
+	dbUtils.initDB()
 };
 
 /**
@@ -321,6 +327,22 @@ ipcMain.handle("getCollectionData", (event, arg) =>{
 	const data = fs.readFileSync(filePath, {encoding: "utf-8"});
 	return data || [];
 })
+
+/**
+ * 17、保存至数据库
+ */
+function saveToDB(event, arg){
+	// console.log(event, arg, '========================================')
+	DBService.insertData(arg.kindType,  arg)
+}
+ipcMain.handle("saveToDB", saveToDB);
+
+/**
+ * 18、保存excel
+ */
+function saveToExcel(event, arg){
+
+}
 
 /**
  *=========================================================================
