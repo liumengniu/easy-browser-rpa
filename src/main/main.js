@@ -332,7 +332,7 @@ ipcMain.handle("getCollectionData", (event, arg) =>{
  * 17、保存至数据库
  */
 function saveToDB(event, arg){
-	console.log(event, arg, '========================================')
+	// console.log(event, arg, '========================================')
 	DBService.insertData(arg.kindType,  arg)
 }
 ipcMain.handle("saveToDB", saveToDB);

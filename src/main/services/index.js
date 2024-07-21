@@ -22,6 +22,7 @@ const DBService = {
 		if(kindType === "小红书") {
 			Xiaohongshu.create(tableData)
 		} else if(kindType === "抖音"){
+			console.log(tableData, '========tableData===========')
 			Douyin.create(tableData)
 		}
 	
