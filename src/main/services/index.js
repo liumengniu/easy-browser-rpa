@@ -6,6 +6,7 @@
 
 const models = require("../../renderer/models");
 const Xiaohongshu = models.Xiaohongshu;
+const Douyin = models.Douyin;
 const { v4: uuidv4 } = require('uuid');
 const _ = require("lodash")
 
@@ -18,7 +19,12 @@ const DBService = {
 			id: uuidv4(),
 			...data
 		}
-		Xiaohongshu.create(tableData)
+		if(kindType === "小红书") {
+			Xiaohongshu.create(tableData)
+		} else if(kindType === "抖音"){
+			Douyin.create(tableData)
+		}
+	
 	},
 	queryData: function (){
 	
