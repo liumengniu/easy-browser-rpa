@@ -40,7 +40,7 @@ function LayoutContainer(){
 					<a className={collapsed ? 'collapsed' : ''}>
 						<img src={logo} alt=""/>
 						{
-							!collapsed && <h1>Ivy Market</h1>
+							!collapsed && <h1>数据采集</h1>
 						}
 					</a>
 				</div>
