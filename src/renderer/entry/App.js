@@ -3,6 +3,7 @@ import HomePage from "@/renderer/pages/HomePage";
 import {
 	createBrowserRouter,
 	RouterProvider,
+	HashRouter,Routes,Route,
 } from "react-router-dom";
 import Xiaohongshu from "@/renderer/pages/Xiaohongshu";
 import BossZhiPin from "@/renderer/pages/BossZhiPin";
@@ -12,6 +13,7 @@ import {ConfigProvider, theme} from "antd";
 import {useEffect, useState} from "react";
 import ZhiHu from "@/renderer/pages/ZhiHu";
 import Bilibili from "@/renderer/pages/Bilibili";
+import LayoutContainer from "@/renderer/layout";
 
 
 const router = createBrowserRouter([
@@ -42,7 +44,14 @@ function App() {
 					algorithm: mode === "light" ? theme.defaultAlgorithm : theme.darkAlgorithm,
 				}}
 			>
-				<RouterProvider router={router}/>
+				{/*<RouterProvider router={router}/>*/}
+				<HashRouter>
+					<Routes>
+						<Route path="/*" element={
+							<LayoutContainer />
+						} />
+					</Routes>
+				</HashRouter>
 			</ConfigProvider>
 		</div>
 	)
