@@ -7,6 +7,7 @@ import {useEffect, useState} from "react";
 import webviewScripts from "@/scripts";
 import { useLocation } from "react-router-dom"
 import "./index.less"
+import {Button, Form, Input} from "antd";
 
 function WebPage(props) {
 	const location = useLocation();
@@ -39,7 +40,16 @@ function WebPage(props) {
 	return (
 		<div className="xiaohongshu">
 			<div  className="xiaohongshu-options">
-				sdfsdf
+				<Form>
+					<Form.Item label="选择流程" name="username" rules={[{required: true, message: 'Please input your username!'}]}>
+						<Input />
+					</Form.Item>
+					<Form.Item wrapperCol={{offset: 8, span: 16,}}>
+						<Button type="primary" htmlType="submit">
+							开始采集
+						</Button>
+					</Form.Item>
+				</Form>
 			</div>
 			<div className="xiaohongshu-webview">
 				{

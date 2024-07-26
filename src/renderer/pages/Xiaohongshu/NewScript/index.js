@@ -12,7 +12,7 @@ import { Snapline } from '@antv/x6-plugin-snapline'
 import { Keyboard } from '@antv/x6-plugin-keyboard'
 import { Clipboard } from '@antv/x6-plugin-clipboard'
 import { History } from '@antv/x6-plugin-history'
-import {Button} from "antd";
+import {Button, Space} from "antd";
 
 
 function NewScript() {
@@ -479,7 +479,10 @@ function NewScript() {
 			<div id="stencil"/>
 			<div id="graph-container"/>
 			<div className="new-script-options">
-				<Button type="primary" onClick={exportData}>导出数据</Button>
+				<Space direction="vertical">
+					<Button type="primary" onClick={exportData}>导出数据</Button>
+					<Button type="primary" onClick={exportData}>保存流程</Button>
+				</Space>
 			</div>
 		</div>
 	)
