@@ -12,21 +12,14 @@ const { Header } = Layout;
 
 function TopBar(props){
 	/**
-	 * menu
-	 * @type {JSX.Element}
+	 * 菜单配置项
+	 * @type {[{label: JSX.Element, key: string}, {label: JSX.Element, key: string}, {label: JSX.Element, key: string}]}
 	 */
-	const menu = (
-		<Menu>
-			<Menu.Item key="0">
-				<a href="https://www.baidu.com">预留功能1</a>
-			</Menu.Item>
-			<Menu.Item key="1">
-				<a href="https://www.baidu.com">预留功能2</a>
-			</Menu.Item>
-			<Menu.Divider />
-			<Menu.Item key="3" onClick={props.logout}>退出登录</Menu.Item>
-		</Menu>
-	);
+	const items = [
+		{key: '0',label: <a href="https://www.baidu.com">预留功能1</a>},
+		{key: '1',label: <a href="https://www.baidu.com">预留功能1</a>},
+		{key: '3',label: <a href="https://www.baidu.com">退出登录</a>},
+	]
 
 	return (
 		<Header className="site-layout-background" style={{ padding: 0 }}>
@@ -36,7 +29,7 @@ function TopBar(props){
 				}
 				<div className={"user-center"}>
 					<Avatar src="https://joeschmoe.io/api/v1/random" />
-					<Dropdown overlay={menu} arrow>
+					<Dropdown menu={{items}} arrow>
 						<a className="ant-dropdown-link" onClick={e => e.preventDefault()} style={{color: 'white', marginLeft: '20px'}}>
 							<span className={"user-name"}>Joe Biden</span> <DownOutlined />
 						</a>
