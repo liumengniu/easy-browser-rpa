@@ -18,8 +18,9 @@ const routers = [
 	{
 		label: '小红书',path: "/xiaohongshu", element: <Xiaohongshu/>,
 		children: [
-			{label: '新建脚本',path: "/new-script", element: <NewScript/>,},
-			{label: '我的脚本列表',path: "/my-script", element: <NewScript/>,},
+			{label: '打开网页',path: "/xiaohongshu/open-website", element: <Xiaohongshu/>,},
+			{label: '新建脚本',path: "/xiaohongshu/new-script", element: <NewScript/>,},
+			{label: '我的脚本列表',path: "/xiaohongshu/my-script", element: <NewScript/>,},
 		]
 	},
 	{label: 'BOSS直聘',path: "/boss", element: <BossZhiPin/>,},

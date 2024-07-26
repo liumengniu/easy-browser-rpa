@@ -16,7 +16,7 @@ function ContainerMain(){
 	 * @returns {JSX.Element}
 	 */
 	const renderRoute = route => <Route key={route.path} exact path={route.path} element={
-		<div style={{ background: "#fff", padding: "20px", boxSizing: "border-box" }}>{route.element}</div>}
+		<div style={{ background: "#fff" }}>{route.element}</div>}
 	/>
 	
 	/**
