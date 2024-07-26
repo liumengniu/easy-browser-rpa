@@ -14,6 +14,8 @@ import {useEffect, useState} from "react";
 import ZhiHu from "@/renderer/pages/ZhiHu";
 import Bilibili from "@/renderer/pages/Bilibili";
 import LayoutContainer from "@/renderer/layout";
+import { Provider } from "react-redux"
+import store from "@/renderer/redux/stores"
 
 
 const router = createBrowserRouter([
@@ -39,20 +41,26 @@ function App() {
 	
 	return (
 		<div className={`App ${mode}`}>
-			<ConfigProvider
-				theme={{
-					algorithm: mode === "light" ? theme.defaultAlgorithm : theme.darkAlgorithm,
-				}}
-			>
-				{/*<RouterProvider router={router}/>*/}
-				<HashRouter>
-					<Routes>
-						<Route path="/*" element={
-							<LayoutContainer />
-						} />
-					</Routes>
-				</HashRouter>
-			</ConfigProvider>
+			<Provider store={store}>
+				<ConfigProvider
+					theme={{
+						algorithm: mode === "light" ? theme.defaultAlgorithm : theme.darkAlgorithm,
+						token: {
+							// Seed Token，影响范围大
+							colorPrimary: '#008c8c',
+						},
+					}}
+				>
+					{/*<RouterProvider router={router}/>*/}
+					<HashRouter>
+						<Routes>
+							<Route path="/*" element={
+								<LayoutContainer />
+							} />
+						</Routes>
+					</HashRouter>
+				</ConfigProvider>
+			</Provider>
 		</div>
 	)
 }

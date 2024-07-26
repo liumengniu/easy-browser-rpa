@@ -5,6 +5,7 @@ import DouYin from "@/renderer/pages/DouYin";
 import ZhiHu from "@/renderer/pages/ZhiHu";
 import Bilibili from "@/renderer/pages/Bilibili";
 import Result from "@/renderer/pages/Result";
+import NewScript from "@/renderer/pages/Xiaohongshu/NewScript";
 
 /**
  * 路由入口
@@ -13,13 +14,19 @@ import Result from "@/renderer/pages/Result";
  */
 
 const routers = [
-	{title: '首页',path: "/", element: <HomePage/>,},
-	{title: '小红书',path: "/xiaohongshu", element: <Xiaohongshu/>,},
-	{title: 'BOSS直聘',path: "/boss", element: <BossZhiPin/>,},
-	{title: '抖音',path: "/douyin", element: <DouYin/>,},
-	{title: '知乎',path: "/zhihu", element: <ZhiHu/>,},
-	{title: 'B站',path: "/bilibili", element: <Bilibili/>,},
-	{title: '结果',path: "/result", element: <Result/>,},
+	{label: '首页',path: "/", element: <HomePage/>,},
+	{
+		label: '小红书',path: "/xiaohongshu", element: <Xiaohongshu/>,
+		children: [
+			{label: '新建脚本',path: "/new-script", element: <NewScript/>,},
+			{label: '我的脚本列表',path: "/my-script", element: <NewScript/>,},
+		]
+	},
+	{label: 'BOSS直聘',path: "/boss", element: <BossZhiPin/>,},
+	{label: '抖音',path: "/douyin", element: <DouYin/>,},
+	{label: '知乎',path: "/zhihu", element: <ZhiHu/>,},
+	{label: 'B站',path: "/bilibili", element: <Bilibili/>,},
+	{label: '结果',path: "/result", element: <Result/>,},
 ]
 
 export default routers
