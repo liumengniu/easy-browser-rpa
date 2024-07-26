@@ -15,7 +15,7 @@ function SideBar(){
 		<Menu
 			defaultSelectedKeys={['/banner-management']}
 			mode="inline"
-			theme="dark"
+			theme="light"
 		>
 			{
 				routers.map((route,idx) => !route.hidden && <Menu.Item key={route.path} icon={route.icon}><Link to={route.path}>{route.title}</Link></Menu.Item>)

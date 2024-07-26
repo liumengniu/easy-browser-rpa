@@ -13,13 +13,13 @@ import Result from "@/renderer/pages/Result";
  */
 
 const routers = [
-	{title: 'Home',path: "/", element: <HomePage/>,},
-	{path: "xiaohongshu", element: <Xiaohongshu/>,},
-	{path: "boss", element: <BossZhiPin/>,},
-	{path: "douyin", element: <DouYin/>,},
-	{path: "zhihu", element: <ZhiHu/>,},
-	{path: "bilibili", element: <Bilibili/>,},
-	{path: "result", element: <Result/>,},
+	{title: '首页',path: "/", element: <HomePage/>,},
+	{title: '小红书',path: "/xiaohongshu", element: <Xiaohongshu/>,},
+	{title: 'BOSS直聘',path: "/boss", element: <BossZhiPin/>,},
+	{title: '抖音',path: "/douyin", element: <DouYin/>,},
+	{title: '知乎',path: "/zhihu", element: <ZhiHu/>,},
+	{title: 'B站',path: "/bilibili", element: <Bilibili/>,},
+	{title: '结果',path: "/result", element: <Result/>,},
 ]
 
 export default routers

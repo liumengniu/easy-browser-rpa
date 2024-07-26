@@ -28,13 +28,7 @@ function HomePage() {
 	}
 	
 	return (
-		<PageContainer content="欢迎使用"
-		  footer={[
-		  	<Space onClick={()=> navigate("result")}>
-				  <Link>查看本地数据</Link>
-			  </Space>
-		  ]}
-		>
+		<PageContainer content="欢迎使用">
 			<CheckCard.Group
 				onChange={(value) => {
 					console.log('value', value);

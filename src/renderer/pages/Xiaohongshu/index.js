@@ -6,6 +6,7 @@
 import {useEffect, useState} from "react";
 import webviewScripts from "@/scripts";
 import { useLocation } from "react-router-dom"
+import "./index.less"
 
 function WebPage(props) {
 	const location = useLocation();
@@ -36,21 +37,28 @@ function WebPage(props) {
 	}
 	
 	return (
-		<>
-			{
-				_path && <webview
-					id="webview"
-					nodeintegration="yes"
-					allowpopups="yes"
-					nodeintegrationinsubframes="yes"
-					allowRunningInsecureContent="yes"
-					disablewebsecurity="yes"
-					webpreferences="contextIsolation=no"
-					src={location?.state?.src}
-					preload={_path}
-				/>
-			}
-		</>
+		<div className="xiaohongshu">
+			<div  className="xiaohongshu-options">
+				sdfsdf
+			</div>
+			<div className="xiaohongshu-webview">
+				{
+					_path && <webview
+						id="webview"
+						nodeintegration="yes"
+						allowpopups="yes"
+						nodeintegrationinsubframes="yes"
+						allowRunningInsecureContent="yes"
+						disablewebsecurity="yes"
+						webpreferences="contextIsolation=no"
+						src={location?.state?.src}
+						preload={_path}
+					/>
+				}
+			</div>
+			
+			
+		</div>
 	)
 }
 

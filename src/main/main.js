@@ -87,7 +87,8 @@ const createWindow = () => {
 		mainWindow.show(); // 初始化后再显示
 	});
 	
-	// mainWindow.maximize();
+	// 自定义桌面狂尺寸
+	mainWindow.maximize();
 	
 	// 加载 index.html
 	if (mode === "dev") {
@@ -167,7 +168,7 @@ if (!goTheLock) {
 function changeWidth(mainWindow) {
 	if (!mainWindow.isFullScreen()) {
 		mainWindow.maximize();
-		mainWindow.setMinimumSize(500, 360);
+		// mainWindow.setMinimumSize(500, 360);
 	}
 }
 
