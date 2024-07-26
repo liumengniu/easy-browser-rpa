@@ -3,7 +3,7 @@
  * @Date: 2024-7-26
  */
 import "./index.less"
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 import { Graph, Shape } from '@antv/x6'
 import { Stencil } from '@antv/x6-plugin-stencil'
 import { Transform } from '@antv/x6-plugin-transform'
@@ -12,9 +12,11 @@ import { Snapline } from '@antv/x6-plugin-snapline'
 import { Keyboard } from '@antv/x6-plugin-keyboard'
 import { Clipboard } from '@antv/x6-plugin-clipboard'
 import { History } from '@antv/x6-plugin-history'
+import {Button} from "antd";
 
 
 function NewScript() {
+	const [graph, setGraph] = useState(null)
 	
 	useEffect(()=>{
 		initGraph()
@@ -82,6 +84,7 @@ function NewScript() {
 				},
 			},
 		})
+		setGraph(graph)
 		// 启用插件
 		graph
 			.use(
@@ -463,10 +466,21 @@ function NewScript() {
 		stencil.load([r1, r2, r3, r4, r5, r6], 'group1')
 	}
 	
+	/**
+	 * 导出画布
+	 */
+	const exportData = () =>{
+		const jsonData = graph.toJSON()
+		console.log(jsonData, '=========jsonData============')
+	}
+	
 	return (
 		<div className="new-script">
 			<div id="stencil"/>
 			<div id="graph-container"/>
+			<div className="new-script-options">
+				<Button type="primary" onClick={exportData}>导出数据</Button>
+			</div>
 		</div>
 	)
 }
