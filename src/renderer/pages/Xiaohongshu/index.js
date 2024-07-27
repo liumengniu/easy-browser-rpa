@@ -12,6 +12,7 @@ import {Button, Form, Input, Select} from "antd";
 function WebPage(props) {
 	const location = useLocation();
 	const [_path, setPath] = useState(null);
+	const [form] = Form.useForm()
 	
 	// useEffect(() => {
 	// 	if (!_path) return
@@ -44,21 +45,27 @@ function WebPage(props) {
 	/**
 	 * 数据采集
 	 */
-	const handleCollection = () =>{
-		if (!_path) return
-		let webIns = document.getElementById('webview');
-		webIns.openDevTools();
-		webIns.executeJavaScript(webviewScripts?.xiaohongshuScript);
+	const handleCollection = async () =>{
+		try {
+			const values = await form.validateFields();
+			console.log(values, '======values===========')
+			if (!_path) return;
+			let webIns = document.getElementById('webview');
+			webIns.openDevTools();
+			webIns.executeJavaScript(webviewScripts?.xiaohongshuScript(values?.type), true);
+		}catch (e) {
+			console.log(e, '======eeeeeeeeeeeeeeeeeeeeeeee===========')
+		}
 	}
 	
 	return (
 		<div className="xiaohongshu">
 			<div  className="xiaohongshu-options">
-				<Form>
-					<Form.Item label="选择流程(开发中)" name="username">
+				<Form form={form}>
+					<Form.Item label="选择流程(开发中)" name="process">
 						<Input />
 					</Form.Item>
-					<Form.Item label="存储形式" name="username" rules={[{required: true, message: '请选择存储形式!'}]}>
+					<Form.Item label="存储形式" name="type" rules={[{required: true, message: '请选择存储形式!'}]}>
 						<Select options={options}/>
 					</Form.Item>
 					<Form.Item wrapperCol={{offset: 8, span: 16,}}>

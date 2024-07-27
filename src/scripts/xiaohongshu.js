@@ -34,8 +34,7 @@ function getScreenList(type) {
 			var href = aElement.href;  //帖子详情
 			var styleObj = aElement.style;
 			var note = {title: textContent, img_src, href, kindType: '小红书'};
-			// window.mainProcess?.saveDisk(note);
-			window?.mainProcess?.saveToDB(note);
+			type === "本地磁盘" ? window.mainProcess?.saveDisk(note) : window?.mainProcess?.saveToDB(note)
 			// 3、前往详情页
 			// (function (index, aElement) {
 			// 	setTimeout(function () {
@@ -44,12 +43,6 @@ function getScreenList(type) {
 			// })(i, aElement);
 		}
 	}, 2000);
-	
-	
-	// 选择在某个时间点停止滚动，例如10秒后停止滚动
-	// setTimeout(() => {
-	// 	clearInterval(interval);
-	// }, 10000);
 }
 
 /**
@@ -66,6 +59,7 @@ function getFunctionBody(fn) {
 	return bodyMatch ? bodyMatch[1].trim() : null;
 }
 
-const xiaohongshuScript = getFunctionBody(getScreenList);
+
+const xiaohongshuScript = getScreenList;
 
 export default xiaohongshuScript
