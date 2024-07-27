@@ -19,8 +19,7 @@ const webviewScripts = {
 		const fnString = fn.toString();
 		// 使用正则表达式匹配函数参数和主体
 		const fnMatch = fnString.match(/^function\s*[^\(]*\(\s*([^\)]*)\)/m);
-		// const params = fnMatch[1].split(',').map(param => param.trim()).join(', ');
-		const params = fnMatch[1];
+		const params = fnMatch[1].split(',').map(param => param.trim()).join(', ');
 		const bodyMatch = fnString.match(/^[^{]*{((.|\n)*)}$/);
 		const fnBody = bodyMatch ? bodyMatch[1].trim() : null;
 		console.log(params, '-------------',fnBody,'============')
