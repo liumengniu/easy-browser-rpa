@@ -12,12 +12,13 @@ const {isJson} = require("@/renderer/utils");
 
 const processUtils = {
 	userPath: app.getPath("userData"),
-	processPath: path.resolve(app.getPath("userData"), "process.txt"),
+	processPath: path.resolve(app.getPath("userData"), "xiaohongshuProcess.txt"),
 	
 	/**
 	 * 保存流程
 	 */
 	saveProcess: function (data) {
+		console.log(this.processPath, '-------------------------------------')
 		const configPath = this.processPath;
 		let iniContent = ``;
 		if(isJson(data)) {

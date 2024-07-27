@@ -7,7 +7,8 @@
  * 获取当前屏幕全部的数据
  * 每隔2秒加载一屏
  */
-function getScreenList() {
+function getScreenList(type) {
+	console.log(type, '===================type====================')
 	// 每隔2秒滚动一次
 	const interval = setInterval(() => {
 		const scrollOptions = {

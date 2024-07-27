@@ -30,7 +30,7 @@ const routers = [
 	{label: '知乎', path: "/zhihu", element: <ZhiHu/>, icon: <ZhihuOutlined />},
 	{label: 'B站', path: "/bilibili", element: <Bilibili/>, icon: <BilibiliOutlined />},
 	{label: '结果', path: "/result", element: <Result/>,icon: <RobotOutlined />},
-	{label: '系统设置', path: "/result", element: <Result/>, icon: <SettingOutlined/>},
+	{label: '系统设置', path: "/setting", element: <Result/>, icon: <SettingOutlined/>},
 ]
 
 export default routers

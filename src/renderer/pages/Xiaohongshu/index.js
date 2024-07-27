@@ -13,15 +13,14 @@ function WebPage(props) {
 	const location = useLocation();
 	const [_path, setPath] = useState(null);
 	
-	
-	useEffect(() => {
-		if (!_path) return
-		let webIns = document.getElementById('webview');
-		webIns.addEventListener('dom-ready', () => {
-			webIns.openDevTools();
-			webIns.executeJavaScript(webviewScripts?.xiaohongshuScript);
-		});
-	}, [_path])
+	// useEffect(() => {
+	// 	if (!_path) return
+	// 	let webIns = document.getElementById('webview');
+	// 	webIns.addEventListener('dom-ready', () => {
+	// 		webIns.openDevTools();
+	// 		webIns.executeJavaScript(webviewScripts?.xiaohongshuScript);
+	// 	});
+	// }, [_path])
 	
 	useEffect(() => {
 		getPathFn();
@@ -42,18 +41,28 @@ function WebPage(props) {
 		{label: '本地数据库', value: '本地数据库'}
 	]
 	
+	/**
+	 * 数据采集
+	 */
+	const handleCollection = () =>{
+		if (!_path) return
+		let webIns = document.getElementById('webview');
+		webIns.openDevTools();
+		webIns.executeJavaScript(webviewScripts?.xiaohongshuScript);
+	}
+	
 	return (
 		<div className="xiaohongshu">
 			<div  className="xiaohongshu-options">
 				<Form>
-					<Form.Item label="选择流程" name="username" rules={[{required: true, message: '请选择采集流程!'}]}>
+					<Form.Item label="选择流程(开发中)" name="username">
 						<Input />
 					</Form.Item>
 					<Form.Item label="存储形式" name="username" rules={[{required: true, message: '请选择存储形式!'}]}>
 						<Select options={options}/>
 					</Form.Item>
 					<Form.Item wrapperCol={{offset: 8, span: 16,}}>
-						<Button type="primary" htmlType="submit">
+						<Button type="primary" onClick={handleCollection}>
 							开始采集
 						</Button>
 					</Form.Item>

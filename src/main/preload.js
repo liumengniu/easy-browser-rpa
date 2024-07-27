@@ -74,6 +74,12 @@ contextBridge.exposeInMainWorld('electronAPI', {
 	 */
 	getCollectionData: params => ipcRenderer.invoke('getCollectionData', params),
 	/**
+	 * 保存流程
+	 * @param params
+	 * @returns {Promise<any>}
+	 */
+	saveProcess: params => ipcRenderer.invoke('saveProcess', params),
+	/**
 	 * ====================================== 3、主进程 -> 渲染进程（单向）  =======================================
 	 */
 	
