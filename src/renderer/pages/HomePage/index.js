@@ -15,15 +15,15 @@ function HomePage() {
 	const navigate = useNavigate();
 	const navToDetail = item => {
 		if (item?.title === "小红书") {
-			navigate("xiaohongshu", {state: {src: item?.url}})
+			navigate("/xiaohongshu/open-website", {state: {src: item?.url}})
 		} else if (item?.title === "BOSS直聘") {
-			navigate("boss", {state: {src: item?.url}})
+			navigate("/boss/open-website", {state: {src: item?.url}})
 		} else if (item?.title === "抖音") {
-			navigate("douyin", {state: {src: item?.url}})
+			navigate("/douyin/open-website", {state: {src: item?.url}})
 		} else if (item?.title === "知乎") {
-			navigate("zhihu", {state: {src: item?.url}})
+			navigate("/zhihu/open-website", {state: {src: item?.url}})
 		} else if (item?.title === "b站") {
-			navigate("bilibili", {state: {src: item?.url}})
+			navigate("/bilibili/open-website", {state: {src: item?.url}})
 		}
 	}
 	
