@@ -7,7 +7,7 @@ import {useEffect, useState} from "react";
 import webviewScripts from "@/scripts";
 import { useLocation } from "react-router-dom"
 import "./index.less"
-import {Button, Form, Input} from "antd";
+import {Button, Form, Input, Select} from "antd";
 
 function WebPage(props) {
 	const location = useLocation();
@@ -37,12 +37,20 @@ function WebPage(props) {
 		setPath(fileAbPath)
 	}
 	
+	const options = [
+		{label: '本地磁盘', value: '本地磁盘'},
+		{label: '本地数据库', value: '本地数据库'}
+	]
+	
 	return (
 		<div className="xiaohongshu">
 			<div  className="xiaohongshu-options">
 				<Form>
-					<Form.Item label="选择流程" name="username" rules={[{required: true, message: 'Please input your username!'}]}>
+					<Form.Item label="选择流程" name="username" rules={[{required: true, message: '请选择采集流程!'}]}>
 						<Input />
+					</Form.Item>
+					<Form.Item label="存储形式" name="username" rules={[{required: true, message: '请选择存储形式!'}]}>
+						<Select options={options}/>
 					</Form.Item>
 					<Form.Item wrapperCol={{offset: 8, span: 16,}}>
 						<Button type="primary" htmlType="submit">
@@ -61,7 +69,7 @@ function WebPage(props) {
 						allowRunningInsecureContent="yes"
 						disablewebsecurity="yes"
 						webpreferences="contextIsolation=no"
-						src={location?.state?.src}
+						src={location?.state?.src || 'https://www.xiaohongshu.com/explore'}
 						preload={_path}
 					/>
 				}

@@ -474,6 +474,14 @@ function NewScript() {
 		console.log(jsonData, '=========jsonData============')
 	}
 	
+	/**
+	 * 保存流程
+	 */
+	const saveProcess = () =>{
+		const process = graph.toJSON();
+		window?.electronAPI?.saveProcess(process);
+	}
+	
 	return (
 		<div className="new-script">
 			<div id="stencil"/>
@@ -481,7 +489,7 @@ function NewScript() {
 			<div className="new-script-options">
 				<Space direction="vertical">
 					<Button type="primary" onClick={exportData}>导出数据</Button>
-					<Button type="primary" onClick={exportData}>保存流程</Button>
+					<Button type="primary" onClick={saveProcess}>保存流程</Button>
 				</Space>
 			</div>
 		</div>

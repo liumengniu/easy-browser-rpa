@@ -4,11 +4,16 @@
 	display: flex;
 
 	&-options{
+		width: 300px;
 		margin-right: 20px;
 	}
 
 	&-webview{
-		width: 700px;
-		height: calc(100% - 64px - 48px - 48px);
+		flex: 1;
+		height: calc(100vh - 64px - 48px - 48px);
+
+		#webview{
+			height: 100%;
+		}
 	}
 }
