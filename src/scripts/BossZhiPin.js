@@ -100,29 +100,46 @@ function filterJobs(...args){
 }
 
 /**
+ * 构造延时方法
+ * BOSS有些dom节点、弹框是append进去的，需要延时才能取到
+ * @param ms
+ */
+function sleep(ms){
+	return new Promise(resolve=> setTimeout(resolve, ms))
+}
+
+/**
  * 一键海投简历
  */
-function batchDeliveryJobs(){
-	try {
-		var jobBox = document.querySelector(".job-list-box");
-		var jobLiList = jobBox.querySelectorAll(".job-card-wrapper");
-		console.log(jobLiList, '===========jobLiList===================')
-		// 投递第一页全部30个岗位
-		for(var i=0;i<jobLiList.length;i++){
-			var jobItem = jobLiList[i];
-			var chatDom = jobItem.querySelector(".start-chat-btn");
-			if (chatDom) chatDom.click();
-			setTimeout(() => {
-				var greetDialog = document.querySelector(".greet-boss-dialog");
-				console.log(greetDialog, '===========greetDialog===================', document)
-				var sureBtn = greetDialog.querySelector(".cancel-btn");
-				if (sureBtn) sureBtn.click()
-				console.log(sureBtn, '===========sureBtnsureBtn===================')
-			}, 500)
-		}
-		// 翻页，继续投递全部岗位
-	}catch (e) {
+async function batchDeliveryJobs(){
+	/**
+	 * 构造延时方法
+	 * BOSS有些dom节点、弹框是append进去的，需要延时才能取到
+	 * @param ms
+	 */
+	function sleep(ms){
+		return new Promise(resolve=> setTimeout(resolve, ms))
+	}
 	
+	var jobBox = document.querySelector(".job-list-box");
+	var jobLiList = jobBox.querySelectorAll(".job-card-wrapper");
+	console.log(jobLiList, '===========jobLiList===================')
+	// 投递第一页全部30个岗位
+	for(var i=0;i<jobLiList.length;i++){
+		var jobItem = jobLiList[i];
+		var chatDom = jobItem.querySelector(".start-chat-btn");
+		if (chatDom) chatDom.click();
+		await sleep(Math.random() * 4000 + 1000);
+		var greetDialog = document.querySelector(".greet-boss-dialog");
+		var sureBtn = greetDialog.querySelector(".cancel-btn");
+		if (sureBtn) sureBtn.click()
+		// setTimeout(() => {
+		// 	var greetDialog = document.querySelector(".greet-boss-dialog");
+		// 	console.log(greetDialog, '===========greetDialog===================', document)
+		// 	var sureBtn = greetDialog.querySelector(".cancel-btn");
+		// 	if (sureBtn) sureBtn.click()
+		// 	console.log(sureBtn, '===========sureBtnsureBtn===================')
+		// }, 500)
 	}
 }
 
