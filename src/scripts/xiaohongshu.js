@@ -7,8 +7,9 @@
  * 获取当前屏幕全部的数据
  * 每隔2秒加载一屏
  */
-function getScreenList(type) {
-	console.log(type, '===================type====================')
+function getScreenList(...args) {
+	console.log(args, '===================type====================')
+	const type = args[0];
 	// 每隔2秒滚动一次
 	const interval = setInterval(() => {
 		const scrollOptions = {
@@ -43,20 +44,6 @@ function getScreenList(type) {
 			// })(i, aElement);
 		}
 	}, 2000);
-}
-
-/**
- * 将函数主体转为字符串，给 electron 注入代码到嵌入为web层
- * @param fn
- * @returns {string|null}
- */
-function getFunctionBody(fn) {
-	// 将函数转换为字符串
-	const fnString = fn.toString();
-	// 使用正则表达式匹配函数主体
-	const bodyMatch = fnString.match(/^[^{]*{((.|\n)*)}$/);
-	// 提取并返回主体内容
-	return bodyMatch ? bodyMatch[1].trim() : null;
 }
 
 
