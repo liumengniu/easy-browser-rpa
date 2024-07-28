@@ -7,7 +7,9 @@
  * 获取当前屏幕全部的数据
  * 每隔2秒加载一屏
  */
-function getScreenList() {
+function getScreenList(...args) {
+	console.log(args, '===================type====================')
+	const type = args[0];
 	// 每隔2秒滚动一次
 	const interval = setInterval(() => {
 		const scrollOptions = {
@@ -33,8 +35,7 @@ function getScreenList() {
 			var href = aElement.href;  //帖子详情
 			var styleObj = aElement.style;
 			var note = {title: textContent, img_src, href, kindType: '小红书'};
-			// window.mainProcess?.saveDisk(note);
-			window?.mainProcess?.saveToDB(note);
+			type === "本地磁盘" ? window.mainProcess?.saveDisk(note) : window?.mainProcess?.saveToDB(note)
 			// 3、前往详情页
 			// (function (index, aElement) {
 			// 	setTimeout(function () {
@@ -43,28 +44,9 @@ function getScreenList() {
 			// })(i, aElement);
 		}
 	}, 2000);
-	
-	
-	// 选择在某个时间点停止滚动，例如10秒后停止滚动
-	// setTimeout(() => {
-	// 	clearInterval(interval);
-	// }, 10000);
 }
 
-/**
- * 将函数主体转为字符串，给 electron 注入代码到嵌入为web层
- * @param fn
- * @returns {string|null}
- */
-function getFunctionBody(fn) {
-	// 将函数转换为字符串
-	const fnString = fn.toString();
-	// 使用正则表达式匹配函数主体
-	const bodyMatch = fnString.match(/^[^{]*{((.|\n)*)}$/);
-	// 提取并返回主体内容
-	return bodyMatch ? bodyMatch[1].trim() : null;
-}
 
-const xiaohongshuScript = getFunctionBody(getScreenList);
+const xiaohongshuScript = getScreenList;
 
 export default xiaohongshuScript

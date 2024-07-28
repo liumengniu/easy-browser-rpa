@@ -87,7 +87,8 @@ const createWindow = () => {
 		mainWindow.show(); // 初始化后再显示
 	});
 	
-	// mainWindow.maximize();
+	// 自定义桌面狂尺寸
+	mainWindow.maximize();
 	
 	// 加载 index.html
 	if (mode === "dev") {
@@ -100,7 +101,7 @@ const createWindow = () => {
 	
 	// 开发/测试环境，打开开发者工具
 	if (mode === "dev" || mode === "test") {
-		// mainWindow.webContents.openDevTools();
+		mainWindow.webContents.openDevTools();
 	}
 	/**
 	 * 初始化默认配置
@@ -167,7 +168,7 @@ if (!goTheLock) {
 function changeWidth(mainWindow) {
 	if (!mainWindow.isFullScreen()) {
 		mainWindow.maximize();
-		mainWindow.setMinimumSize(500, 360);
+		// mainWindow.setMinimumSize(500, 360);
 	}
 }
 
@@ -332,7 +333,6 @@ ipcMain.handle("getCollectionData", (event, arg) =>{
  * 17、保存至数据库
  */
 function saveToDB(event, arg){
-	// console.log(event, arg, '========================================')
 	DBService.insertData(arg.kindType,  arg)
 }
 ipcMain.handle("saveToDB", saveToDB);
@@ -343,6 +343,13 @@ ipcMain.handle("saveToDB", saveToDB);
 function saveToExcel(event, arg){
 
 }
+
+/**
+ * 19、保存流程
+ */
+ipcMain.handle("saveProcess", (event, arg)=>{
+	console.log(event, arg, '==========================================')
+});
 
 /**
  *=========================================================================
