@@ -1,4 +1,5 @@
 # <p align="center">通过JS脚本模拟用户操作，获取小红书笔记，BOSS直聘岗位，知乎帖子，b站视频等自媒体平台数据</p>
+# <p align="center">通过JS脚本模拟用户操作，筛选BOSS直聘简历，并一键海投</p>
 
 [//]: # (https://github.com/ikatyang/emoji-cheat-sheet 表情仓库)
 
@@ -18,14 +19,14 @@
 > 以下是采集的小红书的笔记数据，未经任何修改：
 > ![image](screenshot/xiaohongshu.png)
 > ![image](screenshot/小红书_sql.png)
-> 以下是采集的抖音的视频数据，未经任何修改：
-> ![image](screenshot/douyin.png)
 > 以下是采集的BOSS直聘的视频数据，未经任何修改：
 > ![image](screenshot/BOSS直聘.png)
+> BOSS直聘岗位简历筛选：
 > ![image](screenshot/BOSS筛选简历.png)
+> BOSS直聘岗位一键海投：
 > ![image](screenshot/BOSS一键海投.png)
-> 工具app截图：
-> ![image](screenshot/app.png)
+> 以下是采集的抖音的视频数据，未经任何修改：
+> ![image](screenshot/douyin.png)
 > 客户端渲染本地采集数据：
 > ![image](screenshot/data.png)
 
