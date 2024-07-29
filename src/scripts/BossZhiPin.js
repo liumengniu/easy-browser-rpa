@@ -65,13 +65,17 @@ function filterJobsByKeyWord(...args){
  * 细节筛选岗位
  * @param args
  */
-function filterJobs(...args){
+async function filterJobs(...args){
+	function sleep(ms){
+		return new Promise(resolve=> setTimeout(resolve, ms))
+	}
 	const city = args[0];
 	const post = args[1];  //岗位
 	const salary = args[2];  //薪水
 	const education = args[3];  //教育
 	const experience = args[4];   //经验
-	const type = args[0];
+	console.log(experience,'=0000000000000000000000000000',education, salary)
+	await sleep(1000)
 	// 筛选工作经验
 	if(experience !== undefined && experience !== null){
 		var wrapper = document.querySelector(".search-condition-wrapper");
@@ -81,21 +85,29 @@ function filterJobs(...args){
 		if(!experienceSelect) return
 		var experienceSelectUl = experienceSelect.querySelector('ul');
 		var activeNode = experienceSelectUl.children[Number(experience)];
-		activeNode.click();
+		if (activeNode && !activeNode.classList.contains('active')){
+			activeNode.click();
+		}
 	}
 	// 筛选薪资待遇
 	if(salary !== undefined && salary !== null){
 		var salarySelect = document.querySelector(".search-condition-wrapper > div:nth-child(6)");
+		if(!salarySelect) return
 		var salarySelectUl = salarySelect.querySelector('ul');
 		var activeNode = salarySelectUl.children[Number(salary)];
-		activeNode.click();
+		if (activeNode && !activeNode.classList.contains('active')){
+			activeNode.click();
+		}
 	}
 	// 筛选学历
 	if(education !== undefined && education !== null){
 		var educationSelect = document.querySelector(".search-condition-wrapper > div:nth-child(7)");
+		if(!educationSelect) return
 		var educationSelectUl = educationSelect.querySelector('ul');
 		var activeNode = educationSelectUl.children[Number(education)];
-		activeNode.click();
+		if (activeNode && !activeNode.classList.contains('active')){
+			activeNode.click();
+		}
 	}
 }
 
@@ -133,14 +145,9 @@ async function batchDeliveryJobs(){
 		var greetDialog = document.querySelector(".greet-boss-dialog");
 		var sureBtn = greetDialog.querySelector(".cancel-btn");
 		if (sureBtn) sureBtn.click()
-		// setTimeout(() => {
-		// 	var greetDialog = document.querySelector(".greet-boss-dialog");
-		// 	console.log(greetDialog, '===========greetDialog===================', document)
-		// 	var sureBtn = greetDialog.querySelector(".cancel-btn");
-		// 	if (sureBtn) sureBtn.click()
-		// 	console.log(sureBtn, '===========sureBtnsureBtn===================')
-		// }, 500)
 	}
+	// 翻页
+	// 投递第二页
 }
 
 
