@@ -93,7 +93,6 @@ const createWindow = () => {
 	// 加载 index.html
 	if (mode === "dev") {
 		mainWindow.loadURL("http://localhost:1819");
-		// mainWindow.loadFile(path.join(__dirname, "../../", "./build/index.html"));
 	} else if (mode === "test") {
 		mainWindow.loadFile(path.join(__dirname, "../../", "./build/index.html"));
 	} else {
@@ -101,9 +100,9 @@ const createWindow = () => {
 	}
 	
 	// 开发/测试环境，打开开发者工具
-	// if (mode === "dev" || mode === "test") {
+	if (mode === "dev" || mode === "test") {
 		mainWindow.webContents.openDevTools();
-	// }
+	}
 	/**
 	 * 初始化默认配置
 	 */
