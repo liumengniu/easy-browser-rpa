@@ -72,7 +72,7 @@ const createWindow = () => {
 		// transparent: true,
 		// useContentSize: true,
 		// frame: false,
-		icon: process.platform === "linux" ? path.join(__dirname, "../../", "./static/icons/256x256.png") : path.join(__dirname, "../../", `./static/icons/favicon.ico`),
+		icon: process.platform === "linux" ? path.join(__dirname, "../../", "./static/icons/256x256.png") : path.join(__dirname, "../../", `./src/static/icons/256x256.ico`),
 		webPreferences: {
 			webviewTag: true,
 			preload: path.join(__dirname, "preload.js"),
