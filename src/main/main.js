@@ -79,7 +79,7 @@ const createWindow = () => {
 			// 不设置这行，会报 require is not defined
 			nodeIntegration: true,
 			contextIsolation: true,
-			allowRunningInsecureContent: true,
+			allowrunninginsecurecontent: true,
 		},
 	});
 	

@@ -10,7 +10,7 @@ const dbUtils = {
 	 * 初始化表
 	 */
 	initDB: async function (){
-		await sequelize.drop({ force: true });
+		// await sequelize.drop({ force: true });
 		await sequelize.sync({ force: true });
 	}
 }

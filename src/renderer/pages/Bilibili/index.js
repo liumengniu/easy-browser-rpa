@@ -44,7 +44,7 @@ function Bilibili() {
 					nodeintegration="yes"
 					allowpopups="yes"
 					nodeintegrationinsubframes="yes"
-					allowRunningInsecureContent="yes"
+					allowrunninginsecurecontent="yes"
 					disablewebsecurity="yes"
 					webpreferences="contextIsolation=no"
 					src={location?.state?.src}
