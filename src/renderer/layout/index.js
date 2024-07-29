@@ -38,7 +38,7 @@ function LayoutContainer(){
 			<Sider trigger={null} collapsible collapsed={collapsed}>
 				<div className="ant-pro-global-header-logo">
 					<a className={collapsed ? 'collapsed' : ''}>
-						<img src={logo} alt=""/>
+						{/*<img src={logo} alt=""/>*/}
 						{
 							!collapsed && <h1>自媒体RPA</h1>
 						}

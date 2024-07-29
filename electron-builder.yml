@@ -4,7 +4,7 @@
 extends: null
 # 构建配置
 appId: com.electron.basic.client
-productName: 自媒体数据获取
+productName: 自媒体RPA
 directories:
   buildResources: static
   # 指定构建输出目录
