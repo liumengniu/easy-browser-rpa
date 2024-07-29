@@ -14,15 +14,6 @@ function WebPage(props) {
 	const [_path, setPath] = useState(null);
 	const [form] = Form.useForm()
 	
-	// useEffect(() => {
-	// 	if (!_path) return
-	// 	let webIns = document.getElementById('webview');
-	// 	webIns.addEventListener('dom-ready', () => {
-	// 		webIns.openDevTools();
-	// 		webIns.executeJavaScript(webviewScripts?.xiaohongshuScript);
-	// 	});
-	// }, [_path])
-	
 	useEffect(() => {
 		getPathFn();
 	}, [])
@@ -60,8 +51,8 @@ function WebPage(props) {
 	
 	return (
 		<div className="xiaohongshu">
-			<div  className="xiaohongshu-options">
-				<Form form={form}>
+			<div className="xiaohongshu-options">
+				<Form labelCol={{ span: 8 }} labelWrap={true} form={form}>
 					<Form.Item label="选择流程(开发中)" name="process">
 						<Input />
 					</Form.Item>

@@ -23,17 +23,6 @@ function BossZhiPin() {
 	const [form] = Form.useForm()
 	const [form2] = Form.useForm()
 	
-	
-	useEffect(() => {
-		// console.log("执行次数")
-		// if(!path) return
-		// let webIns = document.getElementById('webview2');
-		// webIns.addEventListener('did-finish-load', () => {
-		// 	webIns.openDevTools();
-		// 	webIns.executeJavaScript(webviewScripts?.bossScript);
-		// });
-	}, [path])
-	
 	useEffect(() => {
 		getPathFn();
 	}, [])

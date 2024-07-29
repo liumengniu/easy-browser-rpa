@@ -37,18 +37,6 @@ const routers = [
 			{label: '打开网页', path: "/douyin/open-website", element: <DouYin/>,},
 		]
 	},
-	{
-		label: '知乎', path: "/zhihu", element: <ZhiHu/>, icon: <ZhihuOutlined />,
-		children: [
-			{label: '打开网页', path: "/zhihu/open-website", element: <ZhiHu/>,},
-		]
-	},
-	{
-		label: 'B站', path: "/bilibili", element: <Bilibili/>, icon: <BilibiliOutlined/>,
-		children: [
-			{label: '打开网页', path: "/bilibili/open-website", element: <Bilibili/>,},
-		]
-	},
 	{label: '结果', path: "/result", element: <Result/>,icon: <RobotOutlined />},
 	{label: '系统设置', path: "/setting", element: <Result/>, icon: <SettingOutlined/>},
 ]
