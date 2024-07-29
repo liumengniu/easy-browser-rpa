@@ -4,7 +4,7 @@
  * @Date: 2024-7-21
  */
 
-const models = require("../../renderer/models");
+const models = require("../models");
 const Xiaohongshu = models.Xiaohongshu;
 const Douyin = models.Douyin;
 const { v4: uuidv4 } = require('uuid');

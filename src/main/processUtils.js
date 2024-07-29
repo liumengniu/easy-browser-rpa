@@ -6,7 +6,6 @@
 const {app, dialog, nativeTheme} = require("electron");
 const fs = require("fs");
 const path = require("path")
-const ini = require('ini');
 const _ = require("lodash")
 const {isJson} = require("@/renderer/utils");
 

@@ -14,10 +14,10 @@ asar: true
 
 # Windows 特定配置
 win:
-  icon: "static/icons/favicon.ico"
+  icon: "src/static/icons/256x256.ico"
   target:
-    - "nsis"
-    - "zip"
+    - nsis
+    - zip
   requestedExecutionLevel: "requireAdministrator"
 
 # Linux 特定配置
@@ -29,15 +29,17 @@ linux:
 # 包含文件
 files:
   - "build/**/*"
-  - "src/main/main.js"
-  - "src/main/preload.js"
-  - "src/main/preload2.js"
+  - "src/main/*"
+  - "src/main/**/*"
+
+# 不打包进 app.asar 的文件
+asarUnpack:
 
 # 额外的资源目录
 extraResources:
-  - "extraResources/**"
-  - "src/main/preload.js
-  - "src/main/preload2.js"
+  - "./extraResources/**"
+  - "./src/main/preload.js"
+  - "./src/main/preload2.js"
 
 # NSIS 安装程序配置（仅适用于 Windows）
 nsis:
@@ -48,9 +50,9 @@ nsis:
   allowElevation: true
   allowToChangeInstallationDirectory: true
   createDesktopShortcut: true
-  installerIcon: "static/icons/favicon.ico"
-  uninstallerIcon: "static/icons/favicon.ico"
-  installerHeaderIcon: "static/icons/favicon.ico"
+  installerIcon: "src/static/icons/favicon.ico"
+  uninstallerIcon: "src/static/icons/favicon.ico"
+  installerHeaderIcon: "src/static/icons/favicon.ico"
 
 # 自动更新配置
 publish:

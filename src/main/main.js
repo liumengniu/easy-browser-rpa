@@ -75,7 +75,7 @@ const createWindow = () => {
 		icon: process.platform === "linux" ? path.join(__dirname, "../../", "./static/icons/256x256.png") : path.join(__dirname, "../../", `./src/static/icons/256x256.ico`),
 		webPreferences: {
 			webviewTag: true,
-			preload: path.join(__dirname, "preload.js"),
+			preload: mode === "dev" ?path.join(__dirname, 'preload.js') : path.resolve(process.resourcesPath, "src/main/preload.js"),
 			// 不设置这行，会报 require is not defined
 			nodeIntegration: true,
 			contextIsolation: true,
@@ -93,6 +93,7 @@ const createWindow = () => {
 	// 加载 index.html
 	if (mode === "dev") {
 		mainWindow.loadURL("http://localhost:1819");
+		// mainWindow.loadFile(path.join(__dirname, "../../", "./build/index.html"));
 	} else if (mode === "test") {
 		mainWindow.loadFile(path.join(__dirname, "../../", "./build/index.html"));
 	} else {
@@ -100,9 +101,9 @@ const createWindow = () => {
 	}
 	
 	// 开发/测试环境，打开开发者工具
-	if (mode === "dev" || mode === "test") {
+	// if (mode === "dev" || mode === "test") {
 		mainWindow.webContents.openDevTools();
-	}
+	// }
 	/**
 	 * 初始化默认配置
 	 */
