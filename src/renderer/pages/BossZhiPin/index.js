@@ -79,20 +79,25 @@ function BossZhiPin() {
 		webIns.openDevTools();
 		webIns.executeJavaScript(webviewScripts?.filterJobsByKeyWord(values?.city, values?.post), true);
 		// 监听导航事件
-		webIns.addEventListener('did-navigate', (e) => {
-			console.log(e, 'urlurlurlurlurlurlurlurlurlurlurlurlurlurlurlurl')
-			if (e.url.indexOf("https://www.zhipin.com/web/geek/job") > -1) {  // 开始进入筛选界面
+		// webIns.addEventListener('did-navigate', (e) => {
+		// 	console.log(e, 'urlurlurlurlurlurlurlurlurlurlurlurlurlurlurlurl')
+		// 	if (e.url.indexOf("https://www.zhipin.com/web/geek/job") > -1) {  // 开始进入筛选界面
+		// 		webIns.openDevTools();
+		// 		webIns.executeJavaScript(webviewScripts?.filterJobs(values?.city, values?.post, values?.salary, values?.education, values?.experience), true);
+		// 	}
+		// });
+		webIns.addEventListener('did-finish-load', (e) => {
+			console.log(e, '999999999999999999999999999999999')
+			if (e.target?.src?.indexOf("https://www.zhipin.com/web/geek/job") > -1) {  // 开始进入筛选界面
+				console.log(e, '888888888888888888888888888888888888888',values)
 				webIns.openDevTools();
 				webIns.executeJavaScript(webviewScripts?.filterJobs(values?.city, values?.post, values?.salary, values?.education, values?.experience), true);
 			}
-		});
-		webIns.addEventListener('did-finish-load', (e) => {
-			console.log(e, '999999999999999999999999999999999')
-			// if (e.target.src.indexOf("https://www.zhipin.com/web/geek/job") > -1) {  // 开始进入筛选界面
-			// 	webIns.openDevTools();
-			// 	webIns.executeJavaScript(webviewScripts?.filterJobs(values?.city, values?.post, values?.salary, values?.education, values?.experience), true);
-			// }
 		})
+		if(webIns){
+			// webIns.openDevTools();
+			webIns.executeJavaScript(webviewScripts?.filterJobs(values?.city, values?.post, values?.salary, values?.education, values?.experience), true);
+		}
 	}
 	
 	/**
