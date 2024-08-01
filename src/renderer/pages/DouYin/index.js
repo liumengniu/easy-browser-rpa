@@ -9,7 +9,7 @@ import webviewScripts from "@/scripts";
 import { useLocation } from "react-router-dom"
 import douyinScript from "@/scripts/douyin";
 import "./index.less"
-import {Button, Form, Input, Select} from "antd";
+import {Button, Form, Input, Select, Space} from "antd";
 
 function DouYin() {
 	const location = useLocation();
@@ -22,7 +22,7 @@ function DouYin() {
 	// 	let webIns = document.getElementById('webview');
 	// 	webIns.addEventListener('dom-ready', () => {
 	// 		webIns.openDevTools();
-	// 		webIns.executeJavaScript(webviewScripts?.douyinScript);
+	// 		webIns.executeJavaScript(webviewScripts?.getShortVideoList("本地数据库"), true);
 	// 	});
 	// }, [_path])
 	
@@ -47,6 +47,13 @@ function DouYin() {
 	}
 
 	/**
+	 * 搜索
+	 */
+	const handleSearch = () =>{
+		const values = form.getFieldsValue(true);
+	}
+
+	/**
 	 * 数据采集
 	 */
 	const handleCollection = async () =>{
@@ -55,23 +62,21 @@ function DouYin() {
 		if (!_path) return;
 		let webIns = document.getElementById('webview');
 		webIns.openDevTools();
-		webIns.executeJavaScript(webviewScripts?.xiaohongshuScript(values?.type), true);
+		webIns.executeJavaScript(webviewScripts?.getShortVideoList(values?.type), true);
 	}
 	
 	return (
 		<div className="xiaohongshu">
 			<div  className="xiaohongshu-options">
 				<Form labelCol={{ span: 8 }}  labelWrap={true} form={form}>
-					<Form.Item label="选择流程(开发中)" name="process">
-						<Input />
-					</Form.Item>
 					<Form.Item label="存储形式" name="type" rules={[{required: true, message: '请选择存储形式!'}]}>
 						<Select options={options}/>
 					</Form.Item>
 					<Form.Item wrapperCol={{offset: 8, span: 16,}}>
-						<Button type="primary" onClick={handleCollection}>
-							开始采集
-						</Button>
+						<Space>
+							<Button type="primary" onClick={handleSearch}>开始筛选</Button>
+							<Button type="primary" onClick={handleCollection}>开始采集</Button>
+						</Space>
 					</Form.Item>
 				</Form>
 			</div>

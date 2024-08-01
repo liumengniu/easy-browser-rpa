@@ -103,9 +103,6 @@ function BossZhiPin() {
 		<div className="xiaohongshu">
 			<div  className="xiaohongshu-options">
 				<Form form={form} labelCol={{ span: 8 }} labelWrap={true}>
-					<Form.Item label="选择流程(开发中)" name="process">
-						<Input />
-					</Form.Item>
 					<Form.Item label="存储形式" name="type" rules={[{required: true, message: '请选择存储形式!'}]}>
 						<Select options={options}/>
 					</Form.Item>

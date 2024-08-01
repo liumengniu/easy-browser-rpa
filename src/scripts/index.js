@@ -36,8 +36,14 @@ const webviewScripts = {
 		`;
 		return scriptContent;
 	},
-	["xiaohongshuScript"]: function (type) {
-		return this.getFunctionBody(xiaohongshuScript, type);
+	["getNoteList"]: function (type) {
+		return this.getFunctionBody(xiaohongshuScript.getNoteList, type);
+	},
+	["filterNotes"]: function (type, keyword, tag) {
+		return this.getFunctionBody(xiaohongshuScript.filterNotes, type, keyword, tag);
+	},
+	["getNoteListDetail"]: function (type, keyword, tag) {
+		return this.getFunctionBody(xiaohongshuScript.getNoteListDetail, type, keyword, tag);
 	},
 	["getJobs"]:  function (type) {
 		return this.getFunctionBody(bossScript?.getJobs, type);
@@ -51,7 +57,9 @@ const webviewScripts = {
 	["batchDeliveryJobs"]: function () {
 		return this.getFunctionBody(bossScript?.batchDeliveryJobs);
 	},
-	["douyinScript"]: douyinScript,
+	["getShortVideoList"]: function (type){
+		return this.getFunctionBody(douyinScript?.getShortVideoList, type);
+	},
 	["zhihuScript"]: zhihuScript,
 	["bilibiliScript"]: bilibiliScript
 }

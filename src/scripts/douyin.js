@@ -7,19 +7,16 @@
  * 获取当前屏幕全部的数据
  * 每隔2秒加载一屏
  */
-function getScreenList() {
-	// 每隔2秒滚动一次
+function getShortVideoList(...args) {
+	const {type} = args[0];
 	const interval = setInterval(()=>{
-		const scrollOptions = {
-			top: document.body.scrollHeight,
-			left: 0,
-			behavior: 'smooth'
-		};
-		window.scrollTo(scrollOptions);
+	// todo 抖音网页版window有的版本无法滚动，可能做了特殊设置（比如最外层html对象禁止滚动）。
+	// todo 直接找列表容器来滚动，效果一样（不管抖音网页怎么更新，找能滚动的容器节点即可）
+		const container = document.querySelector('.route-scroll-container'); // 替换为你的 div 元素的 ID
+		container.scrollTo({top: container.scrollHeight, behavior: 'smooth'});
 		var doc = document;
 		var box = doc.getElementById("waterFallScrollContainer")
 		var sections = doc.getElementsByClassName("nFJH7DcV");
-		// console.log(sections, '=========sections==========')
 		for (var i=0;i<sections.length;i++){
 			var section = sections[i];
 			if(section.id !== 'hotItem'){
@@ -31,28 +28,15 @@ function getScreenList() {
 				var author = section.querySelector(".u6iv2BZe")?.textContent;
 				var title = section.querySelector(".MR80_HYg")?.textContent;
 				var shortVideo = { video_url, video_bg_src, author, title, kindType: '抖音' };
-				// window.mainProcess?.saveDisk(shortVideo);
-				window.mainProcess?.saveToDB(shortVideo);
+				type === "本地磁盘" ? window.mainProcess?.saveDisk(shortVideo) : window?.mainProcess?.saveToDB(shortVideo);
 			}
-			
+
 		}
 	}, 2000);
 }
 
-/**
- * 将函数主体转为字符串，给 electron 注入代码到嵌入为web层
- * @param fn
- * @returns {string|null}
- */
-function getFunctionBody(fn) {
-	// 将函数转换为字符串
-	const fnString = fn.toString();
-	// 使用正则表达式匹配函数主体
-	const bodyMatch = fnString.match(/^[^{]*{((.|\n)*)}$/);
-	// 提取并返回主体内容
-	return bodyMatch ? bodyMatch[1].trim() : null;
-}
-
-const douyinScript = getFunctionBody(getScreenList);
+const douyinScript = {
+	getShortVideoList
+};
 
 export default douyinScript

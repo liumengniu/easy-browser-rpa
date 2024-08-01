@@ -7,7 +7,8 @@ import {useEffect, useState} from "react";
 import webviewScripts from "@/scripts";
 import { useLocation } from "react-router-dom"
 import "./index.less"
-import {Button, Form, Input, Select} from "antd";
+import {Button, Form, Input, Select, Space} from "antd";
+import mockData from "@/renderer/mock";
 
 function WebPage(props) {
 	const location = useLocation();
@@ -43,26 +44,49 @@ function WebPage(props) {
 			if (!_path) return;
 			let webIns = document.getElementById('webview');
 			webIns.openDevTools();
-			webIns.executeJavaScript(webviewScripts?.xiaohongshuScript(values?.type), true);
+			webIns.executeJavaScript(webviewScripts?.getNoteListDetail(values?.type), true);
 		}catch (e) {
 			console.log(e, '======eeeeeeeeeeeeeeeeeeeeeeee===========')
 		}
+	}
+
+	/**
+	 * 开始筛选
+	 */
+	const handleSearch = async () => {
+		let webIns = document.getElementById('webview');
+		if (!webIns) return
+		const values = await form.getFieldsValue(true);
+		console.log(values, '======values===========')
+		webIns.openDevTools();
+		webIns.executeJavaScript(webviewScripts?.filterNotes(values?.type, values?.keyword, values?.tag), true);
 	}
 	
 	return (
 		<div className="xiaohongshu">
 			<div className="xiaohongshu-options">
-				<Form labelCol={{ span: 8 }} labelWrap={true} form={form}>
-					<Form.Item label="选择流程(开发中)" name="process">
+				<Form  form={form} labelCol={{ span: 8 }} labelWrap={true}>
+					{/*<Form.Item label="选择流程(开发中)" name="process">*/}
+					{/*	<Input />*/}
+					{/*</Form.Item>*/}
+					<Form.Item label="搜索关键字" name="keyword">
 						<Input />
+					</Form.Item>
+					<Form.Item label="推荐标签" name="tag">
+						<Select options={mockData.noteTags}/>
 					</Form.Item>
 					<Form.Item label="存储形式" name="type" rules={[{required: true, message: '请选择存储形式!'}]}>
 						<Select options={options}/>
 					</Form.Item>
 					<Form.Item wrapperCol={{offset: 8, span: 16,}}>
-						<Button type="primary" onClick={handleCollection}>
-							开始采集
-						</Button>
+						<Space>
+							<Button type="primary" onClick={handleSearch}>
+								筛选数据
+							</Button>
+							<Button type="primary" onClick={handleCollection}>
+								开始采集
+							</Button>
+						</Space>
 					</Form.Item>
 				</Form>
 			</div>
