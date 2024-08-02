@@ -9,8 +9,11 @@ import {memo, useEffect, useMemo, useState} from "react";
 import webviewScripts from "@/scripts";
 import {useLocation} from "react-router-dom";
 import "./index.less"
-import {Button, Form, Input, Select, Space} from "antd";
+import {Button, Form, Input, Modal, Select, Space} from "antd";
 import mockData from "@/renderer/mock";
+import { ExclamationCircleFilled } from '@ant-design/icons';
+
+const { confirm } = Modal;
 
 function BossZhiPin() {
 	const location = useLocation();
@@ -88,11 +91,24 @@ function BossZhiPin() {
 	 * 一键海投
 	 */
 	const handleDelivery = () =>{
-		console.log("handleDelivery")
-		if (!path) return;
-		let webIns = document.getElementById('webview2');
-		webIns.openDevTools();
-		webIns.executeJavaScript(webviewScripts?.batchDeliveryJobs(), true);
+		confirm({
+			centered: true,
+			title: '确认一键海投?',
+			icon: <ExclamationCircleFilled />,
+			content: '确保您已登录BOSS直聘，并且已完善相关信息，否则BOSS官方会阻止投递',
+			okText: '投递',
+			cancelText: '撤回',
+			onOk() {
+				console.log("handleDelivery")
+				if (!path) return;
+				let webIns = document.getElementById('webview2');
+				webIns.openDevTools();
+				webIns.executeJavaScript(webviewScripts?.batchDeliveryJobs(), true);
+			},
+			onCancel() {
+				console.log('Cancel');
+			},
+		});
 	}
 	
 	return (
