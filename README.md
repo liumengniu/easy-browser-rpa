@@ -1,5 +1,4 @@
-# <p align="center">通过JS脚本模拟用户操作，获取小红书笔记，BOSS直聘岗位，知乎帖子，b站视频等自媒体平台数据</p>
-# <p align="center">通过JS脚本模拟用户操作，筛选BOSS直聘简历，并一键海投</p>
+# <p align="center">获取小红书笔记，BOSS直聘岗位，抖音短视频等自媒体平台数据,筛选BOSS直聘简历，并一键海投</p>
 
 [//]: # (https://github.com/ikatyang/emoji-cheat-sheet 表情仓库)
 
@@ -16,19 +15,14 @@
 > 通过JS脚本模拟用户操作，获取各种数据。 \
 > 通过JS脚本和主进程的通信，存储相关数据。 \
 > 通过JS逆向模拟用户操作的方式，获取数据的阻碍小。 \
+> BOSS直聘岗位一键海投：
+> ![image](screenshot/BOSS一键海投.png)
 > 以下是采集的小红书的笔记数据，未经任何修改：
-> ![image](screenshot/xiaohongshu.png)
 > ![image](screenshot/小红书_sql.png)
 > 以下是采集的BOSS直聘的视频数据，未经任何修改：
 > ![image](screenshot/BOSS直聘.png)
-> BOSS直聘岗位简历筛选：
-> ![image](screenshot/BOSS筛选简历.png)
-> BOSS直聘岗位一键海投：
-> ![image](screenshot/BOSS一键海投.png)
 > 以下是采集的抖音的视频数据，未经任何修改：
 > ![image](screenshot/douyin.png)
-> 客户端渲染本地采集数据：
-> ![image](screenshot/data.png)
 
 ## 🎨 运行指南
 
@@ -36,20 +30,50 @@
 > electron依赖比较大，需要科学上网工具或者配置镜像源 \
 > 通过webview获取数据的进程通信脚本需要读取本地相对路径(file://),通过BrowserView则不需要 
 
-> 1. 安装依赖
+### 1. 安装依赖
 
 ```bash
    npm install
 ```
 
-> 2. 运行项目
+### 2. 配置数据库
+
+配置文件在`项目根目录\src\main\config\config.json`
+
+```json
+{
+  "development": {
+    "username": "root",
+    "password": "123456",
+    "database": "crawler",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "root",
+    "password": null,
+    "database": "database_test",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "root",
+    "password": "liu435839449",
+    "database": "database_production",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  }
+}
+```
+
+### 3. 运行项目
 
 ```bash
    npm run startAll
 ```
 
-> 3. 编译项目
-
+### 4. 编译项目
+> 通过根目录下的electron-builder.yml配置进行编译 
 ```bash
    npm run build:web 
    npm run build 
@@ -61,11 +85,11 @@
 >
 
 | 蓝图                         | 完成情况       | 存在问题        |
-|-----------------------------|------------|-------------|
-| 1、小红书采集笔记评论           | 开发中     | 暂无  |
-| 2、BOSS直聘采集自定义流程        | 开发中    | 暂无  |
-| 3、BOSS直聘岗位精准筛选          | 开发中    | 暂无  |
-| 4、BOSS直聘一键海投             | 开发中    | 暂无  |
+|----------------------------- |------------|-------------|
+| 1、小红书增加采集笔记评论列表      | 已完成     | 暂无  |
+| 2、小红书批量关注               | 开发中    | 暂无  |
+| 3、抖音增加采集短视频评论列表      | 开发中    | 暂无  |
+| 4、抖音批量关注                 | 开发中    | 暂无  |
 
 ## 🌟 Star History
 
