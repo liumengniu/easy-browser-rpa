@@ -5,11 +5,6 @@
  */
 
 
-/**
- * @author Kevin
- * @Date: 2024-4-17
- */
-
 import {memo, useEffect, useMemo, useState} from "react";
 import webviewScripts from "@/scripts";
 import {useLocation} from "react-router-dom";
@@ -93,6 +88,7 @@ function BossZhiPin() {
 	 * 一键海投
 	 */
 	const handleDelivery = () =>{
+		console.log("handleDelivery")
 		if (!path) return;
 		let webIns = document.getElementById('webview2');
 		webIns.openDevTools();

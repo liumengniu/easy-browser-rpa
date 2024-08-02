@@ -55,7 +55,7 @@ const webviewScripts = {
 		return this.getFunctionBody(bossScript?.filterJobs, city, post, salary, education, experience);
 	},
 	["batchDeliveryJobs"]: function () {
-		return this.getFunctionBody(bossScript?.batchDeliveryJobs);
+		return this.getFunctionBody(bossScript.batchDeliveryJobs);
 	},
 	["getShortVideoList"]: function (type){
 		return this.getFunctionBody(douyinScript?.getShortVideoList, type);
