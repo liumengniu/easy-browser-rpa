@@ -7,7 +7,7 @@ import {useEffect, useState} from "react";
 import webviewScripts from "@/scripts";
 import { useLocation } from "react-router-dom"
 import "./index.less"
-import {Button, Form, Input, Select, Space} from "antd";
+import {Button, Form, Input, Modal, Select, Space} from "antd";
 import mockData from "@/renderer/mock";
 
 function WebPage(props) {
@@ -53,7 +53,9 @@ function WebPage(props) {
 	/**
 	 * 批量关注
 	 */
-	const handleBatchFocus = () =>{}
+	const handleBatchFocus = () =>{
+		Modal.info({content: '脚本编写中，敬请期待'});
+	}
 
 	/**
 	 * 开始筛选
@@ -80,9 +82,6 @@ function WebPage(props) {
 					<Form.Item label="推荐标签" name="tag">
 						<Select options={mockData.noteTags}/>
 					</Form.Item>
-					<Form.Item label="是否获取评论" name="tag">
-						<Select options={mockData.noteTags}/>
-					</Form.Item>
 					<Form.Item label="存储形式" name="type" rules={[{required: true, message: '请选择存储形式!'}]}>
 						<Select options={options}/>
 					</Form.Item>
@@ -90,7 +89,7 @@ function WebPage(props) {
 						<Space>
 							<Button type="primary" onClick={handleSearch}>筛选数据</Button>
 							<Button type="primary" onClick={handleCollection}>开始采集</Button>
-							<Button type="primary" onClick={handleBatchFocus}>批量关注</Button>
+							{/*<Button type="primary" onClick={handleBatchFocus}>批量关注</Button>*/}
 						</Space>
 					</Form.Item>
 				</Form>
