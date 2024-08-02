@@ -14,15 +14,16 @@
 > 通过electron内嵌chroium浏览器绕过跨域限制，可以注入JS脚本 \
 > 通过JS脚本模拟用户操作，获取各种数据。 \
 > 通过JS脚本和主进程的通信，存储相关数据。 \
-> 通过JS逆向模拟用户操作的方式，获取数据的阻碍小。 \
-> BOSS直聘岗位一键海投：
-> ![image](screenshot/BOSS一键海投.png)
-> 以下是采集的小红书的笔记数据，未经任何修改：
-> ![image](screenshot/小红书_sql.png)
-> 以下是采集的BOSS直聘的视频数据，未经任何修改：
-> ![image](screenshot/BOSS直聘.png)
-> 以下是采集的抖音的视频数据，未经任何修改：
-> ![image](screenshot/douyin.png)
+> 通过JS逆向模拟用户操作的方式，获取数据的阻碍小。 
+
+BOSS直聘岗位一键海投：
+![image](screenshot/BOSS一键海投.png)
+以下是采集的小红书的笔记数据，未经任何修改：
+![image](screenshot/小红书_sql.png)
+以下是采集的BOSS直聘的视频数据，未经任何修改：
+![image](screenshot/BOSS直聘.png)
+以下是采集的抖音的视频数据，未经任何修改：
+![image](screenshot/douyin.png)
 
 ## 🎨 运行指南
 
