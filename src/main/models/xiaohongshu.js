@@ -33,6 +33,10 @@ module.exports = (sequelize, DataTypes) => {
 		href: {
 			type: DataTypes.STRING,
 			comment: "笔记详情链接地址",
+		},
+		comments: {
+			type: DataTypes.JSON,
+			comment: "评论列表",
 		}
 	}, {
 		sequelize,

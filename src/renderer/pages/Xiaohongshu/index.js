@@ -51,6 +51,11 @@ function WebPage(props) {
 	}
 
 	/**
+	 * 批量关注
+	 */
+	const handleBatchFocus = () =>{}
+
+	/**
 	 * 开始筛选
 	 */
 	const handleSearch = async () => {
@@ -75,17 +80,17 @@ function WebPage(props) {
 					<Form.Item label="推荐标签" name="tag">
 						<Select options={mockData.noteTags}/>
 					</Form.Item>
+					<Form.Item label="是否获取评论" name="tag">
+						<Select options={mockData.noteTags}/>
+					</Form.Item>
 					<Form.Item label="存储形式" name="type" rules={[{required: true, message: '请选择存储形式!'}]}>
 						<Select options={options}/>
 					</Form.Item>
-					<Form.Item wrapperCol={{offset: 8, span: 16,}}>
+					<Form.Item >
 						<Space>
-							<Button type="primary" onClick={handleSearch}>
-								筛选数据
-							</Button>
-							<Button type="primary" onClick={handleCollection}>
-								开始采集
-							</Button>
+							<Button type="primary" onClick={handleSearch}>筛选数据</Button>
+							<Button type="primary" onClick={handleCollection}>开始采集</Button>
+							<Button type="primary" onClick={handleBatchFocus}>批量关注</Button>
 						</Space>
 					</Form.Item>
 				</Form>

@@ -47,20 +47,50 @@ function getNoteList(...args) {
 }
 
 /**
+ * 延时方法
+ * @param ms
+ * @returns {Promise<unknown>}
+ */
+function sleep(ms) {
+	return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+/**
+ * 定时器方法
+ * @param callback
+ * @param interval
+ * @param times
+ * @returns {Promise<void>}
+ */
+async function asyncInterval(callback, interval, times) {
+	for (let i = 0; i < times; i++) {
+		await callback();
+		await sleep(interval);
+	}
+}
+
+/**
  * 获取笔记及详情
  */
 async function getNoteListDetail(...args){
 	function sleep(ms){
 		return new Promise(resolve=> setTimeout(resolve, ms))
 	}
+	async function asyncInterval(callback, interval, times = 1000000) {
+		for (let i = 0; i < times; i++) {
+			await callback();
+			await sleep(interval);
+		}
+	}
 	var idx = 0;
 	var type = args[0];
-	setInterval(()=>{
+	await asyncInterval(async ()=>{
 		window.scrollTo({top: document.body.scrollHeight,behavior: 'smooth'});
 		var sections = document.getElementsByClassName("note-item");
 		idx = idx + (sections.length - 1);
 		for (var i = 0; i < sections.length; i++) {
 			var section = sections[i];
+			var coverDom = section.querySelector(".cover")
 			var footer = section.querySelector(".footer");
 			var title = footer.querySelector(".title");
 			var titleSpan = footer.querySelector("span");
@@ -71,12 +101,35 @@ async function getNoteListDetail(...args){
 			var aImg = aElement.querySelector("img");
 			var img_src = aImg.src;      //帖子图片
 			var href = aElement.href;  //帖子详情
-			var styleObj = aElement.style;
-			var note = {title: textContent, img_src, href, kindType: '小红书'};
+			coverDom.click();
+			// await sleep(2000)
+			var listContainer = document.querySelector(".list-container");
+			console.log(listContainer, '==========listContainer===============')
+			var comments = [];
+			if(listContainer){
+				var listContainerChildren = listContainer.children;
+				for(var j=0;j<listContainerChildren.length; j++){
+					var parentComment = listContainerChildren[j];
+					var commentItem = parentComment.querySelector(".comment-item")
+					var avatarItem = commentItem.querySelector(".avatar-item");
+					var comment_avatar = avatarItem.src;
+					var comment_author = commentItem.querySelector(".right>.author-wrapper>.author> a");
+					var comment_author_name = comment_author.textContent;
+					var comment_content = commentItem.querySelector(".right>.content").textContent;
+					var obj = { comment_avatar, comment_author_name, comment_content};
+					comments.push(obj);
+				}
+			}
+			var note = {title: textContent, img_src, href, comments,kindType: '小红书'};
+			var noteDetailMask = document.querySelector(".note-detail-mask");
+			var closeBox = document.querySelector(".close-box");
+			await sleep(1000)
+			if (noteDetailMask) noteDetailMask.click();
+			if(closeBox) closeBox.click();
+			console.log(noteDetailMask, '===============noteContainer=======================', comments)
 			type === "本地磁盘" ? window.mainProcess?.saveDisk(note) : window?.mainProcess?.saveToDB(note);
 		}
-	}, 2000)
-
+	},1000)
 }
 
 /**
