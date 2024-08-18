@@ -5,7 +5,6 @@
  */
 
 const interpreter = {
-
 	/**
 	 * 获取dom节点
 	 */
@@ -13,9 +12,19 @@ const interpreter = {
 		document.querySelector();
 	},
 	/**
+	 * 获取文本内容
+	 */
+	getText: function (dom){
+		return dom?.textContent || "";
+	},
+
+	getImageHref: function (img){
+		return img?.src;
+	},
+	/**
 	 * 获取事件
 	 */
-	bindEvent: function (){
+	bindEvent: function (type){
 
 	},
 	/**
