@@ -8,8 +8,9 @@ const interpreter = {
 	/**
 	 * 获取dom节点
 	 */
-	getDom: function (){
-		document.querySelector();
+	getDom: function (name){
+		const query = document.querySelector.bind(document);
+		return query(name)
 	},
 	/**
 	 * 获取文本内容
