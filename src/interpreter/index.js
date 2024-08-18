@@ -22,10 +22,11 @@ const interpreter = {
 		return img?.src;
 	},
 	/**
-	 * 获取事件
+	 * 绑定事件
 	 */
-	bindEvent: function (type){
-
+	bindEvent: function (type, element, detail){
+		const event = new CustomEvent("customEvent", detail);
+		element.dispatchEvent(event)
 	},
 	/**
 	 * 存储
