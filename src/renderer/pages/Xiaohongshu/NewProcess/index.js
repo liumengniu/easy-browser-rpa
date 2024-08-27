@@ -185,7 +185,9 @@ function App() {
 	/**
 	 * 保存自定义流程数据至本地磁盘
 	 */
-	const saveProcess = () =>{}
+	const saveProcess = () =>{
+		window?.electronAPI?.saveProcess(JSON.stringify({questionnaireTitle, questionnaireSubTitle, data}))
+	}
 
 	return (
 		<div className="new-process">

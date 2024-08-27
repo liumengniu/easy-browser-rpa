@@ -13,6 +13,7 @@ const fs = require("fs");
 const menuUtils = require('./menuUtils')
 const dbUtils = require('./dbUtils')
 const DBService = require("./services");
+const processUtils = require("./processUtils");
 log.transports.file.level = "debug";
 
 
@@ -348,7 +349,9 @@ function saveToExcel(event, arg){
  * 19、保存流程
  */
 ipcMain.handle("saveProcess", (event, arg)=>{
+	const data = arg;
 	console.log(event, arg, '==========================================')
+	processUtils.saveProcess(data);
 });
 
 /**
