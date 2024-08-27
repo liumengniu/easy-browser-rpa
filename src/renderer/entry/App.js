@@ -47,7 +47,7 @@ function App() {
 						algorithm: mode === "light" ? theme.defaultAlgorithm : theme.darkAlgorithm,
 						token: {
 							// Seed Token，影响范围大
-							colorPrimary: '#008c8c',
+							colorPrimary: '#eb2f96',
 						},
 					}}
 				>

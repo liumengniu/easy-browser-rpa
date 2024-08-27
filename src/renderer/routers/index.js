@@ -8,6 +8,7 @@ import Result from "@/renderer/pages/Result";
 import NewScript from "@/renderer/pages/Xiaohongshu/NewScript";
 
 import {HomeOutlined,SettingOutlined, ChromeOutlined,ZhihuOutlined, TikTokOutlined,BilibiliOutlined,RobotOutlined } from "@ant-design/icons"
+import NewProcess from "@/renderer/pages/Xiaohongshu/NewProcess";
 
 /**
  * 路由入口
@@ -22,6 +23,7 @@ const routers = [
 		children: [
 			{label: '打开网页', path: "/xiaohongshu/open-website", element: <Xiaohongshu/>,},
 			{label: '新建脚本', path: "/xiaohongshu/new-script", element: <NewScript/>,},
+			{label: '新建流程', path: "/xiaohongshu/new-process", element: <NewProcess/>,},
 			{label: '我的脚本列表', path: "/xiaohongshu/my-script", element: <NewScript/>,},
 		]
 	},

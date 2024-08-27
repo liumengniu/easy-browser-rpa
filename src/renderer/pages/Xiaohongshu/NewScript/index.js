@@ -24,10 +24,13 @@ function NewScript() {
 	
 	
 	/**
-	 * 初始化画布
+	 * 初始化X6编辑器
 	 */
 	const initGraph = () => {
-		// 初始化画布
+		/**
+		 * 1、初始化画布
+		 * @type {Graph}
+		 */
 		const graph = new Graph({
 			container: document.getElementById('graph-container'),
 			grid: true,
@@ -103,8 +106,11 @@ function NewScript() {
 			.use(new Keyboard())
 			.use(new Clipboard())
 			.use(new History())
-		
-		// #region 初始化 stencil
+
+		/**
+		 * 2、region 初始化 stencil
+		 * @type {Stencil}
+		 */
 		const stencil = new Stencil({
 			title: '流程图',
 			target: graph,
@@ -125,8 +131,10 @@ function NewScript() {
 		})
 		document.getElementById('stencil')?.appendChild(stencil.container)
 		// #endregion
-		
-		// #region 快捷键与事件
+
+		/**
+		 * region 快捷键与事件、
+		 */
 		graph.bindKey(['meta+c', 'ctrl+c'], () => {
 			const cells = graph.getSelectedCells()
 			if (cells.length) {
@@ -193,8 +201,12 @@ function NewScript() {
 				graph.zoom(-0.1)
 			}
 		})
-		
-		// 控制连接桩显示/隐藏
+
+		/**
+		 * 控制连接桩显示/隐藏
+		 * @param ports
+		 * @param show
+		 */
 		const showPorts = (ports, show) => {
 			for (let i = 0, len = ports.length; i < len; i += 1) {
 				ports[i].style.visibility = show ? 'visible' : 'hidden'
@@ -215,8 +227,11 @@ function NewScript() {
 			showPorts(ports, false)
 		})
 		// #endregion
-		
-		// #region 初始化图形
+
+		/**
+		 * region 初始化图形
+		 * @type {{groups: {top: {position: string, attrs: {circle: {strokeWidth: number, r: number, style: {visibility: string}, fill: string, magnet: boolean, stroke: string}}}, left: {position: string, attrs: {circle: {strokeWidth: number, r: number, style: {visibility: string}, fill: string, magnet: boolean, stroke: string}}}, bottom: {position: string, attrs: {circle: {strokeWidth: number, r: number, style: {visibility: string}, fill: string, magnet: boolean, stroke: string}}}, right: {position: string, attrs: {circle: {strokeWidth: number, r: number, style: {visibility: string}, fill: string, magnet: boolean, stroke: string}}}}, items: [{group: string}, {group: string}, {group: string}, {group: string}]}}
+		 */
 		const ports = {
 			groups: {
 				top: {
@@ -295,8 +310,10 @@ function NewScript() {
 				},
 			],
 		}
-		
-		
+
+		/**
+		 * 注册节点
+		 */
 		Graph.registerNode(
 			'custom-rect',
 			{
