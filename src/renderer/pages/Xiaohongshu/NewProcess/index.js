@@ -221,9 +221,12 @@ function App() {
 						</div>
 					</div>
 					<div className="auto-form-options-basic">
-						<div className="auto-form-options-title">
-							备用操作
-						</div>
+						{
+							!_.isEmpty(optionType?.builtInTemplates) &&
+								<div className="auto-form-options-title">
+									备用操作
+								</div>
+						}
 						<div className="auto-form-options-basic-box">
 							{
 								optionType?.builtInTemplates?.map(item => (

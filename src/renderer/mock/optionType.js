@@ -21,10 +21,10 @@ const optionList = {
     { id: 102, text: '采集评论' },
 	  { id: 103, text: '批量操作' },
   ],
-  builtInTemplates: [
-    { id: 201, text: 'xx操作' },
-	  { id: 202, text: 'xx操作' },
-  ]
+  // builtInTemplates: [
+  //   { id: 201, text: 'xx操作' },
+	//   { id: 202, text: 'xx操作' },
+  // ]
 }
 
 export default optionList
