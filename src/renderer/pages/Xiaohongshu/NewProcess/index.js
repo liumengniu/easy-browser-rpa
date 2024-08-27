@@ -13,7 +13,7 @@ import {
 	GroupOutlined,
 	StarOutlined,
 } from '@ant-design/icons';
-import {Modal} from "antd";
+import {Button, Modal, Space} from "antd";
 
 import BasicComponent from "@/renderer/components/modules/BasicModule";
 
@@ -21,9 +21,9 @@ function App() {
 	// 问卷题目集合
 	const [data, setData] = useState([])
 	// 问卷标题
-	const [questionnaireTitle, setQuestionnaireTitle] = useState("问卷")
+	const [questionnaireTitle, setQuestionnaireTitle] = useState("流程")
 	// 问卷副标题
-	const [questionnaireSubTitle, setQuestionnaireSubTitle] = useState("感谢您抽出几分钟时间填写以下内容，现在我们开始吧")
+	const [questionnaireSubTitle, setQuestionnaireSubTitle] = useState("请一句话描述该流程的详情")
 	// 拖拽组件id
 	const [dragCompId, setDragCompId] = useState(null)
 	// 展示组件索引
@@ -176,10 +176,16 @@ function App() {
 	 */
 	const showSchema = () => {
 		Modal.info({
+			centered: true,
 			title: '查询scheme',
 			content: (<div>{JSON.stringify({questionnaireTitle, questionnaireSubTitle, data})}</div>),
 		});
 	}
+
+	/**
+	 * 保存自定义流程数据至本地磁盘
+	 */
+	const saveProcess = () =>{}
 
 	return (
 		<div className="new-process">
@@ -239,6 +245,12 @@ function App() {
 								))
 							}
 						</div>
+					</div>
+					<div className="auto-form-options-bottom">
+						<Space>
+							<Button type="primary" onClick={showSchema}>查看数据</Button>
+							<Button type="primary" onClick={saveProcess}>保存数据</Button>
+						</Space>
 					</div>
 				</div>
 				{/*展示区域*/}
