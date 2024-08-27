@@ -68,7 +68,9 @@ function WebPage(props) {
 		webIns.openDevTools();
 		webIns.executeJavaScript(webviewScripts?.filterNotes(values?.type, values?.keyword, values?.tag), true);
 	}
-	
+
+	console.log(_path, '==============_path=================')
+
 	return (
 		<div className="xiaohongshu">
 			<div className="xiaohongshu-options">
@@ -103,7 +105,7 @@ function WebPage(props) {
 						nodeintegrationinsubframes="yes"
 						allowrunninginsecurecontent="yes"
 						disablewebsecurity="yes"
-						webpreferences="contextIsolation=no"
+						webPreferences="contextIsolation=no"
 						src={location?.state?.src || 'https://www.xiaohongshu.com/explore'}
 						preload={_path}
 					/>

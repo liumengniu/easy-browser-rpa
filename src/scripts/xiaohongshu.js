@@ -1,3 +1,5 @@
+import interpreter from "@/interpreter";
+
 /**
  * @author Kevin
  * @Date: 2024-6-7
@@ -41,22 +43,22 @@ const xiaohongshuScript = {
 	 * 筛选笔记
 	 */
 	filterNotes: function (...args){
-		var type = args[0];
+		const { find_element, click, send_keys } = window?.mainProcess;
 		var keyword = args[1];
 		var tag = args[2];
-		var searchInput = document.getElementById("search-input");
+		var searchInput = find_element('#search-input');
 		if(keyword !== null && keyword !== undefined) {
-			searchInput.value = keyword;
-			var inputButton = document.querySelector(".search-icon");
-			console.log(inputButton, '=========inputButton=============')
-			inputButton.click();
+			send_keys(searchInput, keyword)
+			var inputButton = find_element('.search-icon');
+			click(inputButton)
 		}
 		if(tag !== null && tag !== undefined){
-			var contentContainer = document.querySelector(".content-container");
+			var contentContainer = find_element('.content-container');
 			var activeContent = contentContainer.children[Number(tag)];
-			if(activeContent) activeContent.click();
+			click(activeContent)
 		}
 	},
+
 	/**
 	 * 获取笔记列表和详情
 	 */
@@ -114,7 +116,7 @@ const xiaohongshuScript = {
 				await sleep(1000)
 				if (noteDetailMask) noteDetailMask.click();
 				if(closeBox) closeBox.click();
-				console.log(noteDetailMask, '===============noteContainer=======================', comments)
+				console.log(noteDetailMask, '===============noteContainer=======================', comments,window)
 				type === "本地磁盘" ? window.mainProcess?.saveDisk(note) : window?.mainProcess?.saveToDB(note);
 			}
 		},1000)
