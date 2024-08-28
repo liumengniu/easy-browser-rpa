@@ -43,20 +43,35 @@ const xiaohongshuScript = {
 	 * 筛选笔记
 	 */
 	filterNotes: function (...args){
-		const { find_element, click, send_keys } = window?.mainProcess;
+		var type = args[0];
 		var keyword = args[1];
 		var tag = args[2];
-		var searchInput = find_element('#search-input');
+		var searchInput = document.getElementById("search-input");
 		if(keyword !== null && keyword !== undefined) {
-			send_keys(searchInput, keyword)
-			var inputButton = find_element('.search-icon');
-			click(inputButton)
+			searchInput.value = keyword;
+			var inputButton = document.querySelector(".search-icon");
+			inputButton.click();
 		}
 		if(tag !== null && tag !== undefined){
-			var contentContainer = find_element('.content-container');
+			var contentContainer = document.querySelector(".content-container");
 			var activeContent = contentContainer.children[Number(tag)];
-			click(activeContent)
+			if(activeContent) activeContent.click();
 		}
+
+		// const { find_element, click, send_keys } = window?.mainProcess;
+		// var keyword = args[1];
+		// var tag = args[2];
+		// var searchInput = find_element('#search-input');
+		// if(keyword !== null && keyword !== undefined) {
+		// 	send_keys(searchInput, keyword)
+		// 	var inputButton = find_element('.search-icon');
+		// 	click(inputButton)
+		// }
+		// if(tag !== null && tag !== undefined){
+		// 	var contentContainer = find_element('.content-container');
+		// 	var activeContent = contentContainer.children[Number(tag)];
+		// 	click(activeContent)
+		// }
 	},
 
 	/**

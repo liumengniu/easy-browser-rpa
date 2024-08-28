@@ -9,6 +9,8 @@ import mockData from "@/renderer/mock";
 import {useEffect, useRef, useState} from "react";
 import _ from "lodash";
 import utils from "@utils";
+import interpreter from "@/interpreter/interpreter"
+import webviewScripts from "@/scripts";
 
 
 function ExecutionProcess(){
@@ -64,6 +66,29 @@ function ExecutionProcess(){
 		console.log(processData, '==========================================')
 		const webIns = webviewRef.current;
 		webIns.src = 'https://www.xiaohongshu.com/explore'
+		// 自定义流程数据 -> 脚本 -> 脚本字符串
+		const customScript = data2script();
+		// 将自定义脚本注入webview
+		webIns.executeJavaScript(customScript, true);
+	}
+
+	/**
+	 * 将数据转化为webview的脚本
+	 */
+	const data2script = (data) =>{
+		let script = ``;
+		_.map(data, o=>{
+			if(o.type === "open_browser"){
+				// 不作处理，渲染线程加载webview指向目标url
+			} else if(o.type === "find_element"){
+				script += interpreter.find_element(o.name)
+			} else if(o.type === "click"){
+				script += interpreter.click(o.element)
+			} else if(o.type === "send_keys"){
+				script += interpreter.send_keys(o.name, o.value)
+			}
+		})
+		return script;
 	}
 
 

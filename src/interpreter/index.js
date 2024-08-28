@@ -53,6 +53,7 @@ const interpreter = {
 	send_keys: function (element,val){
 		if(_.isEmpty(val)) return
 		element.value = val;
+		return true
 	},
 	/**
 	 * 清除元素框的值
@@ -76,8 +77,9 @@ const interpreter = {
 	click:function (element){
 		try {
 			element?.click();
+			return true
 		} catch (e) {
-
+			return false
 		}
 	}
 }
