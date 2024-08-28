@@ -68,7 +68,7 @@ const createWindow = () => {
 	 * @type {Electron.Menu}
 	 */
 	const mainMenu = Menu.buildFromTemplate(Menus);
-	Menu.setApplicationMenu(mainMenu);
+	Menu.setApplicationMenu(null);
 	mainWindow = new BrowserWindow({
 		// transparent: true,
 		// useContentSize: true,
@@ -352,6 +352,13 @@ ipcMain.handle("saveProcess", (event, arg)=>{
 	const data = arg;
 	console.log(event, arg, '==========================================')
 	processUtils.saveProcess(data);
+});
+
+/**
+ * 20、获取流程
+ */
+ipcMain.handle("getProcess", (event, arg)=>{
+	return processUtils.getAllProcess();
 });
 
 /**

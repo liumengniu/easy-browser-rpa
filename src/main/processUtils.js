@@ -19,20 +19,26 @@ const processUtils = {
 		console.log(this.processPath, '-------------------------------------')
 		const configPath = this.processPath;
 		if (!fs.existsSync(configPath)) {
-			fs.writeFileSync(configPath, data.trim())
+			fs.writeFileSync(configPath, data.trim() + '\n')
+		} else {
+			fs.appendFileSync(configPath,data.trim() + '\n')
 		}
 	},
 	/**
 	 * 获取流程
 	 */
 	getProcess: function (){
-	
+
 	},
 	/**
 	 * 获取全部流程
 	 */
 	getAllProcess: function (){
-	
+		if (!fs.existsSync(this.processPath)) {
+			return JSON.stringify([])
+		}
+		const data = fs.readFileSync(this.processPath, {encoding: "utf-8"});
+		return data || [];
 	},
 	/**
 	 * 删除流程

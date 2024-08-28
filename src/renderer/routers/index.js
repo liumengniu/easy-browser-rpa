@@ -2,13 +2,13 @@ import HomePage from "@/renderer/pages/HomePage";
 import Xiaohongshu from "@/renderer/pages/Xiaohongshu";
 import BossZhiPin from "@/renderer/pages/BossZhiPin";
 import DouYin from "@/renderer/pages/DouYin";
-import ZhiHu from "@/renderer/pages/ZhiHu";
-import Bilibili from "@/renderer/pages/Bilibili";
 import Result from "@/renderer/pages/Result";
-import NewScript from "@/renderer/pages/Xiaohongshu/NewScript";
+import MyProcess from "@/renderer/pages/MyProcess";
+import CustomProcess from "@/renderer/pages/CustomProcess";
+import ExecutionProcess from "@/renderer/pages/CustomProcess/ExecutionProcess";
 
 import {HomeOutlined,SettingOutlined, ChromeOutlined,ZhihuOutlined, TikTokOutlined,BilibiliOutlined,RobotOutlined } from "@ant-design/icons"
-import NewProcess from "@/renderer/pages/Xiaohongshu/NewProcess";
+
 
 /**
  * 路由入口
@@ -22,9 +22,6 @@ const routers = [
 		label: '小红书', path: "/xiaohongshu", element: <Xiaohongshu/>, icon: <ChromeOutlined/>,
 		children: [
 			{label: '打开网页', path: "/xiaohongshu/open-website", element: <Xiaohongshu/>,},
-			{label: '新建脚本', path: "/xiaohongshu/new-script", element: <NewScript/>,},
-			{label: '新建流程', path: "/xiaohongshu/new-process", element: <NewProcess/>,},
-			{label: '我的脚本列表', path: "/xiaohongshu/my-script", element: <NewScript/>,},
 		]
 	},
 	{
@@ -39,7 +36,15 @@ const routers = [
 			{label: '打开网页', path: "/douyin/open-website", element: <DouYin/>,},
 		]
 	},
-	{label: '结果', path: "/result", element: <Result/>,icon: <RobotOutlined />},
+	{
+		label: '自定义流程', path: "/custom-process",icon: <RobotOutlined/>,
+		children: [
+			{label: '配置流程', path: "/custom-process/custom-process", element: <CustomProcess/>,},
+			{label: '执行流程', path: "/custom-process/execution-process", element: <ExecutionProcess/>,},
+		]
+	},
+	{label: '我的流程列表', path: "/my-process", element: <MyProcess/>,icon: <RobotOutlined />},
+	{label: '本地磁盘数据', path: "/result", element: <Result/>,icon: <RobotOutlined />},
 	{label: '系统设置', path: "/setting", element: <Result/>, icon: <SettingOutlined/>},
 ]
 

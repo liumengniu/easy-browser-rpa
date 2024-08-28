@@ -16,19 +16,22 @@ import {
 import {Button, Modal, Space} from "antd";
 
 import BasicComponent from "@/renderer/components/modules/BasicModule";
+import {useLocation} from "react-router-dom";
 
-function App() {
+function CustomProcess() {
+	const location = useLocation()
 	// 问卷题目集合
-	const [data, setData] = useState([])
+	const [data, setData] = useState(_.get(location, 'state.data', []))
 	// 问卷标题
-	const [questionnaireTitle, setQuestionnaireTitle] = useState("流程")
+	const [questionnaireTitle, setQuestionnaireTitle] = useState(_.get(location, 'state.questionnaireTitle', '流程'))
 	// 问卷副标题
-	const [questionnaireSubTitle, setQuestionnaireSubTitle] = useState("请一句话描述该流程的详情")
+	const [questionnaireSubTitle, setQuestionnaireSubTitle] = useState(_.get(location, 'state.questionnaireSubTitle', '请一句话描述该流程的详情'))
 	// 拖拽组件id
 	const [dragCompId, setDragCompId] = useState(null)
 	// 展示组件索引
 	const [dragItemComIdx, setDragItemComIdx] = useState(null)
 	const [targetItemIdx, setTargetItemIdx] = useState(null)
+
 
 	/**
 	 * 元拖拽事件
@@ -290,4 +293,4 @@ function App() {
 	);
 }
 
-export default App;
+export default CustomProcess;

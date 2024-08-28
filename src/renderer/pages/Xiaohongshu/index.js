@@ -64,7 +64,6 @@ function WebPage(props) {
 		let webIns = document.getElementById('webview');
 		if (!webIns) return
 		const values = await form.getFieldsValue(true);
-		console.log(values, '======values===========')
 		webIns.openDevTools();
 		webIns.executeJavaScript(webviewScripts?.filterNotes(values?.type, values?.keyword, values?.tag), true);
 	}
@@ -75,9 +74,6 @@ function WebPage(props) {
 		<div className="xiaohongshu">
 			<div className="xiaohongshu-options">
 				<Form  form={form} labelCol={{ span: 8 }} labelWrap={true}>
-					{/*<Form.Item label="选择流程(开发中)" name="process">*/}
-					{/*	<Input />*/}
-					{/*</Form.Item>*/}
 					<Form.Item label="搜索关键字" name="keyword">
 						<Input />
 					</Form.Item>
