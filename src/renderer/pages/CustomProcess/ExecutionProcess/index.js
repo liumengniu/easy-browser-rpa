@@ -6,15 +6,18 @@
 import "./index.less"
 import {Button, Form, Input, Select, Space} from "antd";
 import mockData from "@/renderer/mock";
-import {useEffect, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import _ from "lodash";
 import utils from "@utils";
 
 
 function ExecutionProcess(){
+	const webviewRef = useRef(null);
+	const containerRef = useRef(null)
 	const [form] = Form.useForm();
 	const [data, setData] = useState([])
 	const [_path, setPath] = useState(null);
+	const [show, setShow] = useState(false)
 	const processItem = Form.useWatch('process', form);
 
 	useEffect(() => {
@@ -56,9 +59,11 @@ function ExecutionProcess(){
 	/**
 	 * 开始执行流程
 	 */
-	const handleProcess = () =>{
-		const processData  = JSON.parse(processItem);
+	const handleProcess = () => {
+		const processData = JSON.parse(processItem);
 		console.log(processData, '==========================================')
+		const webIns = webviewRef.current;
+		webIns.src = 'https://www.xiaohongshu.com/explore'
 	}
 
 
@@ -79,21 +84,19 @@ function ExecutionProcess(){
 				</div>
 				<div className="xiaohongshu-webview">
 					{
-						_path && <webview
+						_path &&  <webview
 							id="webview"
+							ref={webviewRef}
 							nodeintegration="yes"
 							allowpopups="yes"
 							nodeintegrationinsubframes="yes"
 							allowrunninginsecurecontent="yes"
 							disablewebsecurity="yes"
 							webPreferences="contextIsolation=no"
-							// src={location?.state?.src || 'https://www.xiaohongshu.com/explore'}
 							preload={_path}
 						/>
 					}
 				</div>
-
-
 			</div>
 		</div>
 	)

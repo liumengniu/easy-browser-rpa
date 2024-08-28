@@ -23,7 +23,7 @@ function MyProcess() {
 	 */
 	const viewAndEdit = (type, record) =>{
 		console.log(type, record, '999999999999999')
-		navigate("/custom-process", { state: record });
+		navigate("/custom-process/custom-process", { state: record });
 	}
 
 	const columns = [
