@@ -320,7 +320,9 @@ function CustomProcess() {
 								<Input/>
 							</Form.Item><Form.Item label="输入关键词" name="keyword">
 								<Input/>
-							</Form.Item></> : null
+							</Form.Item></> : clickItemType === "find_child_by_number" ? <Form.Item label="第几个子元素" name="num">
+								<Input/>
+							</Form.Item> : null
 						}
 						<Form.Item label=" " colon={false}>
 							<Button type="primary" onClick={handleSetting}>保存配置</Button>

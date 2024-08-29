@@ -82,6 +82,8 @@ function ExecutionProcess(){
 				// 不作处理，渲染线程加载webview指向目标url
 			} else if(o.type === "find_element"){
 				script += interpreter.find_element(o.name)
+			} else if(o.type === "find_child_by_number"){
+				script += interpreter.find_child_by_number(o.name)
 			} else if(o.type === "click"){
 				script += interpreter.click(o.element)
 			} else if(o.type === "send_keys"){

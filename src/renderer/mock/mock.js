@@ -23,12 +23,19 @@ const componentsData = {
 	},
 	3: {
 		id: uuidV4(),
+		type: 'find_child_by_number',
+		text: "第N个子元素",
+		subtitle:'通过rpa，获取元素的第N个子元素元素',
+		num: null
+	},
+	4: {
+		id: uuidV4(),
 		type: 'click',
 		text: "点击元素",
 		subtitle:'通过rpa，对获取到的节点元素执行点击操作',
 		name:''
 	},
-	4: {
+	5: {
 		id: uuidV4(),
 		type: 'send_keys',
 		text: "填写输入框",
@@ -36,28 +43,28 @@ const componentsData = {
 		name:'',
 		value: ''
 	},
-	5: {
+	6: {
 		id: uuidV4(),
 		type: 'clear',
 		text: "清除输入框",
 		subtitle:'通过rpa，清除输入框的内容',
 		name:'',
 	},
-	6: {
+	7: {
 		id: uuidV4(),
 		type: 'text',
 		text: "获取文本内容",
 		subtitle:'通过rpa，获取文本的具体内容',
 		name:'',
 	},
-	7: {
+	8: {
 		id: uuidV4(),
 		type: 'timepicker',
 		text: "获取图片链接",
 		subtitle:'通过rpa，获取图片的资源地址',
 		name:'',
 	},
-	8: {
+	9: {
 		id: uuidV4(),
 		type: 'rate',
 		text: "获取详情链接",

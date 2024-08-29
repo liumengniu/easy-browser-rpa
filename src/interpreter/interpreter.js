@@ -3,6 +3,7 @@
  * @author Kevin
  * @Date:
  */
+const _ = require("lodash")
 
 const interpreter = {
 	/**
@@ -12,8 +13,15 @@ const interpreter = {
 		const query = document.querySelector.bind(document);
 		return query(name)
 	},
-
-
+	/**
+	 * 获取第N个子元素
+	 * @param element
+	 * @param num
+	 * @returns {*}
+	 */
+	find_child_by_number: function (element, num){
+		return element.children[_.toNumber(num)]
+	},
 	/**
 	 * 点击操作
 	 * @param name
