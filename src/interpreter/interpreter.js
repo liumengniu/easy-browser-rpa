@@ -10,14 +10,22 @@ const interpreter = {
 	 */
 	find_element: function (name){
 		const query = document.querySelector.bind(document);
-		return `${query(name)}`
+		return query(name)
 	},
+
+
 	/**
 	 * 点击操作
-	 * @param element
+	 * @param name
 	 */
-	click: function (element){
+	click: function (name){
 		element?.click();
+	},
+	/**
+	 * 填充输入框
+	 */
+	send_keys: function (name, value){
+
 	},
 	/**
 	 *

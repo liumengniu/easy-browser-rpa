@@ -12,59 +12,57 @@ const componentsData = {
 		type: 'open_browser',
 		text: "打开网页",
 		subtitle:'通过rpa，打开目标浏览器网页',
-		options: [
-			{id: 1, label: '答案1', value: '答案1'},
-			{id: 2, label: '答案2', value: '答案2'},
-			{id: 3, label: '答案3', value: '答案3'}
-		]
+		url:''
 	},
 	2: {
 		id: uuidV4(),
 		type: 'find_element',
 		text: "获取节点元素",
 		subtitle:'通过rpa，获取节点元素',
-		options: [
-			{id: 1, label: '唱', value: '唱'},
-			{id: 2, label: '跳', value: '跳'},
-			{id: 3, label: 'rap', value: 'rap'},
-			{id: 4, label: '篮球', value: '篮球'}
-		]
+		name:''
 	},
 	3: {
 		id: uuidV4(),
 		type: 'click',
 		text: "点击元素",
 		subtitle:'通过rpa，对获取到的节点元素执行点击操作',
+		name:''
 	},
 	4: {
 		id: uuidV4(),
 		type: 'send_keys',
 		text: "填写输入框",
 		subtitle:'通过rpa，对获取到的输入框填写内容',
+		name:'',
+		value: ''
 	},
 	5: {
 		id: uuidV4(),
 		type: 'clear',
 		text: "清除输入框",
 		subtitle:'通过rpa，清除输入框的内容',
+		name:'',
 	},
 	6: {
 		id: uuidV4(),
 		type: 'text',
 		text: "获取文本内容",
 		subtitle:'通过rpa，获取文本的具体内容',
+		name:'',
 	},
 	7: {
 		id: uuidV4(),
 		type: 'timepicker',
 		text: "获取图片链接",
 		subtitle:'通过rpa，获取图片的资源地址',
+		name:'',
 	},
 	8: {
 		id: uuidV4(),
 		type: 'rate',
 		text: "获取详情链接",
 		subtitle:'通过rpa，获取详情地址',
+		name:'',
 	},
 	101: {
 		id: uuidV4(),

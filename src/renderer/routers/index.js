@@ -44,8 +44,8 @@ const routers = [
 		]
 	},
 	{label: '我的流程列表', path: "/my-process", element: <MyProcess/>,icon: <RobotOutlined />},
-	{label: '本地磁盘数据', path: "/result", element: <Result/>,icon: <RobotOutlined />},
-	{label: '系统设置', path: "/setting", element: <Result/>, icon: <SettingOutlined/>},
+	// {label: '本地磁盘数据', path: "/result", element: <Result/>,icon: <RobotOutlined />},
+	// {label: '系统设置', path: "/setting", element: <Result/>, icon: <SettingOutlined/>},
 ]
 
 export default routers

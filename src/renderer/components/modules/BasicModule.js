@@ -6,7 +6,6 @@ import "./BasicModule.less"
 import {ChromeOutlined, CheckCircleTwoTone, HeartTwoTone, ArrowDownOutlined} from "@ant-design/icons"
 
 function BasicModule(props) {
-	console.log(props, '=========props==================')
 
 	return (
 		<div className="basic-module">

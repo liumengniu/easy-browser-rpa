@@ -13,24 +13,28 @@ import {
 	GroupOutlined,
 	StarOutlined,
 } from '@ant-design/icons';
-import {Button, Modal, Space} from "antd";
+import {Button, Form, Input, Modal, Space} from "antd";
 
 import BasicComponent from "@/renderer/components/modules/BasicModule";
 import {useLocation} from "react-router-dom";
 
 function CustomProcess() {
 	const location = useLocation()
-	// 问卷题目集合
+	const [form] = Form.useForm()
+	// 流程数据集合
 	const [data, setData] = useState(_.get(location, 'state.data', []))
-	// 问卷标题
+	// 流程标题
 	const [questionnaireTitle, setQuestionnaireTitle] = useState(_.get(location, 'state.questionnaireTitle', '流程'))
-	// 问卷副标题
+	// 流程副标题
 	const [questionnaireSubTitle, setQuestionnaireSubTitle] = useState(_.get(location, 'state.questionnaireSubTitle', '请一句话描述该流程的详情'))
 	// 拖拽组件id
 	const [dragCompId, setDragCompId] = useState(null)
 	// 展示组件索引
 	const [dragItemComIdx, setDragItemComIdx] = useState(null)
 	const [targetItemIdx, setTargetItemIdx] = useState(null)
+	// 展示组件点击索引
+	const [clickItemIdx, setClickItemIdx] = useState(null)
+	const [clickItemType, setClickItemType] = useState(null)
 
 
 	/**
@@ -85,6 +89,14 @@ function CustomProcess() {
 	const handleQuestionnaireSubTitle = (e, idx) => {
 		const textContent = e?.target?.textContent;
 		setQuestionnaireSubTitle(textContent)
+	}
+
+	/**
+	 * 点击某个流程节点
+	 */
+	const handleItemClick = (e, idx, item) =>{
+		setClickItemIdx(idx)
+		setClickItemType(item.type)
 	}
 
 	/**
@@ -192,6 +204,16 @@ function CustomProcess() {
 		window?.electronAPI?.saveProcess(JSON.stringify({questionnaireTitle, questionnaireSubTitle, data}))
 	}
 
+	/**
+	 * 保存流程单个节点配置
+	 */
+	const handleSetting = () =>{
+		if(_.isNil(clickItemIdx)) return
+		const values =form.getFieldsValue(true)
+		_.assign(_.get(data, `${clickItemIdx}`), values)
+		setData([...data])
+	}
+
 	return (
 		<div className="new-process">
 			<div className="auto-form">
@@ -251,12 +273,6 @@ function CustomProcess() {
 							}
 						</div>
 					</div>
-					<div className="auto-form-options-bottom">
-						<Space>
-							<Button type="primary" onClick={showSchema}>查看数据</Button>
-							<Button type="primary" onClick={saveProcess}>保存数据</Button>
-						</Space>
-					</div>
 				</div>
 				{/*展示区域*/}
 				<div className="auto-form-workspace drag-box">
@@ -275,7 +291,7 @@ function CustomProcess() {
 							{
 								data?.map((item, idx) => {
 									return (
-										<div key={idx} className="auto-form-questionnaire-wrapper-item" draggable={true}
+										<div key={idx} className={`auto-form-questionnaire-wrapper-item ${clickItemIdx === idx ? 'active' : ''}`} draggable={true} onClick={e=>handleItemClick(e, idx, item)}
 										     onDragStart={e => handleItemDragStart(e, idx, item)} onDragEnd={handleItemDragEnd}
 										     onDragEnter={() => handleItemDragEnter(idx)} onDrop={handleItemDrop}>
 											<BasicComponent handleTitle={e => handleTitle(e, idx)} idx={idx} text={item?.text} subtitle={item?.subtitle}
@@ -286,6 +302,39 @@ function CustomProcess() {
 								})
 							}
 						</div>
+					</div>
+				</div>
+				{/*配置区域*/}
+				<div className="auto-form-setting">
+					<div className="auto-form-setting-label">属性</div>
+					<Form className="auto-form-setting-form" form={form} labelCol={{span: 8}} labelWrap={true}
+					      labelAlign={"left"}>
+						{
+							clickItemType === "open_browser" ? <Form.Item label="网页地址" name="url">
+								<Input/>
+							</Form.Item> : clickItemType === "find_element" ? <Form.Item label="元素标识" name="name">
+								<Input/>
+							</Form.Item> : clickItemType === "click" ? <Form.Item label="元素标识" name="name">
+								<Input/>
+							</Form.Item> : clickItemType === "send_keys" ? <><Form.Item label="元素标识" name="name">
+								<Input/>
+							</Form.Item><Form.Item label="输入关键词" name="keyword">
+								<Input/>
+							</Form.Item></> : null
+						}
+						<Form.Item label=" " colon={false}>
+							<Button type="primary" onClick={handleSetting}>保存配置</Button>
+						</Form.Item>
+					</Form>
+					<div className="auto-form-setting-bottom">
+						<div className="auto-form-setting-label">操作</div>
+						<div className="auto-form-setting-btns">
+							<Space>
+								<Button type="primary" onClick={showSchema}>查看数据</Button>
+								<Button type="primary" onClick={saveProcess}>保存数据</Button>
+							</Space>
+						</div>
+
 					</div>
 				</div>
 			</div>
