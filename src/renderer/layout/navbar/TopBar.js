@@ -1,6 +1,6 @@
 import React from "react";
-import {MenuFoldOutlined, MenuUnfoldOutlined, DownOutlined} from "@ant-design/icons";
-import {Avatar, Layout, Dropdown, Menu} from "antd";
+import {MenuFoldOutlined, MenuUnfoldOutlined, DownOutlined, UserOutlined} from "@ant-design/icons";
+import {Avatar, Layout, Dropdown} from "antd";
 
 
 const { Header } = Layout;
@@ -17,8 +17,8 @@ function TopBar(props){
 	 */
 	const items = [
 		{key: '0',label: <a href="https://www.baidu.com">预留功能1</a>},
-		{key: '1',label: <a href="https://www.baidu.com">预留功能1</a>},
-		{key: '3',label: <a href="https://www.baidu.com">退出登录</a>},
+		{key: '1',label: <a href="https://www.baidu.com">预留功能2</a>},
+		{key: '3',label: <a href="https://www.baidu.com">预留功能3</a>},
 	]
 
 	return (
@@ -28,10 +28,10 @@ function TopBar(props){
 					props.collapsed ? <MenuUnfoldOutlined onClick={props.toggle}/> : <MenuFoldOutlined onClick={props.toggle}/>
 				}
 				<div className={"user-center"}>
-					<Avatar src="https://joeschmoe.io/api/v1/random" />
+					<Avatar style={{ backgroundColor: '#eb2f96' }} icon={<UserOutlined />} />
 					<Dropdown menu={{items}} arrow>
 						<a className="ant-dropdown-link" onClick={e => e.preventDefault()} style={{color: 'white', marginLeft: '20px'}}>
-							<span className={"user-name"}>Joe Biden</span> <DownOutlined />
+							<span className={"user-name"}>超级管理员</span> <DownOutlined />
 						</a>
 					</Dropdown>
 				</div>

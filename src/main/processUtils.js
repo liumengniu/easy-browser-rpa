@@ -7,11 +7,10 @@ const {app, dialog, nativeTheme} = require("electron");
 const fs = require("fs");
 const path = require("path")
 const _ = require("lodash")
-const {isJson} = require("@/renderer/utils");
 
 const processUtils = {
 	userPath: app.getPath("userData"),
-	processPath: path.resolve(app.getPath("userData"), "xiaohongshuProcess.txt"),
+	processPath: path.resolve(app.getPath("userData"), "process.txt"),
 	
 	/**
 	 * 保存流程
@@ -19,27 +18,27 @@ const processUtils = {
 	saveProcess: function (data) {
 		console.log(this.processPath, '-------------------------------------')
 		const configPath = this.processPath;
-		let iniContent = ``;
-		if(isJson(data)) {
-			iniContent = data;
-		} else {
-			iniContent = JSON.stringify(data);
-		}
 		if (!fs.existsSync(configPath)) {
-			fs.writeFileSync(configPath, iniContent.trim())
+			fs.writeFileSync(configPath, data.trim() + '\n')
+		} else {
+			fs.appendFileSync(configPath,data.trim() + '\n')
 		}
 	},
 	/**
 	 * 获取流程
 	 */
 	getProcess: function (){
-	
+
 	},
 	/**
 	 * 获取全部流程
 	 */
 	getAllProcess: function (){
-	
+		if (!fs.existsSync(this.processPath)) {
+			return JSON.stringify([])
+		}
+		const data = fs.readFileSync(this.processPath, {encoding: "utf-8"});
+		return data || [];
 	},
 	/**
 	 * 删除流程

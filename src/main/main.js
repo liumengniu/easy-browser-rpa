@@ -13,6 +13,7 @@ const fs = require("fs");
 const menuUtils = require('./menuUtils')
 const dbUtils = require('./dbUtils')
 const DBService = require("./services");
+const processUtils = require("./processUtils");
 log.transports.file.level = "debug";
 
 
@@ -67,7 +68,7 @@ const createWindow = () => {
 	 * @type {Electron.Menu}
 	 */
 	const mainMenu = Menu.buildFromTemplate(Menus);
-	Menu.setApplicationMenu(mainMenu);
+	Menu.setApplicationMenu(null);
 	mainWindow = new BrowserWindow({
 		// transparent: true,
 		// useContentSize: true,
@@ -348,7 +349,23 @@ function saveToExcel(event, arg){
  * 19、保存流程
  */
 ipcMain.handle("saveProcess", (event, arg)=>{
+	const data = arg;
 	console.log(event, arg, '==========================================')
+	processUtils.saveProcess(data);
+});
+
+/**
+ * 20、获取流程
+ */
+ipcMain.handle("getProcess", (event, arg)=>{
+	return processUtils.getAllProcess();
+});
+
+/**
+ * 21、修改采集数据位置
+ */
+ipcMain.on("changeSavePath", (event, pos) => {
+	menuUtils.changeSavePath()
 });
 
 /**

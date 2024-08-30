@@ -14,7 +14,7 @@ asar: true
 
 # Windows 特定配置
 win:
-  icon: "src/static/icons/256x256.ico"
+  icon: "src/static/icons/256x256.png"
   target:
     - nsis
     - zip
