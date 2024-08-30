@@ -13,18 +13,15 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4  # 更新至 v4
 
       - name: Set up Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4  # 更新至 v4
         with:
-          node-version: '16'  # 请根据你的项目需求设置 Node.js 版本
+          node-version: '20'  # 使用最新的 Node.js 版本
 
       - name: Install dependencies
         run: npm install
-
-      - name: Build Web App
-        run: npm run build:web  # 请根据你的项目设置构建命令
 
       - name: Build Electron App
         run: npm run build  # 请根据你的项目设置构建命令
