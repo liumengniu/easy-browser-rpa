@@ -27,7 +27,7 @@ function MyProcess() {
 	}
 
 	const columns = [
-		{ title: '序号', dataIndex: 'idx', key: 'idx',  render: (text,record, index) => <span>{index+1}</span>},
+		{ title: '序号', dataIndex: 'idx', key: 'idx',width: 60,  render: (text,record, index) => <span>{index+1}</span>},
 		{ title: '流程', dataIndex: 'questionnaireTitle', key: 'questionnaireTitle',},
 		{ title: '流程描述', dataIndex: 'questionnaireSubTitle', key: 'questionnaireSubTitle',},
 		{ title: '流程详情', dataIndex: 'data', key: 'data',ellipsis: true, render: text => <span>{JSON.stringify(text)}</span>},

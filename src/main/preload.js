@@ -54,6 +54,12 @@ contextBridge.exposeInMainWorld('electronAPI', {
 	 * 重新加载(web端有缓存)
 	 */
 	reload: () => ipcRenderer.send('reload'),
+
+	/**
+	 * 修改采集数据存储磁盘位置
+	 * @returns {Promise<any>}
+	 */
+	changeSavePath: () => ipcRenderer.send('changeSavePath'),
 	/**
 	 * ====================================== 2、渲染进程 -> 主进程(双向)  =======================================
 	 */

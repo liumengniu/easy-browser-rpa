@@ -6,8 +6,19 @@ import Result from "@/renderer/pages/Result";
 import MyProcess from "@/renderer/pages/MyProcess";
 import CustomProcess from "@/renderer/pages/CustomProcess";
 import ExecutionProcess from "@/renderer/pages/CustomProcess/ExecutionProcess";
+import SystemSetting from "@/renderer/pages/SystemSetting";
 
-import {HomeOutlined,SettingOutlined, ChromeOutlined,ZhihuOutlined, TikTokOutlined,BilibiliOutlined,RobotOutlined } from "@ant-design/icons"
+import {
+	HomeOutlined,
+	SettingOutlined,
+	ChromeOutlined,
+	ZhihuOutlined,
+	TikTokOutlined,
+	BilibiliOutlined,
+	RobotOutlined,
+	FunctionOutlined
+} from "@ant-design/icons"
+
 
 
 /**
@@ -43,9 +54,8 @@ const routers = [
 			{label: '执行流程', path: "/custom-process/execution-process", element: <ExecutionProcess/>,},
 		]
 	},
-	{label: '我的流程列表', path: "/my-process", element: <MyProcess/>,icon: <RobotOutlined />},
-	// {label: '本地磁盘数据', path: "/result", element: <Result/>,icon: <RobotOutlined />},
-	{label: '系统设置', path: "/setting", element: <Result/>, icon: <SettingOutlined/>},
+	{label: '我的流程列表', path: "/my-process", element: <MyProcess/>,icon: <FunctionOutlined />},
+	{label: '系统设置', path: "/setting", element: <SystemSetting/>, icon: <SettingOutlined/>},
 ]
 
 export default routers

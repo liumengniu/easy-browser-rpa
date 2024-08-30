@@ -362,6 +362,13 @@ ipcMain.handle("getProcess", (event, arg)=>{
 });
 
 /**
+ * 21、修改采集数据位置
+ */
+ipcMain.on("changeSavePath", (event, pos) => {
+	menuUtils.changeSavePath()
+});
+
+/**
  *=========================================================================
  *=                                                                       =
  *=                       4.桌面应用自动更新                                 =

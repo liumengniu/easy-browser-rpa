@@ -13,7 +13,6 @@ import interpreter from "@/interpreter/interpreter"
 
 
 function ExecutionProcess(){
-	const webviewRef = useRef(null);
 	const [form] = Form.useForm();
 	const [data, setData] = useState([])
 	const [_path, setPath] = useState(null);
@@ -58,13 +57,10 @@ function ExecutionProcess(){
 	/**
 	 * 开始执行流程
 	 */
-	const handleProcess = () => {
+	const handleProcess = async () => {
 		try{
 			console.log(processItem, '----------')
-			if(_.isEmpty(processItem)){
-				message.info('请选择自定义流程');
-				return
-			}
+			const values = await form.validateFields();
 			const processData = JSON.parse(processItem);
 			const webIns = document.getElementById("webview")
 			webIns.src = 'https://www.xiaohongshu.com/explore'
@@ -157,7 +153,7 @@ function ExecutionProcess(){
 			<div className="xiaohongshu">
 				<div className="xiaohongshu-options">
 					<Form  form={form} labelCol={{ span: 8 }} labelWrap={true}>
-						<Form.Item label="选择流程" name="process">
+						<Form.Item label="选择流程" name="process" rules={[{required: true, message: '请选择流程!'},]}>
 							<Select options={data}/>
 						</Form.Item>
 						<Form.Item label=" " colon={false}>
