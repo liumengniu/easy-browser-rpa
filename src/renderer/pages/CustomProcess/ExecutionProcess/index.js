@@ -4,7 +4,7 @@
  * @Date:
  */
 import "./index.less"
-import {Button, Form, Input, Select, Space} from "antd";
+import {Button, Form, Input, Select, Space, message} from "antd";
 import mockData from "@/renderer/mock";
 import {useEffect, useRef, useState} from "react";
 import _ from "lodash";
@@ -14,11 +14,9 @@ import interpreter from "@/interpreter/interpreter"
 
 function ExecutionProcess(){
 	const webviewRef = useRef(null);
-	const containerRef = useRef(null)
 	const [form] = Form.useForm();
 	const [data, setData] = useState([])
 	const [_path, setPath] = useState(null);
-	const [show, setShow] = useState(false)
 	const processItem = Form.useWatch('process', form);
 
 	useEffect(() => {
@@ -62,42 +60,27 @@ function ExecutionProcess(){
 	 */
 	const handleProcess = () => {
 		try{
+			console.log(processItem, '----------')
+			if(_.isEmpty(processItem)){
+				message.info('请选择自定义流程');
+				return
+			}
 			const processData = JSON.parse(processItem);
-			console.log(processData, '==========================================')
-			const webIns = webviewRef.current;
+			const webIns = document.getElementById("webview")
 			webIns.src = 'https://www.xiaohongshu.com/explore'
 			// 自定义流程数据 -> 脚本 -> 脚本字符串
 			const customScript = data2script(_.filter(processData, o=>o.type !== 'open_browser'))
 			console.log(customScript, '==========customScript===========',webIns)
 			webIns.preload = _path;
-			// 将自定义脚本注入webview
-			webIns.executeJavaScript(`window.interpreter = ${JSON.stringify(interpreter)};`, true);
-			webIns.openDevTools();
-			webIns.executeJavaScript(customScript, true);
+			webIns.addEventListener('dom-ready', (e) => {
+				webIns.openDevTools();
+				webIns.executeJavaScript(customScript, true);
+			});
+
 		}catch (e){
 
 		}
 	}
-
-	// /**
-	//  * 将数据转化为webview的脚本
-	//  */
-	// const data2script = (data) =>{
-	// 	let script = ``;
-	// 	_.map(data, o=>{
-	// 		if(o.type === "open_browser"){
-	// 			// 不作处理，渲染线程加载webview指向目标url
-	// 			return ""
-	// 		} else if(o.type === "find_element"){
-	// 			script += getChainableFunStr("find_element", o.name)
-	// 		} else if(o.type === "find_child_by_number"){
-	// 			script += getChainableFunStr("find_child_by_number", o.name, o.num)
-	// 		} else if(o.type === "click"){
-	// 			script += getChainableFunStr("click", o.name)
-	// 		}
-	// 	})
-	// 	return script;
-	// }
 
 	/**
 	 * 拼接流程全部函数字符串
@@ -188,7 +171,6 @@ function ExecutionProcess(){
 					{
 						_path &&  <webview
 							id="webview"
-							ref={webviewRef}
 							nodeintegration="yes"
 							allowpopups="yes"
 							nodeintegrationinsubframes="yes"
