@@ -36,7 +36,7 @@ jobs:
         run: npm run build  # 请根据你的项目设置构建命令
 
       - name: Archive Artifacts
-        run: tar -czf release.tar.gz path/to/build  # 将构建产物打包成压缩文件
+        run: tar -czf release.tar.gz release  # 将构建产物打包成压缩文件
         shell: bash
 
       - name: Create Release
