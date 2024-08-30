@@ -154,7 +154,7 @@ BOSS直聘岗位一键海投：
 
 <br>
 
-[![Star History Chart](https://star-history.com/#liumengniu/crawler-client&Timeline)](https://star-history.com/#liumengniu/crawler-client&Timeline)
+[![Star History Chart](https://api.star-history.com/svg?repos=liumengniu/crawler-client&type=Timeline)](https://star-history.com/#liumengniu/crawler-client&Timeline)
 
 
 
