@@ -1,0 +1,55 @@
+name: crawler-client
+
+on:
+  push:
+    branches:
+      - master  # 在 'master' 分支有新的提交时触发
+    tags:
+      - 'v*.*.*'  # 在标签以 'v' 开头的提交时触发，例如 'v1.0.0'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'  # 请根据你的项目需求设置 Node.js 版本
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build Web App
+        run: npm run build:web  # 请根据你的项目设置构建命令
+
+      - name: Build Electron App
+        run: npm run build  # 请根据你的项目设置构建命令
+
+      - name: Archive Artifacts
+        run: tar -czf release.tar.gz path/to/build  # 将构建产物打包成压缩文件
+        shell: bash
+
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          draft: false
+          prerelease: false
+
+      - name: Upload Release Asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./release.tar.gz  # 上传之前打包的文件
+          asset_name: release.tar.gz
+          asset_content_type: application/gzip
