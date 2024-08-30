@@ -3,7 +3,6 @@
  * @author Kevin
  * @Date:
  */
-const _ = require("lodash")
 
 const interpreter = {
 	/**
@@ -15,18 +14,20 @@ const interpreter = {
 	},
 	/**
 	 * 获取第N个子元素
-	 * @param element
+	 * @param name
 	 * @param num
 	 * @returns {*}
 	 */
 	find_child_by_number: function (element, num){
-		return element.children[_.toNumber(num)]
+		console.log(element, '=========element===============', num, '000000',element?.children[Number(num)])
+		return element?.children[Number(num)]
 	},
 	/**
 	 * 点击操作
-	 * @param name
+	 * @param element
 	 */
-	click: function (name){
+	click: function (element){
+		console.log(element, '=======[[[[[[[[[[==element===-[[[[[[[[[============')
 		element?.click();
 	},
 	/**
@@ -43,4 +44,4 @@ const interpreter = {
 	},
 }
 
-module.exports = interpreter
+export default interpreter

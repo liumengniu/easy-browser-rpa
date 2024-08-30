@@ -31,6 +31,7 @@ contextBridge.exposeInMainWorld("mainProcess", {
 		console.log("browserView传递给主进程通信事件", params)
 		return ipcRenderer.invoke("saveToDB", params)
 	},
+	interpreter: interpreter,
 	/**
 	 * 脚本解释器相关方法
 	 */

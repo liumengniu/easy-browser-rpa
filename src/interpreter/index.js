@@ -5,7 +5,6 @@
  * @author Kevin
  * @Date:
  */
-const _ = require("lodash")
 
 const interpreter = {
 	/**
@@ -19,12 +18,24 @@ const interpreter = {
 	 * 获取dom节点
 	 */
 	find_element: function (name){
-		try{
-			const query = document.querySelector.bind(document);
-			return query(name)
-		} catch (e) {
-			return false
-		}
+		const query = document.querySelector.bind(document);
+		return query(name)
+	},
+	/**
+	 * 获取第N个子元素
+	 * @param element
+	 * @param num
+	 * @returns {*}
+	 */
+	find_child_by_number: function (element, num){
+		return element.children[Number(num)]
+	},
+	/**
+	 * 点击操作
+	 * @param name
+	 */
+	click: function (name){
+		element?.click();
 	},
 	/**
 	 * 获取文本内容
@@ -71,17 +82,6 @@ const interpreter = {
 	get_attribute: function (element, name){
 		return element.getAttribute(name);
 	},
-	/**
-	 * 点击事件
-	 */
-	click:function (element){
-		try {
-			element?.click();
-			return true
-		} catch (e) {
-			return false
-		}
-	}
 }
 
 module.exports = interpreter

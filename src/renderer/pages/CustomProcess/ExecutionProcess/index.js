@@ -10,7 +10,6 @@ import {useEffect, useRef, useState} from "react";
 import _ from "lodash";
 import utils from "@utils";
 import interpreter from "@/interpreter/interpreter"
-import webviewScripts from "@/scripts";
 
 
 function ExecutionProcess(){
@@ -62,37 +61,113 @@ function ExecutionProcess(){
 	 * 开始执行流程
 	 */
 	const handleProcess = () => {
-		const processData = JSON.parse(processItem);
-		console.log(processData, '==========================================')
-		const webIns = webviewRef.current;
-		webIns.src = 'https://www.xiaohongshu.com/explore'
-		// 自定义流程数据 -> 脚本 -> 脚本字符串
-		const customScript = data2script();
-		// 将自定义脚本注入webview
-		webIns.executeJavaScript(customScript, true);
+		try{
+			const processData = JSON.parse(processItem);
+			console.log(processData, '==========================================')
+			const webIns = webviewRef.current;
+			webIns.src = 'https://www.xiaohongshu.com/explore'
+			// 自定义流程数据 -> 脚本 -> 脚本字符串
+			const customScript = data2script(_.filter(processData, o=>o.type !== 'open_browser'))
+			console.log(customScript, '==========customScript===========',webIns)
+			webIns.preload = _path;
+			// 将自定义脚本注入webview
+			webIns.executeJavaScript(`window.interpreter = ${JSON.stringify(interpreter)};`, true);
+			webIns.openDevTools();
+			webIns.executeJavaScript(customScript, true);
+		}catch (e){
+
+		}
+	}
+
+	// /**
+	//  * 将数据转化为webview的脚本
+	//  */
+	// const data2script = (data) =>{
+	// 	let script = ``;
+	// 	_.map(data, o=>{
+	// 		if(o.type === "open_browser"){
+	// 			// 不作处理，渲染线程加载webview指向目标url
+	// 			return ""
+	// 		} else if(o.type === "find_element"){
+	// 			script += getChainableFunStr("find_element", o.name)
+	// 		} else if(o.type === "find_child_by_number"){
+	// 			script += getChainableFunStr("find_child_by_number", o.name, o.num)
+	// 		} else if(o.type === "click"){
+	// 			script += getChainableFunStr("click", o.name)
+	// 		}
+	// 	})
+	// 	return script;
+	// }
+
+	/**
+	 * 拼接流程全部函数字符串
+	 * @param processData
+	 * @returns {string}
+	 */
+	const data2script = (processData) =>{
+		return getChainableFunStr(processData.map(step => {
+			return {
+				name: step.type,
+				args: step.type === 'find_element' ? [step.name] :  'find_child_by_number' ? [step.name, step.num] : [step.num || step.value]
+			}
+		}))
+	};
+
+
+	const getFunStr = (methodName, ...args) => {
+		try {
+			if (_.isFunction(interpreter[methodName])) {
+				// 获取方法体并将其注入到 webview 中
+				const funcBody = interpreter[methodName].toString();
+				const argsStr = args.map(arg => JSON.stringify(arg)).join(', ');
+				const script = `
+                (function() {
+                    const method = ${funcBody};
+                    return method(${argsStr});
+                })();
+            `;
+				return script;
+			} else {
+				throw new Error(`Method ${methodName} is not a function`);
+			}
+		} catch (error) {
+			console.error('Error generating script for method:', error);
+			return `console.error('Error generating script for method ${methodName}: ${error.message}')`;
+		}
 	}
 
 	/**
-	 * 将数据转化为webview的脚本
+	 * 链式调用 -> 函数字符串
+	 * @param methodNamesAndArgs
+	 * @returns {string}
 	 */
-	const data2script = (data) =>{
-		let script = ``;
-		_.map(data, o=>{
-			if(o.type === "open_browser"){
-				// 不作处理，渲染线程加载webview指向目标url
-			} else if(o.type === "find_element"){
-				script += interpreter.find_element(o.name)
-			} else if(o.type === "find_child_by_number"){
-				script += interpreter.find_child_by_number(o.name)
-			} else if(o.type === "click"){
-				script += interpreter.click(o.element)
-			} else if(o.type === "send_keys"){
-				script += interpreter.send_keys(o.name, o.value)
-			}
-		})
-		return script;
-	}
+	const getChainableFunStr = (methodNamesAndArgs) => {
+		try {
+			let script = '(function() {';
+			script += `let result;`; // 初始化 result 变量，用于存储中间结果
 
+			methodNamesAndArgs.forEach(({ name, args }, index) => {
+				if (_.isFunction(interpreter[name])) {
+					const funcBody = interpreter[name].toString();
+
+					// 如果是第一个函数调用，直接使用参数；否则，将 result 作为第一个参数传递
+					const argsStr = args.map((arg, i) => {
+						return index === 0 ? JSON.stringify(arg) : (i === 0 ? 'result' : JSON.stringify(arg));
+					}).join(',');
+
+					script += `result = (${funcBody})(${argsStr});`;
+				} else {
+					throw new Error(`Method ${name} is not a function`);
+				}
+			});
+
+			script += 'return result; })();'; // 返回最终的结果
+			return script;
+		} catch (error) {
+			console.error('Error generating script for method:', error);
+			return `console.error('Error generating script for method ${methodNamesAndArgs.map(m => m.name).join(' -> ')}: ${error.message}')`;
+		}
+	};
 
 	return (
 		<div className="execution-process">
@@ -119,7 +194,7 @@ function ExecutionProcess(){
 							nodeintegrationinsubframes="yes"
 							allowrunninginsecurecontent="yes"
 							disablewebsecurity="yes"
-							webPreferences="contextIsolation=no"
+							webpreferences="contextIsolation=no"
 							preload={_path}
 						/>
 					}
