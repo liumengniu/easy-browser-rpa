@@ -36,9 +36,9 @@ const interpreter = {
 	 */
 	for_each: function (list){
 		Array.from(list).forEach((node, idx) => {
-			var coverDom = window.mainProcess?.interpreter?.find_child_element(node, '.cover');
-			var footer = window.mainProcess?.interpreter?.find_child_element(node, '.footer');
-			var titleSpan = window.mainProcess?.interpreter?.find_child_element(footer, 'span');
+			var coverDom = window.mainProcess?.find_child_element(node, '.cover');
+			var footer = window.mainProcess?.find_child_element(node, '.footer');
+			var titleSpan = window.mainProcess?.find_child_element(footer, 'span');
 			console.log(coverDom, '----------', titleSpan)
 		})
 	},
@@ -80,6 +80,12 @@ const interpreter = {
 	img_url: function (element){
 		return element.textContent || element.innerText
 	},
+	/**
+	 * 滚动道底部
+	 */
+	scroll_to_bottom: function (){
+		window.scrollTo({top: document.body.scrollHeight,behavior: 'smooth'});
+	}
 }
 
 export default interpreter

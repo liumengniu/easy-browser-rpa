@@ -26,7 +26,7 @@ const optionList = {
   builtInTemplates: [
     { id: 201, text: '定时器操作' },
 	  { id: 202, text: '滚动到底部' },
-    { id: 203, text: '遍历数据' },
+    { id: 203, text: '遍历节点' },
   ]
 }
 

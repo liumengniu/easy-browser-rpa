@@ -70,6 +70,8 @@ BOSS直聘岗位一键海投：
 ### 3. 运行项目
 
 ```bash
+   npm run start:web &  npm run start 
+   或者
    npm run startAll
 ```
 
