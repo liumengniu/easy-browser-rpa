@@ -32,6 +32,10 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Get package version
+        id: get_version
+        run: echo "PACKAGE_VERSION=$(jq -r .version < package.json)" >> $GITHUB_ENV
+
       - name: Build Electron App
         run: npm run build  # 请根据你的项目设置构建命令
 
@@ -45,8 +49,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ github.ref_name }}  # 使用正确的标签名
-          release_name: Release ${{ github.ref_name }}
+          tag_name: ${{ github.PACKAGE_VERSION  }}  # 使用正确的标签名
+          release_name: Release ${{ github.PACKAGE_VERSION  }}
           draft: false
           prerelease: false
 
