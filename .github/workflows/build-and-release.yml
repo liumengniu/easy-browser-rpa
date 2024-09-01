@@ -49,8 +49,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ github.PACKAGE_VERSION  }}  # 使用正确的标签名
-          release_name: Release ${{ github.PACKAGE_VERSION  }}
+          tag_name: ${{ env.PACKAGE_VERSION  }}  # 使用正确的标签名
+          release_name: Release ${{ env.PACKAGE_VERSION  }}
           draft: false
           prerelease: false
 
