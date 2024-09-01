@@ -23,19 +23,26 @@ const componentsData = {
 	},
 	3: {
 		id: uuidV4(),
+		type: 'find_elements_by_classname',
+		text: "批量获取节点",
+		subtitle:'通过rpa，批量获取class名的节点元素',
+		name:''
+	},
+	4: {
+		id: uuidV4(),
 		type: 'find_child_by_number',
 		text: "第N个子元素",
 		subtitle:'通过rpa，获取元素的第N个子元素元素',
 		num: null
 	},
-	4: {
+	5: {
 		id: uuidV4(),
 		type: 'click',
 		text: "点击元素",
 		subtitle:'通过rpa，对获取到的节点元素执行点击操作',
 		name:''
 	},
-	5: {
+	6: {
 		id: uuidV4(),
 		type: 'send_keys',
 		text: "填写输入框",
@@ -43,28 +50,28 @@ const componentsData = {
 		name:'',
 		value: ''
 	},
-	6: {
+	7: {
 		id: uuidV4(),
 		type: 'clear',
 		text: "清除输入框",
 		subtitle:'通过rpa，清除输入框的内容',
 		name:'',
 	},
-	7: {
+	8: {
 		id: uuidV4(),
 		type: 'text',
 		text: "获取文本内容",
 		subtitle:'通过rpa，获取文本的具体内容',
 		name:'',
 	},
-	8: {
+	9: {
 		id: uuidV4(),
 		type: 'timepicker',
 		text: "获取图片链接",
 		subtitle:'通过rpa，获取图片的资源地址',
 		name:'',
 	},
-	9: {
+	10: {
 		id: uuidV4(),
 		type: 'rate',
 		text: "获取详情链接",
@@ -92,29 +99,24 @@ const componentsData = {
 
 	201: {
 		id: uuidV4(),
-		type: 'income',
-		text: "年收入",
-		options: [
-			{id: 1, label: '0~10W', value: '0~10W'},
-			{id: 2, label: '10~30W', value: '10~30W'},
-			{id: 3, label: '30~50W', value: '30~50W'},
-			{id: 3, label: '50~100W', value: '50~100W'},
-			{id: 3, label: '100W以上', value: '100W以上'}
-		]
+		type: 'setInterval',
+		text: "定时器操作",
+		subtitle:'通过rpa，注入定时器操作',
+		interval: 0,
 	},
 	202: {
 		id: uuidV4(),
-		type: 'clothes_size',
-		text: "衣服尺码",
-		options: [
-			{id: 1, label: 'S码', value: 'S码'},
-			{id: 1, label: 'M码', value: 'M码'},
-			{id: 1, label: 'L码', value: 'L码'},
-			{id: 1, label: 'XL码', value: 'XL码'},
-			{id: 1, label: 'XXL码', value: 'XXL码'},
-			{id: 1, label: 'XXXL码', value: 'XXXL码'},
-		]
-	}
+		type: 'scroll_to_bottom',
+		text: "滚动到底部",
+		subtitle:'滚动到浏览器页面底部',
+		interval: 0,
+	},
+	203: {
+		id: uuidV4(),
+		type: 'for_each',
+		text: "遍历数据",
+		subtitle:'进行遍历操作',
+	},
 }
 
 export default componentsData

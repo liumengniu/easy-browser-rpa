@@ -17,6 +17,7 @@ import {Button, Form, Input, Modal, Space} from "antd";
 
 import BasicComponent from "@/renderer/components/modules/BasicModule";
 import {useLocation} from "react-router-dom";
+import SettingComponent from "@/renderer/components/modules/SettingComponent";
 
 function CustomProcess() {
 	const location = useLocation()
@@ -257,7 +258,7 @@ function CustomProcess() {
 						{
 							!_.isEmpty(optionType?.builtInTemplates) &&
 								<div className="auto-form-options-title">
-									备用操作
+									其他操作
 								</div>
 						}
 						<div className="auto-form-options-basic-box">
@@ -309,21 +310,7 @@ function CustomProcess() {
 					<div className="auto-form-setting-label">属性</div>
 					<Form className="auto-form-setting-form" form={form} labelCol={{span: 8}} labelWrap={true}
 					      labelAlign={"left"}>
-						{
-							clickItemType === "open_browser" ? <Form.Item label="网页地址" name="url">
-								<Input/>
-							</Form.Item> : clickItemType === "find_element" ? <Form.Item label="元素标识" name="name">
-								<Input/>
-							</Form.Item> : clickItemType === "click" ? <Form.Item label="元素标识" name="name">
-								<Input/>
-							</Form.Item> : clickItemType === "send_keys" ? <><Form.Item label="元素标识" name="name">
-								<Input/>
-							</Form.Item><Form.Item label="输入关键词" name="keyword">
-								<Input/>
-							</Form.Item></> : clickItemType === "find_child_by_number" ? <Form.Item label="第几个子元素" name="num">
-								<Input/>
-							</Form.Item> : null
-						}
+						<SettingComponent clickItemType={clickItemType}/>
 						<Form.Item label=" " colon={false}>
 							<Button type="primary" onClick={handleSetting}>保存配置</Button>
 						</Form.Item>

@@ -84,11 +84,18 @@ function ExecutionProcess(){
 	 * @returns {string}
 	 */
 	const data2script = (processData) =>{
+		console.log(processData, '=======processData===========')
 		return getChainableFunStr(processData.map(step => {
-			return {
-				name: step.type,
-				args: step.type === 'find_element' ? [step.name] :  'find_child_by_number' ? [step.name, step.num] : [step.num || step.value]
+			let item = {};
+			item.name = step.type;
+			if(step.type === 'find_element' || step.type === 'find_elements_by_classname') {
+				item.args =  [step.name]
+			} else if(step.type === 'find_child_by_number') {
+				item.args = [step.name, step.num]
+			} else {
+				item.args = [step.num || step.value]
 			}
+			return item;
 		}))
 	};
 
@@ -135,6 +142,47 @@ function ExecutionProcess(){
 					}).join(',');
 
 					script += `result = (${funcBody})(${argsStr});`;
+				} else {
+					throw new Error(`Method ${name} is not a function`);
+				}
+			});
+
+			script += 'return result; })();'; // 返回最终的结果
+			return script;
+		} catch (error) {
+			console.error('Error generating script for method:', error);
+			return `console.error('Error generating script for method ${methodNamesAndArgs.map(m => m.name).join(' -> ')}: ${error.message}')`;
+		}
+	};
+
+	const getChainableFunStr2 = (methodNamesAndArgs) => {
+		try {
+			let script = `(function() { 
+            let result;
+            let isValid = true;
+        `;
+
+			methodNamesAndArgs.forEach(({ name, args }) => {
+				if (_.isFunction(interpreter[name])) {
+					const funcBody = interpreter[name].toString();
+
+					const argsStr = args.map((arg, i) => {
+						return args.length > 0 ? JSON.stringify(arg) : 'result';
+					}).join(', ');
+
+					if (name === 'for_each') {
+						script += `
+                        if (isValid && Array.isArray(result)) {
+                            result.forEach(function(node) {
+                                (${funcBody})(node, ${argsStr.slice(argsStr.indexOf(',') + 1)});
+                            });
+                        } else {
+                            isValid = false;
+                        }
+                    `;
+					} else {
+						script += `result = (${funcBody})(${argsStr});`;
+					}
 				} else {
 					throw new Error(`Method ${name} is not a function`);
 				}
