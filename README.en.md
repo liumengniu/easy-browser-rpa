@@ -1,49 +1,49 @@
-# <p align="center">获取小红书笔记，BOSS直聘岗位，抖音短视频等自媒体平台数据,筛选BOSS直聘简历，并一键海投</p>
+# <p align="center">Get Xiaohongshu notes, BOSS direct recruitment positions, Douyin short videos and other self-media platform data, filter BOSS direct recruitment resumes, and apply for them in one click</p>
 
 [//]: # (https://github.com/ikatyang/emoji-cheat-sheet 表情仓库)
 
-## 🔥 [English Guide](./README.en.md)
+## 🔥 [Chinese Guide](./README.md)
 
-> please visit [English Guide](./README.en.md)
+> please visit [Chinese Guide](./README.md)
 
-免责声明：
+Disclaimer:
 
-大家请以学习为目的使用本仓库
+Please use this repository for learning purposes
 
-本仓库的所有内容仅供学习和参考之用，禁止用于商业用途。任何人或组织不得将本仓库的内容用于非法用途或侵犯他人合法权益。本仓库所涉及的技术仅用于学习和研究，不得用于对其他平台进行非法行为。对于因使用本仓库内容而引起的任何法律责任，本仓库不承担任何责任。使用本仓库的内容即表示您同意本免责声明的所有条款和条件。
+All content in this repository is for learning and reference only and is prohibited from commercial use. No person or organization may use the content of this repository for illegal purposes or infringe on the legitimate rights and interests of others. The technology involved in this repository is only for learning and research and may not be used to conduct illegal activities on other platforms. This repository does not assume any responsibility for any legal liability arising from the use of the content of this repository. By using the content of this repository, you agree to all the terms and conditions of this disclaimer.
 
 
-## 🎞️ 项目原理
+## 🎞️ Project Principle
 
-> 通过electron内嵌chroium浏览器绕过跨域限制，可以注入JS脚本 \
-> 通过JS脚本模拟用户操作，获取各种数据。 \
-> 通过JS脚本和主进程的通信，存储相关数据。 \
-> 通过JS逆向模拟用户操作的方式，获取数据的阻碍小。 
+> By embedding the chroium browser in electron, you can bypass cross-domain restrictions and inject JS scripts \
+> Simulate user operations through JS scripts to obtain various data。 \
+> Store relevant data through communication between JS script and main process。 \
+> By using JS to reverse simulate user operations, there is little obstacle to obtaining data。
 
-BOSS直聘岗位一键海投：
+Apply for BOSS direct recruitment positions in one click：
 ![image](screenshot/BOSS一键海投.png)
-以下是采集的小红书的笔记数据，未经任何修改：
+The following is the collected note data of Xiaohongshu without any modification：
 ![image](screenshot/小红书_sql.png)
-以下是采集的BOSS直聘的视频数据，未经任何修改：
+The following is the video data collected from BOSS Zhipin without any modification：
 ![image](screenshot/BOSS直聘.png)
-以下是采集的抖音的视频数据，未经任何修改：
+The following is the video data of Tik Tok collected without any modification：
 ![image](screenshot/douyin.png)
 
-## 🎨 运行指南
+## 🎨 Running Guide
 
-> 项目运行需要node环境 ，推荐node14+，作者使用的是node 18.20.2 \
-> electron依赖比较大，需要科学上网工具或者配置镜像源 \
-> 通过webview获取数据的进程通信脚本需要读取本地相对路径(file://),通过BrowserView则不需要 
+> The project requires a node environment, node14+ is recommended, the author uses node 18.20.2 \
+> Electron has a large dependency, so you need scientific Internet access tools or mirror source configuration. \
+> The process communication script that obtains data through webview needs to read the local relative path(file://),Not required with BrowseView
 
-### 1. 安装依赖
+### 1. Install Dependencies
 
 ```bash
    npm install
 ```
 
-### 2. 配置数据库
+### 2. Configuring the database
 
-配置文件在`项目根目录\src\main\config\config.json`
+The configuration file is in `project root directory\src\main\config\config.json`
 
 ```json
 {
@@ -71,7 +71,7 @@ BOSS直聘岗位一键海投：
 }
 ```
 
-### 3. 运行项目
+### 3. Run the project
 
 ```bash
    npm run start:web &  npm run start 
@@ -79,7 +79,7 @@ BOSS直聘岗位一键海投：
    npm run startAll
 ```
 
-### 4. 编译项目
+### 4. Compile the project
 ```
 1、npm install                             - 安装依赖
 2、npm run start:web  & npm run start      - 开发调试
@@ -87,19 +87,19 @@ BOSS直聘岗位一键海投：
 4、npm run build:web  & npm run build      - 编译windows生产
 5、npm run build:web  & npm run build:deb  - 编译linux 生产
 
-> 通过根目录下的electron-builder.yml配置进行编译
-> 编译后的输出目录默认在根目录下的release文件夹（包括安装包，绿色启动exe文件，绿色包zip文件）
+> Compile through the electron-builder.yml configuration in the root directory
+> The compiled output directory is in the release folder under the root directory by default (including installation package, green startup exe file, green package zip file)
 ```
 ![image](screenshot/build.png)
 
-### 5. 热更新
+### 5. Hot Update
 ```
-1、配置electron-builder.yml下的publish字段的热更新地址
-2、有新版本编译完成
-3、将新编译的 exe包和 latest.yml放在热更新地址上，保证能直接访问
+1、Configure the hot update address of the publish field under electron-builder.yml
+2、A new version has been compiled
+3、Put the newly compiled exe package and latest.yml in the hot update address to ensure direct access
 ```
 
-### 6、项目结构
+### 6、Project Structure
 
 ```
 ├── crawler-client         # 自媒体采集RPA
@@ -140,9 +140,9 @@ BOSS直聘岗位一键海投：
 └── webstorm.config        # webstorm配置
 ```
 
-## 💡 正在开发中的内容
+## 💡 Content in development
 
-> 正在开发的内容 2024/7/27
+> Content in development 2024/7/27
 >
 
 | 蓝图                         | 完成情况       | 存在问题        |
