@@ -22,6 +22,16 @@ const interpreter = {
 		return query(name)
 	},
 	/**
+	 * 获取当前元素子节点中的dom节点
+	 * @param element
+	 * @param name
+	 * @returns {*}
+	 */
+	find_child_element: function (element, name){
+		const query = element.querySelector.bind(element);
+		return query(name)
+	},
+	/**
 	 * 获取第N个子元素
 	 * @param element
 	 * @param num
