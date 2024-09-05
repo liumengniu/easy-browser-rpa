@@ -33,8 +33,10 @@ const interpreter = {
 	},
 	/**
 	 * 遍历操作
+	 * @param list
+	 * @param cb
 	 */
-	for_each: function (list){
+	for_each: function (list, cb){
 		Array.from(list).forEach((node, idx) => {
 			var coverDom = window.mainProcess?.find_child_element(node, '.cover');
 			var footer = window.mainProcess?.find_child_element(node, '.footer');
